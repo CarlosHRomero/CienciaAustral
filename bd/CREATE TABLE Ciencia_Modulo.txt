@@ -1,0 +1,11 @@
+CREATE TABLE Ciencia_Modulo
+(
+	int ModuloId,
+	Nombre nvarchar(40),
+	PRIMARY KEY (ModuloId)
+);
+
+GO 
+
+ALTER TABLE Ciencia_Modulo
+ADD TablaEquiv nvarchar(50)

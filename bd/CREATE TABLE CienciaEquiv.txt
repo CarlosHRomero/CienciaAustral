@@ -1,0 +1,23 @@
+CREATE TABLE [cirugia].[CienciaEquiv](
+	[EquivId] [int] IDENTITY(1,1) NOT NULL,
+	[TablaId] [int] NULL,
+	[CampoOriginal] [nvarchar](50) NULL,
+	[CampoEquivalente] [nvarchar](50) NULL,
+	[TipoDeDato] [nvarchar](50) NULL,
+	[ValorPorDefecto] [nvarchar](50) NULL,
+	[Solapa] [nvarchar](50) NULL,
+	[Filtro] [nvarchar](50) NULL,
+	[Seleccion] [bit] NULL,
+	[ValoresACero] [nvarchar](50) NULL
+)
+
+GO
+
+ALTER TABLE [CienciaEquiv]
+ADD FOREIGN KEY ([TablaId])
+REFERENCES  CienciaTablaEquiv(TablaId)
+
+GO
+
+ALTER TABLE [CienciaEquiv]
+ADD [TipoDatoSqlServer] nvarchar(50)

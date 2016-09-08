@@ -1,0 +1,29 @@
+ALTER TABLE CienciaTablaEquiv
+ADD ModuloId int
+
+GO
+
+ALTER TABLE CienciaTablaEquiv
+ADD FOREIGN KEY (ModuloId)
+REFERENCES  Ciencia_Modulo(ModuloId)
+
+GO
+
+ALTER TABLE CienciaTablaEquiv
+ADD NombreTablaEquiv nvarchar(40)
+
+GO
+
+
+ALTER TABLE CienciaTablaEquiv
+ADD EsTronco bit
+
+GO
+
+ALTER TABLE CienciaTablaEquiv
+ADD ClavePrimaria nvarchar(40)
+
+GO
+
+ALTER TABLE CienciaTablaEquiv
+ADD ClaveForanea nvarchar(40)

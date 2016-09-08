@@ -1,0 +1,15 @@
+CREATE TABLE [cirugia].[CienciaTablaEquiv](
+	[TablaId] [int] PRIMARY KEY,
+	[NombreTabla] [nvarchar](40) NULL,
+	[Descripcion] [nvarchar](40) NULL,
+	[EsEvolucion] [bit] NULL,
+	[ModuloId] [int] NULL,
+	[NombreTablaEquiv] [nvarchar](40) NULL,
+	[EsTronco] [bit] NULL,
+)
+
+GO
+
+ALTER TABLE CienciaTablaEquiv
+ADD FOREIGN KEY (ModuloId)
+REFERENCES  Ciencia_Modulo(ModuloId)

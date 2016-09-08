@@ -1,0 +1,72 @@
+INSERT INTO CienciaTablaEquiv(TablaId,NombreTabla,Descripcion,EsEvolucion,ModuloId)
+VALUES (7,'Elf_Pac', null, 0, 1);
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(13, 'Elf_Com', null, 0,  1, 'Ciencia_Elf', 0, 'Com_Id', 'Com_DOp_Id', 0)
+
+GO
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(14, 'Elf_Diag', null, 0,  1, 'Ciencia_Elf', 0, 'Diag_Id', 'Diag_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(15, 'Elf_Ant', null, 0,  1, 'Ciencia_Elf', 0, 'Ant_Id', 'Ant_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(16, 'Elf_Alta', null, 0,  1, 'Ciencia_Elf', 0, 'Alta_Id', 'Alta_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(17, 'Elf_MP', null, 0,  1, 'Ciencia_Elf', 0, 'MP_Id', 'MP_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(18, 'Elf_MPAlta', null, 0,  1, 'Ciencia_Elf', 0, 'MPAlta_Id', 'MPAlta_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(20, 'Elf_Tv', null, 0,  1, 'Ciencia_Elf', 0, 'TV_Id', 'TV_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(21, 'Elf_TvAnt', null, 0,  1, 'Ciencia_Elf', 0, 'TvAnt_Id', 'TvAnt_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(22, 'Elf_TvCom', null, 0,  1, 'Ciencia_Elf', 0, 'TvCom_Id', 'TvCom_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(23, 'Elf_TvDiag', null, 0,  1, 'Ciencia_Elf', 0, 'TvDiag_Id', 'TvDiag_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(24, 'Elf_AA', null, 0,  1, 'Ciencia_Elf', 0, 'AA_Id', 'AA_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(25, 'Elf_Sgmto', null, 1,  1, 'Ciencia_Elf', 0, 'Sgmto_Id', 'Sgmto_DOp_Id', 0)
+GO
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(25, 'Elf_Sgmto', null, 1,  1, 'Ciencia_Elf', 0, 'Sgmto_Id', 'Sgmto_DOp_Id', 0)
+
+
+insert into CienciaTablaEquiv(tablaid, nombretabla, descripcion, esevolucion, moduloid, nombretablaequiv, estronco, claveprimaria, claveforanea, espaciente)
+values
+(26, 'Elf_DOp', null, 1,  1, 'Ciencia_Elf', 0, 'DOp_Id', null, 0)

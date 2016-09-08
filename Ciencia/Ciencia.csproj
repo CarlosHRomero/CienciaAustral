@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{317F7B0A-B610-4AFE-8CAB-38330CFDC43C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ciencia</RootNamespace>
+    <AssemblyName>Ciencia</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>040DBDBCBA23B58C6E49B6CB03FA96DD56AD28BA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dlgAbrirBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAbrirBase.Designer.cs">
+      <DependentUpon>dlgAbrirBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios.cs" />
+    <Compile Include="frmComplemento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmComplemento.Designer.cs">
+      <DependentUpon>frmComplemento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDialogoEvol1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDialogoEvol1.Designer.cs">
+      <DependentUpon>frmDialogoEvol1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDialogoEvol2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDialogoEvol2.Designer.cs">
+      <DependentUpon>frmDialogoEvol2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDialogoEvol3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDialogoEvol3.Designer.cs">
+      <DependentUpon>frmDialogoEvol3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEvolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEvolucion.Designer.cs">
+      <DependentUpon>frmEvolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProceso.Designer.cs">
+      <DependentUpon>frmProceso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelector.Designer.cs">
+      <DependentUpon>frmSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUniverso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUniverso.Designer.cs">
+      <DependentUpon>frmUniverso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="dlgAbrirBase.resx">
+      <DependentUpon>dlgAbrirBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmComplemento.resx">
+      <DependentUpon>frmComplemento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDialogoEvol1.resx">
+      <DependentUpon>frmDialogoEvol1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDialogoEvol2.resx">
+      <DependentUpon>frmDialogoEvol2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDialogoEvol3.resx">
+      <DependentUpon>frmDialogoEvol3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEvolucion.resx">
+      <DependentUpon>frmEvolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProceso.resx">
+      <DependentUpon>frmProceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelector.resx">
+      <DependentUpon>frmSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUniverso.resx">
+      <DependentUpon>frmUniverso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
+      <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
+      <Name>Common.OBJ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\trunk\Common\Common\Common.csproj">
+      <Project>{241cd245-931b-4077-9d16-632ae8ce842c}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Generales\Generales\Generales.csproj">
+      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
+      <Name>Generales</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hemodinamia\trunk\Antonio\DrawFlat\DrawFlat.csproj">
+      <Project>{7c5667b5-7be0-4d75-b9bc-57f3b376f3fb}</Project>
+      <Name>DrawFlat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hemodinamia\trunk\Antonio\icbaTextBox\icbaTextBox.csproj">
+      <Project>{462dc971-e378-4e26-86ea-d3a72013b01a}</Project>
+      <Name>icbaTextBox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ciencia.BLL\Ciencia.BLL.csproj">
+      <Project>{d5b3df01-68be-4d44-85c9-3fbca5d74288}</Project>
+      <Name>Ciencia.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ciencia.OBJ\Ciencia.OBJ.csproj">
+      <Project>{d8526ed8-6a5b-4538-b5e2-29c6f5048e79}</Project>
+      <Name>Ciencia.OBJ</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Siguiente.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tarea.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cardiologia.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

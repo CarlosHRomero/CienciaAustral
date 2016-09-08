@@ -1,0 +1,2 @@
+INSERT INTO Ciencia_Modulo (ModuloId, Nombre)VALUES (1, 'Elf');
+INSERT INTO Ciencia_Modulo (ModuloId, Nombre)VALUES (2, 'Car');
