@@ -8,6 +8,7 @@ using Ciencia.BLL;
 using Ciencia.OBJ;
 using Ciencia.Properties;
 using Common;
+using Common.OBJ;
 
 namespace Ciencia
 {
@@ -71,6 +72,13 @@ namespace Ciencia
                     return;
                 }
                 res = conv.ConvertirTablasEvolucion(worker);
+                if (!res)
+                {
+                    e.Result = "error";
+                    if (worker != null) worker.CancelAsync();
+                    return;
+                }
+                res = conv.ConvertirTablasMultiples(worker);
                 if (!res)
                 {
                     e.Result = "error";

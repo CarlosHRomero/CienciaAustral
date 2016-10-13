@@ -47,6 +47,22 @@
     <ManifestCertificateThumbprint>040DBDBCBA23B58C6E49B6CB03FA96DD56AD28BA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.OBJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
+    </Reference>
+    <Reference Include="DrawFlat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Hemodinamia\trunk\Antonio\dll\DrawFlat.dll</HintPath>
+    </Reference>
+    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Generales\dll\Generales.dll</HintPath>
+    </Reference>
+    <Reference Include="icbaTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Hemodinamia\trunk\Antonio\dll\icbaTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -191,25 +207,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
-      <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
-      <Name>Common.OBJ</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\trunk\Common\Common\Common.csproj">
       <Project>{241cd245-931b-4077-9d16-632ae8ce842c}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Generales\Generales\Generales.csproj">
-      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
-      <Name>Generales</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hemodinamia\trunk\Antonio\DrawFlat\DrawFlat.csproj">
-      <Project>{7c5667b5-7be0-4d75-b9bc-57f3b376f3fb}</Project>
-      <Name>DrawFlat</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Hemodinamia\trunk\Antonio\icbaTextBox\icbaTextBox.csproj">
-      <Project>{462dc971-e378-4e26-86ea-d3a72013b01a}</Project>
-      <Name>icbaTextBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ciencia.BLL\Ciencia.BLL.csproj">
       <Project>{d5b3df01-68be-4d44-85c9-3fbca5d74288}</Project>

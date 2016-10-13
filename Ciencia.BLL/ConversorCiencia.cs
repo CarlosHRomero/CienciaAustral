@@ -97,7 +97,6 @@ namespace Ciencia.BLL
                     var tabla = nombreTabla;
                     foreach (var cienciaTablaEquiv in _tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == false && x.NombreTablaEquiv == tabla).OrderByDescending(x => x.EsTronco))
                     {
-                        
                         _mensajes.Add("Procesando " + cienciaTablaEquiv.NombreTabla + " - " + cienciaTablaEquiv.Descripcion);
                         worker.ReportProgress(0, _mensajes);
                         if (cienciaTablaEquiv.EsPaciente)
@@ -226,10 +225,28 @@ namespace Ciencia.BLL
             {
                 _mensajes.Add("Tablas procesadas " + _cantidadTablasProcesadas + " de " + _cantidadTablas);
                 //Conjunto de tablas que tienen una relacion uno a muchos con la tabla principal
-                var tablaMultiple = _tablasOrigenModulo.Where(x => x.EsMultiple);
-                //Nombre de las tablas destino para evolucion o seguimiento donde se guardaron las tablas traducidas en un proceso anterior
-                var tablaDestino = _tablasOrigenModulo.Where(x => x.EsMultiple).Select(x => x.NombreTablaEquiv).Distinct().ToList();
-                return false;
+                var tablasMultiple = _tablasOrigenModulo.Where(x => x.EsMultiple);
+                foreach (var tablaMul in tablasMultiple)
+                {
+                    var res = _mapeadorTabla.EliminarTabla(tablaMul.NombreTablaEquiv);
+                    if (!res)
+                        return false;
+                    res = _mapeadorTabla.CrearTablaDestino(tablaMul);
+                    if (!res)
+                        return false;
+                    res = _mapeadorTabla.MapearDatosTablaOrigen(tablaMul, worker, tablaMul.ClavePrimaria, tablaMul.ClaveForanea);
+                    if (!res)
+                        return false;
+                    _mensajes.Clear();
+                    _mensajes.Add("Tablas procesadas " + ++_cantidadTablasProcesadas + " de " + _cantidadTablas);
+                    _mensajes.Add("Persistiendo Datos en BD");
+                    worker.ReportProgress(0, _mensajes);
+                    //Persiste la informacion mapeada en BD
+                    res = _mapeadorTabla.Modificar(tablaMul.NombreTablaEquiv);
+                    if (!res)
+                        return false;
+                }
+                return true;
             }
             catch (Exception ex)
             {

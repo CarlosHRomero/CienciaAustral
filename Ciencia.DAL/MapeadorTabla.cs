@@ -59,6 +59,46 @@ namespace Ciencia.DAL
             }
         }
 
+        public Boolean EliminarTabla(string tablaDestino)
+        {
+            try
+            {
+                if (tablaDestino == null)
+                {
+                    throw new Exception("No se han cargado correctamente las tablas destino, toda tabla principal o tronco debe tener el nombre de la tabla destino correspondiente");
+                }
+                string query = "IF EXISTS ( SELECT [name] FROM sys.tables WHERE [name] = '" + tablaDestino + "') DROP TABLE " + tablaDestino;
+                _tdatosCiencia.ExecuteQuery(query, System.Data.CommandType.Text);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Generales.Utiles.WriteErrorLog("Error en MapeadorTabla.EliminarTabla: " + ex.Message);
+                return false;
+            }
+        }
+
+        public Boolean CrearTablaDestino(CienciaTablaEquiv cienciaTabla)
+        {
+            try
+            {
+                var query = "CREATE TABLE " + cienciaTabla.NombreTablaEquiv + " ( ";
+                var campos = _eqMan.ObtenerCamposPorTablaOrigen(cienciaTabla.TablaId);
+                foreach (var campo in campos)
+                {
+                    query += campo.CampoEquivalente + " " + campo.TipoDatoSqlServer + ", ";
+                }
+                query += ")";
+                _tdatosCiencia.ExecuteQuery(query, System.Data.CommandType.Text);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Generales.Utiles.WriteErrorLog("Error en MapeadorTabla.CrearTablaDestino: " + ex.Message);
+                return false;
+            }
+        }
+
         private Boolean CrearTablaDestino(string crearTabla)
         {
             try
@@ -233,6 +273,77 @@ namespace Ciencia.DAL
                     }
                     i++;
                     worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Generales.Utiles.WriteErrorLog("Error en MapeadorEvolucion.MapearDatosTablaOrigen: " + ex.Message);
+                return false;
+            }
+        }
+
+        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker)
+        {
+            try
+            {
+                var modulo = _moduloMan.ObtenerDatosModulo(cienciaTablaEquiv.ModuloId.ToString());
+                int i = 0;
+                int diag = 0;
+                string queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
+                DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
+                var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
+                _dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
+                var max = dtOrg.Rows.Count;
+                foreach (DataRow filaOrg in dtOrg.Rows)
+                {
+                    if (worker.CancellationPending)
+                    {
+                        return false;
+                    }
+                    //if (_dtDes.Rows.Count() != 0)
+                    //{
+                        //DataRow filaDest = dataRowDes[0];
+                        //foreach (DataColumn columna in dtOrg.Columns)
+                        //{
+                        //    var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                        //    if (equiv == null)
+                        //        continue;
+                        //    var campoDest = equiv.CampoEquivalente.Trim();
+                        //    var valor = filaOrg[columna];
+                        //    if (String.IsNullOrEmpty(valor.ToString()))
+                        //    {
+                        //        if (equiv.ValorPorDefecto == null)
+                        //            filaDest[campoDest] = DBNull.Value;
+                        //        else
+                        //            filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                        //        continue;
+                        //    }
+                        //    if (equiv.Filtro == null)
+                        //    {
+                        //        if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
+                        //            filaDest[campoDest] = (DateTime)valor;
+                        //        else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
+                        //            filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
+                        //        else if (columna.DataType == typeof(String))
+                        //            filaDest[campoDest] = valor.ToString().Trim();
+                        //        else
+                        //            filaDest[campoDest] = valor;
+                        //    }
+                        //    else
+                        //    {
+                        //        String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
+                        //        if (s == null)
+                        //            filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                        //        else
+                        //            filaDest[campoDest] = s.Trim();
+                        //    }
+                        //}
+                    //}
+                    //else
+                    //{
+                    //    Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
+                    //}
                 }
                 return true;
             }

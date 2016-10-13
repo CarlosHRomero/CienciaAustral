@@ -27,11 +27,11 @@ namespace Ciencia.DAL
             {
                 AdmEquiv obj = new AdmEquiv
                 {
-                    Eqv_Desc = row["Eqv_Desc"].ToString(),
-                    Eqv_Val = Convert.ToInt16(row["Eqv_Val"]),
-                    Eqv_ord = Convert.ToInt16(row["Eqv_ord"]),
-                    Eqv_Tit = row["Eqv_Tit"].ToString(),
-                    Eqv_Continua = row["Eqv_continua"].ToString()
+                    Eqv_Desc = row["Eqv_Desc"] != DBNull.Value ? row["Eqv_Desc"].ToString() : null,
+                    Eqv_Val = row["Eqv_Val"] != DBNull.Value ? Convert.ToInt16(row["Eqv_Val"]) : short.MinValue,
+                    Eqv_ord = row["Eqv_ord"] != DBNull.Value ? Convert.ToInt16(row["Eqv_ord"]) : short.MinValue,
+                    Eqv_Tit = row["Eqv_Tit"] != DBNull.Value ? row["Eqv_Tit"].ToString() : null,
+                    Eqv_Continua = row["Eqv_continua"] != DBNull.Value ? row["Eqv_continua"].ToString() : null
                 };
                 lista.Add(obj);
             }

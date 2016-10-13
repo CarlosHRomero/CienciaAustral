@@ -31,6 +31,29 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cardiologia.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="Cardiologia.OBJ">
+      <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.OBJ.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.OBJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
+    </Reference>
+    <Reference Include="Electrofisiologia.DAL, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Electrofisiologia\trunk\dll\Electrofisiologia.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="Electrofisiologia.OBJ, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Electrofisiologia\trunk\dll\Electrofisiologia.OBJ.dll</HintPath>
+    </Reference>
+    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Generales\dll\Generales.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -87,38 +110,6 @@
     <Compile Include="TipoDeDato.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Cardiologia\trunk\Cardiolgia.OBJ\Cardiologia.OBJ.csproj">
-      <Project>{a93225cc-e2c5-499f-a1dd-03fa76a94bf3}</Project>
-      <Name>Cardiologia.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Cardiologia\trunk\Cardiología.DAL\Cardiologia.DAL.csproj">
-      <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
-      <Name>Cardiologia.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
-      <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
-      <Name>Common.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Electrofisiologia\trunk\Electrofisiologia.DAL\Electrofisiologia.DAL.csproj">
-      <Project>{42888fc6-955b-4474-92d2-28a3f0dc1ea4}</Project>
-      <Name>Electrofisiologia.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Electrofisiologia\trunk\Electrofisiologia.OBJ\Electrofisiologia.OBJ.csproj">
-      <Project>{6f8e2bb5-235a-4771-a78e-4e233f53abc5}</Project>
-      <Name>Electrofisiologia.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Generales\Generales\Generales.csproj">
-      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
-      <Name>Generales</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Car\Cardiolgia.OBJ\Cardiologia.OBJ.csproj">
-      <Project>{a93225cc-e2c5-499f-a1dd-03fa76a94bf3}</Project>
-      <Name>Cardiologia.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Car\Cardiología.DAL\Cardiologia.DAL.csproj">
-      <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
-      <Name>Cardiologia.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ciencia.OBJ\Ciencia.OBJ.csproj">
       <Project>{d8526ed8-6a5b-4538-b5e2-29c6f5048e79}</Project>
       <Name>Ciencia.OBJ</Name>
