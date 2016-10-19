@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ciencia.OBJ;
 using Ciencia.DAL;
 using System.Windows.Forms;
+using System.Data;
 
 
 
@@ -86,7 +87,7 @@ namespace Ciencia.BLL
                 if (!res)
                     return false;
                 //Busca tablas destino recien cradas
-                tablaDestino = _tablasOrigenModulo.Where(x => x.EsEvolucion == false).Select(x => x.NombreTablaEquiv).Distinct().ToList();
+                tablaDestino = _tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == false).Select(x => x.NombreTablaEquiv).Distinct().ToList();
                 //Recorre las tablas destino recien generadas
                 foreach (var nombreTabla in tablaDestino)
                 {
@@ -234,7 +235,8 @@ namespace Ciencia.BLL
                     res = _mapeadorTabla.CrearTablaDestino(tablaMul);
                     if (!res)
                         return false;
-                    res = _mapeadorTabla.MapearDatosTablaOrigen(tablaMul, worker, tablaMul.ClavePrimaria, tablaMul.ClaveForanea);
+                    DataTable dtDes = new DataTable();
+                    res = _mapeadorTabla.MapearDatosTablaOrigen(tablaMul, worker,ref dtDes);
                     if (!res)
                         return false;
                     _mensajes.Clear();
@@ -242,7 +244,7 @@ namespace Ciencia.BLL
                     _mensajes.Add("Persistiendo Datos en BD");
                     worker.ReportProgress(0, _mensajes);
                     //Persiste la informacion mapeada en BD
-                    res = _mapeadorTabla.Modificar(tablaMul.NombreTablaEquiv);
+                    res = _mapeadorTabla.Modificar(tablaMul.NombreTablaEquiv, dtDes);
                     if (!res)
                         return false;
                 }

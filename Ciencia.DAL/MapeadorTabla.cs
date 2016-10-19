@@ -283,67 +283,63 @@ namespace Ciencia.DAL
             }
         }
 
-        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker)
+        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker,ref DataTable dtDes)
         {
             try
             {
                 var modulo = _moduloMan.ObtenerDatosModulo(cienciaTablaEquiv.ModuloId.ToString());
                 int i = 0;
-                int diag = 0;
-                string queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
+                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla; 
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
-                _dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
+                dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                DataRow filaDest = null;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
                     if (worker.CancellationPending)
                     {
                         return false;
                     }
-                    //if (_dtDes.Rows.Count() != 0)
-                    //{
-                        //DataRow filaDest = dataRowDes[0];
-                        //foreach (DataColumn columna in dtOrg.Columns)
-                        //{
-                        //    var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
-                        //    if (equiv == null)
-                        //        continue;
-                        //    var campoDest = equiv.CampoEquivalente.Trim();
-                        //    var valor = filaOrg[columna];
-                        //    if (String.IsNullOrEmpty(valor.ToString()))
-                        //    {
-                        //        if (equiv.ValorPorDefecto == null)
-                        //            filaDest[campoDest] = DBNull.Value;
-                        //        else
-                        //            filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                        //        continue;
-                        //    }
-                        //    if (equiv.Filtro == null)
-                        //    {
-                        //        if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
-                        //            filaDest[campoDest] = (DateTime)valor;
-                        //        else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
-                        //            filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
-                        //        else if (columna.DataType == typeof(String))
-                        //            filaDest[campoDest] = valor.ToString().Trim();
-                        //        else
-                        //            filaDest[campoDest] = valor;
-                        //    }
-                        //    else
-                        //    {
-                        //        String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
-                        //        if (s == null)
-                        //            filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                        //        else
-                        //            filaDest[campoDest] = s.Trim();
-                        //    }
-                        //}
-                    //}
-                    //else
-                    //{
-                    //    Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
-                    //}
+                    filaDest = dtDes.NewRow();
+                    foreach (DataColumn columna in dtOrg.Columns)
+                    {
+                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                        if (equiv == null)
+                            continue;
+                        var campoDest = equiv.CampoEquivalente.Trim();
+                        var valor = filaOrg[columna];
+                        if (String.IsNullOrEmpty(valor.ToString()))
+                        {
+                            if (equiv.ValorPorDefecto == null)
+                                filaDest[campoDest] = DBNull.Value;
+                            else
+                                filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                            continue;
+                        }
+                        if (equiv.Filtro == null)
+                        {
+                            if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
+                                filaDest[campoDest] = (DateTime)valor;
+                            else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
+                                filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
+                            else if (columna.DataType == typeof(String))
+                                filaDest[campoDest] = valor.ToString().Trim();
+                            else
+                                filaDest[campoDest] = valor;
+                        }
+                        else
+                        {
+                            String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
+                            if (s == null)
+                                filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                            else
+                                filaDest[campoDest] = s.Trim();
+                        }
+                    }
+                    dtDes.Rows.Add(filaDest);
+                    i++;
+                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
                 }
                 return true;
             }
@@ -427,6 +423,22 @@ namespace Ciencia.DAL
             {
                 string queryDes = "SELECT * FROM " + nombreTablaDestino;
                 result = _tdatosCiencia.UpdateTable(queryDes, _dtDes);
+            }
+            catch (Exception ex)
+            {
+                Generales.Utiles.WriteErrorLog("En CienciaEquivManager.Modificar: " + ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        public bool Modificar(string nombreTablaDestino, DataTable dtDes)
+        {
+            Boolean result;
+            try
+            {
+                string queryDes = "SELECT * FROM " + nombreTablaDestino;
+                result = _tdatosCiencia.UpdateTable(queryDes, dtDes);
             }
             catch (Exception ex)
             {
