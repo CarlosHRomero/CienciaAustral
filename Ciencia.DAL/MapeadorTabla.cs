@@ -25,6 +25,8 @@ namespace Ciencia.DAL
         private readonly TablaEquivManager _tablaEquivMan;
         private const int CantidadColumnas = 800;
         private readonly Electrofisiologia.DAL.PersVincManager _elfPersVincManager;
+        private const string _fechaNcimiento = "PAC_NAC_F";
+        private const string _edad = "PROC_EDAD_N";
         public MapeadorTabla()
         {
             _tdatos = new TDatos("ICBA.Properties.Settings.ConnStr");
@@ -375,6 +377,13 @@ namespace Ciencia.DAL
                                 continue;
                             var campoDest = equiv.CampoEquivalente.Trim();
                             var valor = filaOrg[columna];
+                            //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
+                            if (columna.ColumnName.ToUpper() == _fechaNcimiento)
+                            {
+                                int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
+                                filaDest[_edad] = edad.ToString();
+                                continue;
+                            }
                             if (String.IsNullOrEmpty(valor.ToString()))
                             {
                                 if (equiv.ValorPorDefecto == null)
