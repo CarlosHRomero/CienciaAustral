@@ -42,13 +42,34 @@ namespace Ciencia.BLL
             //lista.AddRange(man.ObtenerListaSolapas(moduloId, true));
             return lista;
         }
+
+        public List<string> ListaSolapa(int moduloId, bool esEvol)
+        {
+            CienciaEquivManager man = new CienciaEquivManager();
+            string s = "*";
+            List<string> lista = new List<string>();
+            lista.Add(s);
+            lista.AddRange(man.ObtenerListaSolapas(moduloId, esEvol));
+            //lista.AddRange(man.ObtenerListaSolapas(moduloId, true));
+            return lista;
+        }
         public List<string> ListaSolapa(int moduloId)
         {
             CienciaEquivManager man = new CienciaEquivManager();
             string s = "*";
             List<string> lista = new List<string>();
             lista.Add(s);
-            lista.AddRange(man.ObtenerListaSolapas(moduloId, true));
+            lista.AddRange(man.ObtenerListaSolapas(moduloId, false));
+            return lista;
+        }
+
+        public List<string> ListaSolapaPorTabla(int moduloId, int tablaId)
+        {
+            CienciaEquivManager man = new CienciaEquivManager();
+            string s = "*";
+            List<string> lista = new List<string>();
+            lista.Add(s);
+            lista.AddRange(man.ObtenerListaSolapas(moduloId, tablaId, false));
             return lista;
         }
         public List<CienciaTablaEquiv> ListaTablaLocal(string constr, bool evol)

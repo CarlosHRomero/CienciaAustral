@@ -57,6 +57,26 @@ namespace Ciencia.DAL
             }
         }
 
+        public string ObtenerTablaEquivalentePorTablaOrigen(string tablaOrigen)
+        {
+            try
+            {
+                var sql = PetaPoco.Sql.Builder.Append("select NombreTabla from cienciatablaequiv ");
+                sql.Where("tablaOrigen = " + tablaOrigen);
+                var lista = db.Fetch<string>(sql);
+                if (lista.Count != 1)
+                {
+                    throw new Exception("hay mas de una tabla equivalente");
+                }
+                return lista.First();
+            }
+            catch (Exception ex)
+            {
+                Utiles.WriteErrorLog(ex.Message);
+                return null;
+            }
+
+        }
         public string ObtenerTablaEquivalente(int moduloId)
         {
             String where = string.Format("where ModuloId = {0} and EsTronco=1 and esEvolucion = 0", moduloId.ToString());
@@ -65,17 +85,84 @@ namespace Ciencia.DAL
                 return tabla.NombreTablaEquiv;
             else
                 return null;
+            
         }
 
-        public List<string> ObtenerTablaSEquivalente(int moduloId)
+        public List<clsTablaEquivalente> ObtenerTablaSEquivalente(int moduloId)
+        {
+            var lista = ObtenerTablasSimpleEquivalente(moduloId);
+            lista.AddRange(ObtenerTablasMultiplesEquivalente(moduloId));
+            return lista;
+        }
+
+        
+        public List<clsTablaEquivalente> ObtenerTablasSimpleEquivalente(int moduloId)
         {
 
-            String where = string.Format("ModuloId = {0} and  EsEvolucion = 0", moduloId.ToString());
+            String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 0", moduloId.ToString());
             var sql = PetaPoco.Sql.Builder.Append("select distinct NombreTablaEquiv from cienciatablaequiv");
             sql.Where(where);
             var lista = db.Fetch<string>(sql);
-            return lista;
+            var tablasOrigenModulo = ObtenerTablasOrigenPorModulo(moduloId, false);
+            var clavePrimariaTronco = tablasOrigenModulo.Where(x => x.EsTronco == true).First().ClavePrimaria;
+            var listaRes = new List<clsTablaEquivalente>();
+            foreach(string tabla in lista)
+            {
+                clsTablaEquivalente obRes = new clsTablaEquivalente();
+                obRes.nombre = tabla;
+                obRes.claveForanea = clavePrimariaTronco;
+                listaRes.Add(obRes);
+            }
+            return listaRes;
         }
+
+        public List<clsTablaEquivalente> ObtenerTablasMultiplesEquivalente(int moduloId)
+        {
+
+            String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 1", moduloId.ToString());
+            var sql = PetaPoco.Sql.Builder.Append("select * from cienciatablaequiv");
+            sql.Where(where);
+            var lista = db.Fetch<CienciaTablaEquiv>(sql);
+            var listaRes = new List<clsTablaEquivalente>();
+            foreach( var obj in lista)
+            {
+                var obRes = new clsTablaEquivalente();
+                obRes.nombre = obj.NombreTablaEquiv;
+                obRes.claveForanea= obj.ClaveForanea;
+                listaRes.Add(obRes);
+            }
+            return listaRes;
+        }
+
+        public List<clsTablaEquivalente> ObtenerTablasEquivalente(int moduloId, List<string> TablasOrg)
+        {
+            String where;
+            PetaPoco.Sql sql;
+            List<CienciaTablaEquiv> lista = new List<CienciaTablaEquiv>();
+            CienciaTablaEquiv tE;
+            foreach(string tabla in TablasOrg)
+            {
+                sql = PetaPoco.Sql.Builder.Append("select * from cienciatablaequiv");
+                where = string.Format("ModuloId = {0} and  NombreTabla = '{1}'", moduloId, tabla);
+                sql.Where(where);
+                tE = db.Single<CienciaTablaEquiv>(sql);
+                if(lista.Find(x=> x.NombreTabla == tE.NombreTabla)== null)
+                    lista.Add(tE);
+            }
+            
+            var listaRes = new List<clsTablaEquivalente>();
+            foreach (var obj in lista)
+            {
+                var obRes = new clsTablaEquivalente();
+                obRes.nombre = obj.NombreTablaEquiv;
+                obRes.claveForanea = obj.ClaveForanea;
+                if (listaRes.Find(x => x.nombre== obRes.nombre) == null)
+                    listaRes.Add(obRes); ;
+                
+            }
+            return listaRes;
+        }
+
 
         /*public CienciaTablaEquiv ObtenerTablaEquivalente(int moduloId)
         {polimorfismo

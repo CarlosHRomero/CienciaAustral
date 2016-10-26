@@ -16,6 +16,7 @@ namespace Ciencia.OBJ
         public string ValorPorDefecto { get; set; }
         public string Solapa { get; set; }
         public string Filtro { get; set; }
+        public int? orden { get; set; }
         public Boolean Seleccion { get; set; }
         public string ValoresACero { get; set; }
         public string ValoresACeroStr { get; set; }

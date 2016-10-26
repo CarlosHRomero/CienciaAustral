@@ -58,6 +58,7 @@
     <Compile Include="Ciencia_Modulo.cs" />
     <Compile Include="clsCampo.cs" />
     <Compile Include="clsSelector.cs" />
+    <Compile Include="clsTablaEquivalente.cs" />
     <Compile Include="Equivalencia.cs" />
     <Compile Include="NumDePac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

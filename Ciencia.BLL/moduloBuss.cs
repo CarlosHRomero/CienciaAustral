@@ -23,7 +23,7 @@ namespace Ciencia.BLL
             TablaEquivManager teMan = new TablaEquivManager();
             tablasOrigenModulo = teMan.ObtenerTablasOrigenPorModulo(moduloId, false);
             var clavePrimariaTronco = tablasOrigenModulo.Where(x => x.EsTronco == true).First().ClavePrimaria;
-            var tablasConvertidas = tablasOrigenModulo.Where(x => x.EsEvolucion == false).Select(x => x.NombreTablaEquiv).Distinct().ToList<string>();
+            var tablasConvertidas = tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == false).Select(x => x.NombreTablaEquiv).Distinct().ToList<string>();
             string primeraTabla= tablasConvertidas.First();
             string tablasAgregadas = primeraTabla;
             tablasConvertidas.Remove(primeraTabla);
@@ -31,6 +31,16 @@ namespace Ciencia.BLL
             {
                 tablasAgregadas += string.Format(" inner join {1} on {0}.{2} = {1}.{2}", primeraTabla, tabla, clavePrimariaTronco);
             }
+            /////
+            var tablasMultiple = tablasOrigenModulo.Where(x => x.EsMultiple == true);
+            string tablasMultiplesAgregadas=null;
+            var tablaPrincipal = tablasOrigenModulo.Where(x => x.EsTronco == true).First();
+            foreach (var tablaMultiple in tablasMultiple)
+            {
+                tablasAgregadas += string.Format(" left join {0} on {1}.{2} = {3}.{4}", tablaMultiple.NombreTablaEquiv, tablaPrincipal.NombreTablaEquiv, tablaPrincipal.ClavePrimaria, tablaMultiple.NombreTablaEquiv, tablaMultiple.ClaveForanea);
+            }
+            ///////
+            //var tablasConvertidasMul = tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == true).Select(x => x.NombreTablaEquiv).Distinct().ToList<string>();
 
             return tablasAgregadas;
 

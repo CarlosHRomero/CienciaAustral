@@ -64,9 +64,9 @@ namespace Ciencia.DAL
             {
 
                 //var sql = PetaPoco.Sql.Builder.Append("select CienciaEquiv.* from CienciaEquiv, CienciaTablaEquiv ");
-                string sql = "select CienciaEquiv.* from CienciaEquiv, CienciaTablaEquiv where " +
+                string sql = "select CienciaEquiv.*, CienciaTablaEquiv.orden from CienciaEquiv, CienciaTablaEquiv where " +
                              "CienciaEquiv.TablaId=CienciaTablaEquiv.TablaId and CienciaTablaEquiv.ModuloId = @0 and esEvolucion = @1 " +
-                             "order by CienciaEquiv.EquivId";
+                             "order by CienciaTablaEquiv.orden, CienciaEquiv.orden";
                 lista = db.Fetch<CienciaEquiv>(sql, moduloId, esEvolucion);
             }
             catch (Exception ex)
@@ -164,16 +164,35 @@ namespace Ciencia.DAL
 
         public List <string> ObtenerListaSolapas(int moduloId, bool esEvol)
         {
-             var sql = PetaPoco.Sql.Builder.Append("select distinct solapa from cienciaEquiv inner join CienciaTablaEquiv on CienciaEquiv.TablaId = CienciaTAblaEquiv.TablaId");
+            var sql = PetaPoco.Sql.Builder.Append("select distinct cienciaEquiv.tablaId, solapa from cienciaEquiv inner join CienciaTablaEquiv on CienciaEquiv.TablaId = CienciaTAblaEquiv.TablaId");
                 string Where = string.Format("moduloId = {0} and esEvolucion = {1} and solapa is not null", moduloId, esEvol== false ? "0":"1");
                 if (!String.IsNullOrEmpty(Where))
                 {
                     sql.Where(Where);
                 }
+                string order = "cienciaEquiv.tablaId";
+                sql.OrderBy(order);
                 var lista = db.Fetch<CienciaEquiv>(sql);
                 return (from eqv in lista
                         select eqv.Solapa).ToList();
         }
+
+
+        public List<string> ObtenerListaSolapas(int moduloId, int tablaId, bool esEvol)
+        {
+            var sql = PetaPoco.Sql.Builder.Append("select distinct solapa from cienciaEquiv inner join CienciaTablaEquiv on CienciaEquiv.TablaId = CienciaTAblaEquiv.TablaId");
+            string Where = string.Format("moduloId = {0} and cienciaEquiv.tablaId ={1} and esEvolucion = {2} and solapa is not null", moduloId, tablaId, esEvol == false ? "0" : "1");
+            
+            if (!String.IsNullOrEmpty(Where))
+            {
+                sql.Where(Where);
+            }
+            
+            var lista = db.Fetch<CienciaEquiv>(sql);
+            return (from eqv in lista
+                    select eqv.Solapa).ToList();
+        }
+
 
 
         public List<CienciaEquiv> ObtenerCamposPorTablaOrigen(int TablaOrgId)

@@ -53,7 +53,7 @@
     </Reference>
     <Reference Include="DrawFlat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Hemodinamia\trunk\Antonio\dll\DrawFlat.dll</HintPath>
+      <HintPath>..\..\..\Common\trunk\Common\dll\DrawFlat.dll</HintPath>
     </Reference>
     <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
