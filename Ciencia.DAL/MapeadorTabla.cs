@@ -382,6 +382,7 @@ namespace Ciencia.DAL
                             {
                                 int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
                                 filaDest[_edad] = edad.ToString();
+                                filaDest[_fechaNcimiento] = valor;
                                 continue;
                             }
                             if (String.IsNullOrEmpty(valor.ToString()))
