@@ -10,7 +10,9 @@ namespace Ciencia.BLL
     {
         CienciaEquivManager man = new CienciaEquivManager();
 
-        string _tablaResultado;
+
+        List<string> _tablasResultado = new List<string>();
+        private const int MAXCAMPOS = 50;
 
         public string filtroSubDiag()
         {
@@ -27,7 +29,8 @@ namespace Ciencia.BLL
 
         public List<CienciaEquiv> ListaCampos(int moduloId, string conStr)
         {
-            List<CienciaEquiv> lista = man.ListarCamposPorModuloEvolucion(moduloId, false).Where(x => x.TipoDeDato != null && x.TipoDeDato.ToUpper() != "ID").ToList();
+            List<CienciaEquiv> lista = man.ListarCamposPorModuloEvolucion(moduloId, false).Where(x => x.TipoDeDato != null && x.TipoDeDato.ToUpper() != "ID" && x.orden != null).ToList();
+
             LocalCamposManager campManager = new LocalCamposManager(conStr);
             List<clsCampo> listaCampos = campManager.ObtenerCamposSeleccion();
             List<clsCampo> listaCampos2;
@@ -74,14 +77,18 @@ namespace Ciencia.BLL
         }
 
 
-        public Boolean CrearTablaCiencia(string constr, List<clsCampo> campos, int moduloId)
+        public Boolean CrearTablaCiencia(string constr, List<clsCampo> campos, int moduloId, string nombreArchivo)
         {
             CienciaEquivManager eqMan = new CienciaEquivManager();
             List<CienciaEquiv> listaId = eqMan.ListarCamposId(moduloId, campos, false);
             TablaEquivManager teMan = new TablaEquivManager();
             List<CienciaTablaEquiv> lista = teMan.ObtenerTablasOrigenPorModulo(moduloId, false);
             string clavePrimaria = lista.Where(x => x.EsTronco == true).FirstOrDefault().ClavePrimaria;
-            List<string> tablasOrigen = teMan.ObtenerTablaSEquivalente(moduloId);
+
+            var tablasOrg = (from campo in campos
+                             select campo.tabla).Distinct().ToList<string>();
+
+            List<clsTablaEquivalente> tablasOrigen = teMan.ObtenerTablasEquivalente(moduloId, tablasOrg);
             foreach (CienciaEquiv c in listaId)
             {
                 clsCampo campo = new clsCampo();
@@ -93,20 +100,45 @@ namespace Ciencia.BLL
             LocalSelectInfManager infMan = new LocalSelectInfManager(constr);
             string where = infMan.ObtenerInfSeleccion().where;
             TablaManager man = new TablaManager(constr);
-            _tablaResultado = tablasOrigen.First() + "_sel";
-            if (!man.CrearTablaResultado(tablasOrigen, _tablaResultado, campos, where, clavePrimaria))
-                return false;
+            nombreArchivo = nombreArchivo.Replace(".mdb", ".xlsx");
+            man.CrearXml2(tablasOrigen, nombreArchivo, campos, where, clavePrimaria);
+            
+            List<List<clsCampo>> CamposPorTabla;
+            CamposPorTabla = DividirCampos(campos, MAXCAMPOS);
+            int n= 0;
+            _tablasResultado.Clear();
+            /*
+            foreach(List<clsCampo> listaCampos in CamposPorTabla)
+            {
+                string tablaResultado = tablasOrigen.First().nombre + "_sel_"+ n.ToString();
+                _tablasResultado.Add(tablaResultado);
+                if (!man.CrearTablaResultado(tablasOrigen, tablaResultado, listaCampos, where, clavePrimaria))
+                    return false;
+                n++;
+            }
+              */  
             System.Threading.Thread.Sleep(3000);
             return true;
         }
 
+        public List<List<clsCampo>> DividirCampos(List<clsCampo> Campos, int MaxCampos)
+        {
+            return Campos
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / MaxCampos)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+        }
+
         public Boolean ExportarAExcel(string conStr)
         {
-            if (string.IsNullOrEmpty(_tablaResultado))
+            if (_tablasResultado.Count <1)
                 return false;
             TablaManager man = new TablaManager(conStr);
-            if (!man.ExportarAExcel(_tablaResultado))
-                return false;
+            int n=0;
+            if (!man.ExportarAExcel(_tablasResultado))
+                    return false;
+
             return true;
         }
     }

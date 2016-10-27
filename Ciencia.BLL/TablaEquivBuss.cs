@@ -34,5 +34,10 @@ namespace Ciencia.BLL
             //return man.TraerTablaPorCodigo(tablaId);
         }
 
+        public string BuscarTablaEquivalentePorTablaOrigen(string tablaOrg)
+        {
+            return man.ObtenerTablaEquivalentePorTablaOrigen(tablaOrg);            
+        }
+
     }
 }

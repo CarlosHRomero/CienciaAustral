@@ -50,10 +50,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Electrofisiologia\trunk\dll\Electrofisiologia.OBJ.dll</HintPath>
     </Reference>
-    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Generales\dll\Generales.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -110,6 +106,10 @@
     <Compile Include="TipoDeDato.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Generales\Generales.csproj">
+      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
+      <Name>Generales</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ciencia.OBJ\Ciencia.OBJ.csproj">
       <Project>{d8526ed8-6a5b-4538-b5e2-29c6f5048e79}</Project>
       <Name>Ciencia.OBJ</Name>

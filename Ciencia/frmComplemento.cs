@@ -33,6 +33,7 @@ namespace Ciencia
 
         public string  EstablecerCadenaDeConexion(string nombreArchivo)
         {
+            
             ConStr = "Provider=Microsoft.ACE.OLEDB.12.0; " +
                             "Data Source= " + nombreArchivo;
             return ConStr;
@@ -47,6 +48,7 @@ namespace Ciencia
         {
             InitializeComponent();
             Text = Titulo;
+
         }
 
         void InicializarDesplegables()
@@ -64,6 +66,8 @@ namespace Ciencia
             cboSel.DataSource = obj.ListaNoSi();
 
             cboTabla.SelectedIndex = -1;
+
+            cboSolapa.DataSource = obj.ListaSolapa(_moduloId);
         }
 
         //List<CienciaEquiv> _lista;
@@ -147,39 +151,6 @@ namespace Ciencia
             }
         }
 
-        private void cboTabla_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //LocalCarEqB eqB = new LocalCarEqB();
-            ////List<CienciaCarEquiv> lista;
-            int val;
-            if (cboTabla.SelectedValue == null || cboTabla.Text == "*")
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    row.Visible = true;
-                }
-                return;
-            }
-            if (int.TryParse(cboTabla.SelectedValue.ToString(), out val))
-            {
-                if (val == 0)
-                {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        row.Visible = true;
-                    }
-                }
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (Convert.ToInt32(row.Cells["TablaId"].Value) == val)
-                        row.Visible = true;
-                    else
-                    {
-                        row.Visible = false;
-                    }
-                }
-            }
-        }
 
         private void CargarGrid()
         {
@@ -198,7 +169,7 @@ namespace Ciencia
                 {
                     string tabla = teB.TablaPorCodigo(obj.TablaId, ConStr, false);
                     if (!string.IsNullOrEmpty(obj.TipoDeDato))
-                        dataGridView1.Rows.Add(obj.TablaId, obj.CampoEquivalente, obj.Seleccion, obj.TipoDeDato, obj.ValoresACero, obj.Filtro, obj.ValoresACeroStr, tabla, obj.EquivId, obj.VerValor);
+                        dataGridView1.Rows.Add(obj.TablaId, obj.CampoEquivalente,obj.Solapa, obj.Seleccion, obj.TipoDeDato, obj.ValoresACero, obj.Filtro, obj.ValoresACeroStr, tabla, obj.EquivId, obj.VerValor);
                 }
             }
             catch(Exception ex)
@@ -209,7 +180,7 @@ namespace Ciencia
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 frmUniverso f = new frmUniverso();
                 //LocalCarEqB eqB = new LocalCarEqB();
@@ -222,9 +193,11 @@ namespace Ciencia
                 //f.Campo = row.Cells["Campo"].Value.ToString().Trim();
                 f.EquivId = Convert.ToInt32(row.Cells["EquivId"].Value);
                 f.TipoDeDato = row.Cells["Tipo"].Value.ToString().Trim();
-                //if (row.Cells["Filtro"].Value != null)
-                    if (row.Cells["Filtro"].Value.ToString().Length >0)
+                if (row.Cells["Filtro"].Value != null)
+                {
+                    if (row.Cells["Filtro"].Value.ToString().Length > 0)
                         f.Filtro = string.Format("{0}", row.Cells["Filtro"].Value.ToString().Trim());
+                }
                 if (row.Cells["ValoresACero"].Value != null)
                     if (row.Cells["ValoresACero"].Value.ToString().Length > 0)
                         f.ValoresACero = string.Format("{0}", row.Cells["ValoresACero"].Value.ToString().Trim());
@@ -292,7 +265,7 @@ namespace Ciencia
                         campo = new clsCampo();
                         campo.EquivId = Convert.ToInt32(row.Cells["EquivId"].Value);
                         campo.nombre = row.Cells["Campo"].Value.ToString().Trim();
-                        campo.tabla = row.Cells["Tabla"].Value.ToString().Trim() + "_Sel";
+                        campo.tabla = row.Cells["Tabla"].Value.ToString().Trim();
                         campo.tablaId = Convert.ToInt32(row.Cells["TablaId"].Value);
                         if (row.Cells["Valor"] != null && row.Cells["ValoresACero"].Value != null)
                         {
@@ -316,16 +289,16 @@ namespace Ciencia
 
                 cb.ActualizarCamposSeleccion(campos, _constr);
                 
-                if (cb.CrearTablaCiencia(ConStr, campos, _moduloId))
+                if (cb.CrearTablaCiencia(ConStr, campos, _moduloId, nombreArchivo))
                 {
 
-                    MessageBox.Show("Se creo la tabla ciencia con éxito", "Ciencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnExportar.Enabled = true;
+                    MessageBox.Show("Se exportaron los datos correctamente", "Ciencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   // btnExportar.Enabled = true;
                     Cursor.Current = Cursors.Default;
                 }
                 else
                 {
-                    MessageBox.Show("Error al crear la tabla", "Ciencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al exportar datos", "Ciencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Cursor.Current = Cursors.Default;
                 }
             }
@@ -355,6 +328,9 @@ namespace Ciencia
             }
             else
             {
+                cboTabla.SelectedIndex = -1;
+                cboSolapa.SelectedIndex = -1;
+                cboSolapa.Enabled = false;
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (Convert.ToBoolean(row.Cells["Sel"].Value))
@@ -380,8 +356,9 @@ namespace Ciencia
             frmSelector f = new frmSelector();
             f.MdiParent = this.MdiParent;
             f.EstablecerCadenaDeConexion(nombreArchivo);
-            f.Show();
             Close();
+            f.Show();
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -392,6 +369,116 @@ namespace Ciencia
         private void frmComplemento_FormClosing(object sender, FormClosingEventArgs e)
         {
             Formularios.fMenu.Show();
+        }
+        private void cboTabla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //LocalCarEqB eqB = new LocalCarEqB();
+            ////List<CienciaCarEquiv> lista;
+            int val;
+            if (cboSolapa.DataSource == null)
+                return;
+            cboSel.SelectedIndex = 0;
+            if (cboTabla.SelectedValue == null || cboTabla.Text == "*")
+            {
+                if (cboSolapa.DataSource != null)
+                {
+                    cboSolapa.SelectedIndex = -1;
+                    cboSolapa.Enabled = false;
+                    FiltrarGrid(-1, "*");
+                    return;
+                }
+            }
+            if (int.TryParse(cboTabla.SelectedValue.ToString(), out val))
+            {
+                if (val == 0)
+                {
+                    cboSolapa.SelectedIndex = 0;
+                    cboSolapa.Enabled = false;
+                    FiltrarGrid(-1, "*");
+                    return;
+                }
+                var obj = new ListasDesplegables();
+                cboSolapa.DataSource = obj.ListaSolapaPorTabla(_moduloId, val);
+                cboSolapa.Enabled = true;
+                FiltrarGrid(val, "*");
+            }
+        }
+
+        private void FiltrarGrid(int tablaId, string solapa)
+        {
+            if (tablaId == -1 && solapa == "*")
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Visible = true;
+                }
+                return;
+            }
+            if (solapa == "*")
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["TablaId"].Value) == tablaId)
+                        row.Visible = true;
+                    else
+                    {
+                        row.Visible = false;
+                    }
+                }
+                return;
+            }
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["Solapa"].Value == null)
+                {
+                    row.Visible = false;
+                    continue;
+                }
+
+                if (Convert.ToInt32(row.Cells["TablaId"].Value) == tablaId && row.Cells["Solapa"].Value.ToString() == solapa)
+                    row.Visible = true;
+                else
+                {
+                    row.Visible = false;
+                }
+            }
+            return;
+
+        }
+
+        private void cboSolapa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int val;
+                if (cboTabla.SelectedValue == null)
+                    return;
+                if (int.TryParse(cboTabla.SelectedValue.ToString(), out val))
+                {
+                    if (val == 0)
+                    {
+                        cboSolapa.SelectedIndex = 0;
+                        cboSolapa.Enabled = false;
+                        FiltrarGrid(-1, "*");
+                        return;
+                    }
+                }
+                if (cboSolapa.SelectedValue == null || cboSolapa.SelectedIndex == 0)
+                {
+                    FiltrarGrid(val, "*");
+                    return;
+                }
+                string sol = cboSolapa.SelectedValue.ToString();
+                if (!string.IsNullOrEmpty(sol))
+                {
+                    FiltrarGrid(val, sol);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensajes.msgError("cboSolapa_SelectedIndexChanged", ex);
+            }
+
         }
     }
 }

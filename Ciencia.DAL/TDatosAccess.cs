@@ -293,7 +293,6 @@ namespace Ciencia.DAL
             {
                 cmd.Connection.Open();
                 ret = cmd.ExecuteNonQuery();
-                cmd.Dispose();
             }
             catch (SqlException ex)
             {
@@ -303,9 +302,16 @@ namespace Ciencia.DAL
                 //if (!string.IsNullOrEmpty(clsCtrlApplication.PageInternalError))
                 //    HttpContext.Current.Response.Redirect(clsCtrlApplication.PageInternalError);
             }
+            catch(Exception ex )
+            {
+                string error = ex.Message;
+                Utiles.WriteErrorLog("Error: " + error + "<br /><br />");                
+
+            }
             finally
             {
-                //cmd.Connection.Close();
+                cmd.Connection.Close();
+                cmd.Dispose();
             }
             return ret;
         }

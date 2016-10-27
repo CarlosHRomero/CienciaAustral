@@ -116,6 +116,7 @@ namespace Ciencia
 
                 Formularios.fComplemento.MdiParent = this.MdiParent;
                 string constr = Formularios.fComplemento.EstablecerCadenaDeConexion(ofd.FileName);
+                Formularios.fComplemento.nombreArchivo = ofd.FileName;
                 SelectorBuss sB = new SelectorBuss();
                 sB.constr = constr;
                 if (!sB.VerificarBaseDeDatos())

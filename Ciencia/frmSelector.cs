@@ -82,6 +82,7 @@ namespace Ciencia
         private BackgroundWorker bw = new BackgroundWorker();
         private void frmSelector_Load(object sender, EventArgs e)
         {
+            Formularios.fMenu.Hide();
             CargarDesplegables();
             InicializarControles();
             flag = true;
@@ -190,6 +191,8 @@ namespace Ciencia
         }
 
         private string Where;
+
+        private List<string> TablasEquivalentes = new List<string>();
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (bw.IsBusy == true)
@@ -229,6 +232,13 @@ namespace Ciencia
                 String crit;
                 String Campo = cboCampo.Text.Trim();
                 string tabla = cboTabla.Text.Trim();
+                //TablaEquivBuss tablaB = new TablaEquivBuss();
+                var tablaEquiv = selB.ObtenerTablaEquivalente(tabla);
+                if(TablasEquivalentes.FindIndex(x=> x==tablaEquiv)== -1)
+                {
+                    TablasEquivalentes.Add(tablaEquiv);
+                }
+
                 string Operador = cboOperador.Text;
                 string valor;
                 if (Campo.Substring(Campo.Length - 2) == "_F")
