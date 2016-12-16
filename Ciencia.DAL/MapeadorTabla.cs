@@ -210,13 +210,14 @@ namespace Ciencia.DAL
                 var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
                 var dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
                     if (worker.CancellationPending)
                     {
                         return false;
                     }
-                    var dataRowDes = _dtDes.Select(clavePrimaria + " = " + filaOrg[claveForanea]);
+                    var dataRowDes = _dtDes.Select(clavePrimaria + " = '" + filaOrg[claveForanea] + "'");
                     if (dataRowDes.Length != 0)
                     {
                         DataRow filaDest = dataRowDes[0];
@@ -251,11 +252,29 @@ namespace Ciencia.DAL
                             if (equiv.Filtro == null)
                             {
                                 if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
-                                    filaDest[campoDest] = (DateTime) valor;
+                                {
+                                    if (valor == null)
+                                        filaDest[campoDest] = DBNull.Value;
+                                    else
+                                        filaDest[campoDest] = (DateTime)valor;
+                                }
                                 else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
-                                    filaDest[campoDest] = (Boolean) valor == false ? "No" : "Si";
+                                    filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
                                 else if (columna.DataType == typeof(String))
-                                    filaDest[campoDest] = valor.ToString().Trim();
+                                {
+                                    if (int.TryParse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0], out maxLength))
+                                    {
+                                        //maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                        if (valor.ToString().Trim().Length < maxLength)
+                                            filaDest[campoDest] = valor.ToString().Trim();
+                                        else
+                                            filaDest[campoDest] = valor.ToString().Trim().Substring(0, maxLength);
+                                    }
+                                    else
+                                    {
+                                        filaDest[campoDest] = valor.ToString().Trim();
+                                    }
+                                }
                                 else
                                     filaDest[campoDest] = valor;
                             }
@@ -265,7 +284,14 @@ namespace Ciencia.DAL
                                 if (s == null)
                                     filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                 else
-                                    filaDest[campoDest] = s.Trim();
+                                {
+                                    s = s.Trim();
+                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                    if (s.Length < maxLength)
+                                        filaDest[campoDest] = s;
+                                    else
+                                        filaDest[campoDest] = s.Substring(0, maxLength);
+                                }
                             }
                         }
                     }
@@ -296,6 +322,7 @@ namespace Ciencia.DAL
                 var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
                 dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 DataRow filaDest = null;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
@@ -326,7 +353,13 @@ namespace Ciencia.DAL
                             else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
                                 filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
                             else if (columna.DataType == typeof(String))
-                                filaDest[campoDest] = valor.ToString().Trim();
+                            {
+                                maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                if (valor.ToString().Trim().Length < maxLength)
+                                    filaDest[campoDest] = valor.ToString().Trim();
+                                else
+                                    filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                            }
                             else
                                 filaDest[campoDest] = valor;
                         }
@@ -336,7 +369,14 @@ namespace Ciencia.DAL
                             if (s == null)
                                 filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                             else
-                                filaDest[campoDest] = s.Trim();
+                            {
+                                s = s.Trim();
+                                maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                if (s.Length < maxLength)
+                                    filaDest[campoDest] = s;
+                                else
+                                    filaDest[campoDest] = s.Substring(0, --maxLength);
+                            }
                         }
                     }
                     dtDes.Rows.Add(filaDest);
@@ -361,6 +401,7 @@ namespace Ciencia.DAL
                 string queryOrg = "SELECT * FROM " + cienciaTablasEquiv.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
                     if (worker.CancellationPending)
@@ -378,7 +419,7 @@ namespace Ciencia.DAL
                             var campoDest = equiv.CampoEquivalente.Trim();
                             var valor = filaOrg[columna];
                             //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
-                            if (columna.ColumnName.ToUpper() == _fechaNcimiento)
+                            if (columna.ColumnName.ToUpper() == _fechaNcimiento && tablaTroncal.ModuloId == 5)
                             {
                                 int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
                                 filaDest[_edad] = edad.ToString();
@@ -400,7 +441,13 @@ namespace Ciencia.DAL
                                 else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
                                     filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
                                 else if (columna.DataType == typeof(String))
-                                    filaDest[campoDest] = valor.ToString().Trim();
+                                {
+                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                    if (valor.ToString().Trim().Length < maxLength)
+                                        filaDest[campoDest] = valor.ToString().Trim();
+                                    else
+                                        filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                                }
                                 else
                                     filaDest[campoDest] = valor;
                             }
@@ -410,7 +457,14 @@ namespace Ciencia.DAL
                                 if (s == null)
                                     filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                 else
-                                    filaDest[campoDest] = s.Trim();
+                                {
+                                    s = s.Trim();
+                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                    if (s.Length < maxLength)
+                                        filaDest[campoDest] = s;
+                                    else
+                                        filaDest[campoDest] = s.Substring(0, --maxLength);
+                                }
                             }
                         }
                     }

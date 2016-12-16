@@ -22,5 +22,6 @@ namespace Ciencia.OBJ
         public string ClavePrimaria { get; set; }
         public string ClaveForaneaEvol { get; set; }
         public bool EsMultiple { get; set; }
+        public bool Procesar { get; set; }
     }
 }

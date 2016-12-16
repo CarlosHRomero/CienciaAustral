@@ -65,13 +65,21 @@ namespace Ciencia
                 BackgroundWorker worker = sender as BackgroundWorker;
                 ConversorCiencia conv = new ConversorCiencia(_moduloId);
                 bool res = conv.ConvertirTablas(worker);
-                if(!res)
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
+                if (!res)
                 {
                     e.Result = "error";
                     if (worker != null) worker.CancelAsync();
                     return;
                 }
                 res = conv.ConvertirTablasEvolucion(worker);
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
                 if (!res)
                 {
                     e.Result = "error";
@@ -79,6 +87,10 @@ namespace Ciencia
                     return;
                 }
                 res = conv.ConvertirTablasMultiples(worker);
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
                 if (!res)
                 {
                     e.Result = "error";
