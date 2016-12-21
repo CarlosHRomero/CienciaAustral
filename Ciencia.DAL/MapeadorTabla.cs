@@ -4,6 +4,7 @@ using Ciencia.OBJ;
 using Electrofisiologia.DAL;
 using Generales;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -133,7 +134,7 @@ namespace Ciencia.DAL
                     {
                          crearTabla += ")";
                          CrearTablaDestino(crearTabla);
-                         //_tdatosCiencia.AgregarClavePrimaria(clavePrimaria, nombreTablaDestino);
+                         _tdatosCiencia.AgregarClavePrimaria(clavePrimaria, tablaDestino);
                          foreach (var tablaOrigen in tablasOrigen)
                          {
                              tablaOrigen.NombreTablaEquiv = tablaDestino;
@@ -191,6 +192,7 @@ namespace Ciencia.DAL
                         filaDest[campoDest] = filaOrg[columna];
                         _dtDes.Rows.Add(filaDest);
                 }
+                _dtDes.PrimaryKey = new DataColumn[] { _dtDes.Columns[nombreTablaOrigen.ClavePrimaria] };
                 return true;
             }
             catch (Exception ex)
@@ -217,13 +219,12 @@ namespace Ciencia.DAL
                     {
                         return false;
                     }
-                    var dataRowDes = _dtDes.Select(clavePrimaria + " = '" + filaOrg[claveForanea] + "'");
-                    if (dataRowDes.Length != 0)
+                    var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
+                    if (filaDest != null)
                     {
-                        DataRow filaDest = dataRowDes[0];
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
-                            var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                            var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                             if (equiv == null)
                                 continue;
                             var campoDest = equiv.CampoEquivalente.Trim();
@@ -264,7 +265,6 @@ namespace Ciencia.DAL
                                 {
                                     if (int.TryParse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0], out maxLength))
                                     {
-                                        //maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
                                         if (valor.ToString().Trim().Length < maxLength)
                                             filaDest[campoDest] = valor.ToString().Trim();
                                         else
@@ -297,10 +297,10 @@ namespace Ciencia.DAL
                     }
                     else
                     {
-                         Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
+                        Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
                     }
                     i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }
@@ -333,7 +333,7 @@ namespace Ciencia.DAL
                     filaDest = dtDes.NewRow();
                     foreach (DataColumn columna in dtOrg.Columns)
                     {
-                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                        var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                         if (equiv == null)
                             continue;
                         var campoDest = equiv.CampoEquivalente.Trim();
@@ -381,7 +381,7 @@ namespace Ciencia.DAL
                     }
                     dtDes.Rows.Add(filaDest);
                     i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }
@@ -408,8 +408,8 @@ namespace Ciencia.DAL
                     {
                         return false;
                     }
-                    var dataRowDes = _dtDes.Select(claveForanea + " = '" + filaOrg[cienciaTablasEquiv.ClavePrimaria] + "'");
-                    foreach (DataRow filaDest in dataRowDes)
+                    var filaDest = _dtDes.Rows.Find(filaOrg[cienciaTablasEquiv.ClavePrimaria]);
+                    if(filaDest != null)
                     {
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
@@ -469,7 +469,7 @@ namespace Ciencia.DAL
                         }
                     }
                     i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }

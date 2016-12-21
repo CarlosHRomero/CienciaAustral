@@ -140,6 +140,28 @@ namespace Ciencia.DAL
             }
         }
 
+        List<CienciaEquiv> listaEquivOrigen;
+        List<CienciaEquiv> listaEquivTemp;
+        static int tablaIdTemp;
+        public CienciaEquiv ObtenerPorOrigen(int moduloId,string campoOrg, int tablaId)
+        {
+            try
+            {
+                if (listaEquivOrigen == null)
+                    listaEquivOrigen = Seleccionar(moduloId, "", "", "");
+                if(tablaId != tablaIdTemp)
+                    listaEquivTemp = listaEquivOrigen.Where(x => x.TablaId == tablaId).ToList();
+                tablaIdTemp = tablaId;
+                CienciaEquiv cd = listaEquivTemp.FirstOrDefault(x => x.CampoOriginal.Trim().ToLower() == campoOrg.Trim().ToLower());
+                return cd;
+            }
+            catch (Exception ex)
+            {
+                Utiles.WriteErrorLog(ex.Message);
+                return null;
+            }
+        }
+
         public CienciaEquiv ObtenerPorCampoEquiv(string campoEqv, int tablaId)
         {
             try
@@ -264,9 +286,7 @@ namespace Ciencia.DAL
             List<CienciaEquiv> lista;
             try
             {
-
                 var sql = PetaPoco.Sql.Builder.Append("");
-                //Where = "EquivId = 10";
                 if (!String.IsNullOrEmpty(Where))
                 {
                     sql.Where(Where);
@@ -284,6 +304,35 @@ namespace Ciencia.DAL
             }
             return lista;
         }
+
+        public List<CienciaEquiv> Seleccionar(int moduloId, string Where, string OrderBy, string Limit)
+        {
+            List<CienciaEquiv> lista;
+            try
+            {
+                var sql = PetaPoco.Sql.Builder
+                .Append("SELECT ce.[EquivId], ce.[TablaId], ce.[CampoOriginal], ce.[CampoEquivalente], ce.[TipoDeDato], ce.[ValorPorDefecto], ce.[Solapa], ce.[Filtro], ce.[Orden], ce.[Seleccion], ce.[ValoresACero], ce.[ValoresACeroStr], ce.[TipoDatoSqlServer], ce.[TipoDatoAccess], ce.[VerValor] ")
+                .Append("FROM CienciaEquiv ce")
+                .Append("join CienciaTablaEquiv cte on ce.[TablaId] = cte.[TablaId]")
+                .Append("where ModuloId = " + moduloId.ToString());
+                if (!String.IsNullOrEmpty(Where))
+                {
+                    sql.Where(Where);
+                }
+                if (!String.IsNullOrEmpty(OrderBy))
+                {
+                    sql.OrderBy(OrderBy);
+                }
+                lista = db.Fetch<CienciaEquiv>(sql);
+            }
+            catch (Exception ex)
+            {
+                Utiles.WriteErrorLog("Error en CienciaEquivManager.Seleccionar " + ex.Message);
+                lista = null;
+            }
+            return lista;
+        }
+
         public bool Eliminar(CienciaEquiv Obj)
         {
             Boolean result;

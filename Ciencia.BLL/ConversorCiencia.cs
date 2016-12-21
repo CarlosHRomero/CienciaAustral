@@ -40,7 +40,6 @@ namespace Ciencia.BLL
             //Tabla paciente del modulo
             _tablaPaciente = _tablasOrigenModulo.FirstOrDefault(x => x.EsPaciente);
             _mensajes = new List<string>();
-
             //Actualiza la tabla elf_equiv apartir de la tabla elf_persvinc
             if (moduloId == 1)
             {
@@ -133,7 +132,6 @@ namespace Ciencia.BLL
                     }
                     _mensajes.Clear();
                     _mensajes.Add("Tablas procesadas " + _cantidadTablasProcesadas + " de " + _cantidadTablas);
-
                     _mensajes.Add("Persistiendo Datos en BD");
                     _mensajes.Add(_mapeadorTabla.CantidadDeRegistrosAGuardar().ToString());
                     worker.ReportProgress(0, _mensajes);
