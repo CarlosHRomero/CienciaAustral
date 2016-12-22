@@ -152,7 +152,8 @@ namespace Ciencia.DAL
                 if(tablaId != tablaIdTemp)
                     listaEquivTemp = listaEquivOrigen.Where(x => x.TablaId == tablaId).ToList();
                 tablaIdTemp = tablaId;
-                CienciaEquiv cd = listaEquivTemp.FirstOrDefault(x => x.CampoOriginal.Trim().ToLower() == campoOrg.Trim().ToLower());
+                var campoOrgTemp = campoOrg.Trim().ToLower();
+                CienciaEquiv cd = listaEquivTemp.FirstOrDefault(x => x.CampoOriginal == campoOrgTemp);
                 return cd;
             }
             catch (Exception ex)
@@ -311,7 +312,7 @@ namespace Ciencia.DAL
             try
             {
                 var sql = PetaPoco.Sql.Builder
-                .Append("SELECT ce.[EquivId], ce.[TablaId], ce.[CampoOriginal], ce.[CampoEquivalente], ce.[TipoDeDato], ce.[ValorPorDefecto], ce.[Solapa], ce.[Filtro], ce.[Orden], ce.[Seleccion], ce.[ValoresACero], ce.[ValoresACeroStr], ce.[TipoDatoSqlServer], ce.[TipoDatoAccess], ce.[VerValor] ")
+                .Append("SELECT ce.[EquivId], ce.[TablaId], LOWER(LTRIM(RTRIM(ce.[CampoOriginal])))  as [CampoOriginal], ce.[CampoEquivalente], ce.[TipoDeDato], ce.[ValorPorDefecto], ce.[Solapa], ce.[Filtro], ce.[Orden], ce.[Seleccion], ce.[ValoresACero], ce.[ValoresACeroStr], ce.[TipoDatoSqlServer], ce.[TipoDatoAccess], ce.[VerValor] ")
                 .Append("FROM CienciaEquiv ce")
                 .Append("join CienciaTablaEquiv cte on ce.[TablaId] = cte.[TablaId]")
                 .Append("where ModuloId = " + moduloId.ToString());

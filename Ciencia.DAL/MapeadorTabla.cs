@@ -413,7 +413,7 @@ namespace Ciencia.DAL
                     {
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
-                            var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablasEquiv.TablaId);
+                            var equiv = _eqMan.ObtenerPorOrigen(cienciaTablasEquiv.ModuloId, columna.ColumnName, cienciaTablasEquiv.TablaId);
                             if (equiv == null)
                                 continue;
                             var campoDest = equiv.CampoEquivalente.Trim();
