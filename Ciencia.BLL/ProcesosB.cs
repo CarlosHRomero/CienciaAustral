@@ -17,10 +17,9 @@ namespace Ciencia.BLL
             get { return _manager ?? (_manager = new ProcesosManager()); }
         }
 
-        public bool Insertar(Ciencia_Car_Procesos obj)
+        public bool Insertar(Ciencia_Procesos obj)
         {
             Boolean result;
-
             try
             {
                 if (obj.ProcId == -1 )
@@ -35,13 +34,13 @@ namespace Ciencia.BLL
             return result;
 
         }
-        public Ciencia_Car_Procesos ObtenerIngreso(int procId)
+        public Ciencia_Procesos ObtenerIngreso(int procId)
         {
             var obj = Manager.GetByID(procId.ToString());
             return obj;
         }
 
-        public Boolean Modificar(Ciencia_Car_Procesos obj)
+        public Boolean Modificar(Ciencia_Procesos obj)
         {
             try
             {
@@ -55,7 +54,7 @@ namespace Ciencia.BLL
 
         }
 
-        public List<Ciencia_Car_Procesos> ObtenerProcesos()
+        public List<Ciencia_Procesos> ObtenerProcesos()
         {
             try
             {

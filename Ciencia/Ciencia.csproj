@@ -47,6 +47,9 @@
     <ManifestCertificateThumbprint>040DBDBCBA23B58C6E49B6CB03FA96DD56AD28BA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.BLL">
+      <HintPath>..\..\..\Common\trunk\Common\dll\Common.BLL.dll</HintPath>
+    </Reference>
     <Reference Include="Common.OBJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
