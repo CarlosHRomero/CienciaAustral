@@ -408,68 +408,74 @@ namespace Ciencia.DAL
                     {
                         return false;
                     }
-                    var filaDest = _dtDes.Rows.Find(filaOrg[cienciaTablasEquiv.ClavePrimaria]);
-                    if(filaDest != null)
+                    var ListfilaDest = (from DataRow Row in _dtDes.AsEnumerable()
+                                        where Row.Field<int?>(claveForanea) == Convert.ToInt32(filaOrg[cienciaTablasEquiv.ClavePrimaria])
+                                        select Row).ToList();
+                    //var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
+                    if (ListfilaDest.Count() != 0)
                     {
-                        foreach (DataColumn columna in dtOrg.Columns)
+                        foreach (var filaDest in ListfilaDest)
                         {
-                            var equiv = _eqMan.ObtenerPorOrigen(cienciaTablasEquiv.ModuloId, columna.ColumnName, cienciaTablasEquiv.TablaId);
-                            if (equiv == null)
-                                continue;
-                            var campoDest = equiv.CampoEquivalente.Trim();
-                            var valor = filaOrg[columna];
-                            //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
-                            if (columna.ColumnName.ToUpper() == _fechaNcimiento && tablaTroncal.ModuloId == 5)
+                            foreach (DataColumn columna in dtOrg.Columns)
                             {
-                                int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
-                                filaDest[_edad] = edad.ToString();
-                                filaDest[_fechaNcimiento] = valor;
-                                continue;
-                            }
-                            if (String.IsNullOrEmpty(valor.ToString()))
-                            {
-                                if (equiv.ValorPorDefecto == null)
-                                    filaDest[campoDest] = DBNull.Value;
-                                else
-                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                                continue;
-                            }
-                            if (equiv.Filtro == null)
-                            {
-                                if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
-                                    filaDest[campoDest] = (DateTime)valor;
-                                else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
-                                    filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
-                                else if (columna.DataType == typeof(String))
+                                var equiv = _eqMan.ObtenerPorOrigen(cienciaTablasEquiv.ModuloId, columna.ColumnName, cienciaTablasEquiv.TablaId);
+                                if (equiv == null)
+                                    continue;
+                                var campoDest = equiv.CampoEquivalente.Trim();
+                                var valor = filaOrg[columna];
+                                //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
+                                if (columna.ColumnName.ToUpper() == _fechaNcimiento && tablaTroncal.ModuloId == 5)
                                 {
-                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
-                                    if (valor.ToString().Trim().Length < maxLength)
-                                        filaDest[campoDest] = valor.ToString().Trim();
+                                    int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
+                                    filaDest[_edad] = edad.ToString();
+                                    filaDest[_fechaNcimiento] = valor;
+                                    continue;
+                                }
+                                if (String.IsNullOrEmpty(valor.ToString()))
+                                {
+                                    if (equiv.ValorPorDefecto == null)
+                                        filaDest[campoDest] = DBNull.Value;
                                     else
-                                        filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                                        filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                                    continue;
+                                }
+                                if (equiv.Filtro == null)
+                                {
+                                    if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
+                                        filaDest[campoDest] = (DateTime)valor;
+                                    else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
+                                        filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
+                                    else if (columna.DataType == typeof(String))
+                                    {
+                                        maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                        if (valor.ToString().Trim().Length < maxLength)
+                                            filaDest[campoDest] = valor.ToString().Trim();
+                                        else
+                                            filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                                    }
+                                    else
+                                        filaDest[campoDest] = valor;
                                 }
                                 else
-                                    filaDest[campoDest] = valor;
-                            }
-                            else
-                            {
-                                String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
-                                if (s == null)
-                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                                else
                                 {
-                                    s = s.Trim();
-                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
-                                    if (s.Length < maxLength)
-                                        filaDest[campoDest] = s;
+                                    String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
+                                    if (s == null)
+                                        filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                     else
-                                        filaDest[campoDest] = s.Substring(0, --maxLength);
+                                    {
+                                        s = s.Trim();
+                                        maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                        if (s.Length < maxLength)
+                                            filaDest[campoDest] = s;
+                                        else
+                                            filaDest[campoDest] = s.Substring(0, --maxLength);
+                                    }
                                 }
                             }
                         }
+                        i++;
+                        worker.ReportProgress(i * 100 / max);
                     }
-                    i++;
-                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }
