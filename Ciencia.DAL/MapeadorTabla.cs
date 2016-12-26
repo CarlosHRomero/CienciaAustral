@@ -411,7 +411,6 @@ namespace Ciencia.DAL
                     var ListfilaDest = (from DataRow Row in _dtDes.AsEnumerable()
                                         where Row.Field<int?>(claveForanea) == Convert.ToInt32(filaOrg[cienciaTablasEquiv.ClavePrimaria])
                                         select Row).ToList();
-                    //var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
                     if (ListfilaDest.Count() != 0)
                     {
                         foreach (var filaDest in ListfilaDest)
