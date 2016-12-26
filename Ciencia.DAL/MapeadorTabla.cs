@@ -131,20 +131,20 @@ namespace Ciencia.DAL
                     i += campos.Count;
                     if (i > CantidadColumnas)
                     {
-                         crearTabla += ")";
-                         CrearTablaDestino(crearTabla);
-                         //_tdatosCiencia.AgregarClavePrimaria(clavePrimaria, nombreTablaDestino);
-                         foreach (var tablaOrigen in tablasOrigen)
-                         {
-                             tablaOrigen.NombreTablaEquiv = tablaDestino;
-                             _tablaEquivMan.Modificar(tablaOrigen);
-                         }
-                         ++j;
-                         tablaDestino = "";
-                         tablaDestino += nombreTablaDestino + "_" + j;
-                         crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
-                         tablasOrigen.Clear();
-                         i = 0;
+                        crearTabla += ")";
+                        CrearTablaDestino(crearTabla);
+                        //_tdatosCiencia.AgregarClavePrimaria(clavePrimaria, nombreTablaDestino);
+                        foreach (var tablaOrigen in tablasOrigen)
+                        {
+                            tablaOrigen.NombreTablaEquiv = tablaDestino;
+                            _tablaEquivMan.Modificar(tablaOrigen);
+                        }
+                        ++j;
+                        tablaDestino = "";
+                        tablaDestino += nombreTablaDestino + "_" + j;
+                        crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
+                        tablasOrigen.Clear();
+                        i = 0;
                     }
                     tablasOrigen.Add(tablaEquiv);
                     foreach (var campo in campos)
@@ -173,23 +173,23 @@ namespace Ciencia.DAL
             }
         }
 
-              
+
         public Boolean MapearDatosClavePrimaria(CienciaTablaEquiv nombreTablaOrigen, BackgroundWorker worker, string tablaDestino)
         {
             try
             {
-                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria  + " FROM " + nombreTablaOrigen.NombreTabla;
+                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria + " FROM " + nombreTablaOrigen.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + tablaDestino;
                 _dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
-                        var filaDest = _dtDes.NewRow();
-                        var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
-                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
-                        var campoDest = equiv.CampoEquivalente.Trim();
-                        filaDest[campoDest] = filaOrg[columna];
-                        _dtDes.Rows.Add(filaDest);
+                    var filaDest = _dtDes.NewRow();
+                    var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
+                    var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
+                    var campoDest = equiv.CampoEquivalente.Trim();
+                    filaDest[campoDest] = filaOrg[columna];
+                    _dtDes.Rows.Add(filaDest);
                 }
                 return true;
             }
@@ -230,6 +230,33 @@ namespace Ciencia.DAL
                             if (columna.ColumnName == "Ingr_Grpo_D")
                             {
                                 diag = Convert.ToInt32(valor);
+                            }
+                            int stTipo1=1, stTipo2=1, stTipo3=1, stTipo4=1, stTipo5=1;
+                            if (columna.ColumnName == "ATC_St_Tipo1_D")
+                                stTipo1= Convert.ToInt32(valor);
+                            if (columna.ColumnName == "ATC_St_Tipo2_D")
+                                stTipo2= Convert.ToInt32(valor);
+                            if (columna.ColumnName == "ATC_St_Tipo3_D")
+                                stTipo3= Convert.ToInt32(valor);
+                            if (columna.ColumnName == "ATC_St_Tipo4_D")
+                                stTipo4= Convert.ToInt32(valor);
+                            if (columna.ColumnName == "ATC_St_Tipo5_D")
+                                stTipo5= Convert.ToInt32(valor);
+                            if(columna.ColumnName== "ATC_Marca1_D" ||columna.ColumnName== "ATC_Marca2_D"||columna.ColumnName== "ATC_Marca3_D"||columna.ColumnName== "ATC_Marca4_D"||columna.ColumnName== "ATC_Marca5_D")
+                            {
+                                switch( columna.ColumnName)
+                                {
+                                    case "ATC_Marca1_D":
+                                        string s= BuscarMarca(valor, stTipo1);
+                                if (s == null)
+                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                                else
+                                    filaDest[campoDest] = s.Trim();
+                                continue;
+
+                                        break;
+                                }
+                                
                             }
                             if (String.IsNullOrEmpty(valor.ToString()))
                             {
@@ -285,13 +312,18 @@ namespace Ciencia.DAL
             }
         }
 
-        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker,ref DataTable dtDes)
+        private string BuscarMarca(object valor, int stTipo1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker, ref DataTable dtDes)
         {
             try
             {
                 var modulo = _moduloMan.ObtenerDatosModulo(cienciaTablaEquiv.ModuloId.ToString());
                 int i = 0;
-                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla; 
+                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
                 dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);

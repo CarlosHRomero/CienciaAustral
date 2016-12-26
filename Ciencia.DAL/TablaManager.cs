@@ -6,7 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Ciencia.OBJ;
 using Generales;
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 using System.IO;
 
 namespace Ciencia.DAL
@@ -28,19 +28,23 @@ namespace Ciencia.DAL
             {
                 string query;
                 CienciaEquiv obj;
+                TDatos dataOrg = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+                //Borra tabla si exite 
+                dataOrg.BorrarTabla(nombreTabla);
+
                 query = string.Format("CREATE TABLE {0} (", nombreTabla);
                 CienciaEquivManager EqMan = new CienciaEquivManager();
 
                 foreach (var campo in Campos)
                 {
                     obj = EqMan.ObtenerPorCampoEquiv(campo.nombre, campo.tablaId);
-                    query += campo.nombre + " " + obj.TipoDatoAccess.ToString() + ", ";
+                    query += campo.nombre + " " + obj.TipoDatoSqlServer.ToString() + ", ";
 
                 }
                 query = query.Substring(0, query.Length - 2);
                 query += ")";
-
-                TDatosAccess.ExecuteQuery(query, CommandType.Text);
+                
+                dataOrg.ExecuteQuery(query, CommandType.Text);
                 return true;
             }
             catch(Exception ex)
@@ -52,6 +56,9 @@ namespace Ciencia.DAL
 
             
         }
+
+
+
         public Boolean CrearTablaResultado(List<clsTablaEquivalente> TablasOrigen, String TablaResultado, List<clsCampo> Campos, string where, string clavePrimaria)
         {
             int i = 0;
@@ -87,17 +94,11 @@ namespace Ciencia.DAL
                     queryOrg += string.Format(" left join {1} on {0}.{2} = {1}.{3} ", primeraTabla.nombre, tablaSiguiente.nombre, clavePrimaria, tablaSiguiente.claveForanea);
                 }
                 //string order = string.Format("order by {0}", clavePrimaria);
-                TDatosAccess.conStr = conStr;
-                TDatosAccess.DropTable(TablaResultado);
-                
-                
-
-
                 CrearTabla(TablaResultado, Campos);
                 //query = Campos.Aggregate("SELECT DISTINCT DATEDIFF('yyyy', Ciencia_Car_Pac_Sel.Pac_Nac_F, Now()) as EDAD,  ", (current, campo) => current + campo.tabla.Trim() + "." + campo.nombre.Trim() + ", ");
                 //DataTable dt = dataOrg.GetDataNonQuery(query, CommandType.Text);
 
-                if (!CopiaTablaLocal(queryOrg, queryDes, where, clavePrimaria))
+                if (!CopiaTablaTemp(queryOrg, queryDes, where, clavePrimaria))
                 {
                     Utiles.WriteErrorLog("No se adicionaron campos ");
                     throw new Exception();
@@ -125,61 +126,11 @@ namespace Ciencia.DAL
 
 
 
-        public Boolean CrearXml(List<clsTablaEquivalente> TablasOrigen, String Xml, List<clsCampo> Campos, string where, string clavePrimaria)
-        {
-            int i = 0;
-            //var tablas = (from campo in Campos
-            //              select campo.tabla).Distinct();
-
-            try
-            {
-
-                string queryOrg = "SELECT ";
-                foreach (var campo in Campos)
-                {
-                    if (campo.nombre == clavePrimaria)
-                    {
-                        queryOrg += TablasOrigen.First().nombre + "." + campo.nombre + ", ";
-                    }
-                    else
-                    {
-                        queryOrg += campo.nombre.Trim() + ", ";
-                    }
-                }
-
-                queryOrg = queryOrg.Substring(0, queryOrg.Length - 2);
-                clsTablaEquivalente primeraTabla = TablasOrigen.First();
-                queryOrg = queryOrg + string.Format(" from {0} ", primeraTabla.nombre);
-                foreach (clsTablaEquivalente tablaSiguiente in TablasOrigen.GetRange(1, TablasOrigen.Count - 1))
-                {
-                    queryOrg += string.Format(" left join {1} on {0}.{2} = {1}.{3} ", primeraTabla.nombre, tablaSiguiente.nombre, clavePrimaria, tablaSiguiente.claveForanea);
-                }
-                //string order = string.Format("order by {0}", clavePrimaria);
-                if (!string.IsNullOrEmpty(where))
-                    queryOrg = queryOrg + " where " + where;
-                queryOrg = queryOrg + " order by " + clavePrimaria;
-                TDatos dataOrg = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
-                System.Data.DataTable dtOrg = dataOrg.ExecuteCmd(queryOrg, CommandType.Text);
-                dtOrg.TableName = "TablaResultado";
-                StreamWriter xmldoc = new StreamWriter(Xml);
-                dtOrg.WriteXml(xmldoc, XmlWriteMode.IgnoreSchema, false);
-                xmldoc.Close();
-                //writer.w
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                Utiles.WriteErrorLog("Error en TablaManager.CrearTabla " + ex.Message);
-                return false;
-            }
-        }
 //*************
         public Boolean CrearXml2(List<clsTablaEquivalente> TablasOrigen, String Xml, List<clsCampo> Campos, string where, string clavePrimaria)
         {
             int i = 0;
            
-
             try
             {
 
@@ -209,7 +160,21 @@ namespace Ciencia.DAL
                 queryOrg = queryOrg + " order by " + clavePrimaria;
                 TDatos dataOrg = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
                 System.Data.DataTable dtOrg = dataOrg.ExecuteCmd(queryOrg, CommandType.Text);
+
+                foreach (var campo in Campos)
+                {
+                    if (campo.ListaValores != null && campo.verValor == false)
+                    {
+                        ActualizarCampoACero(dtOrg, campo);
+                    }
+                    else if (campo.ListaValores != null && campo.verValor == true)
+                    {
+                        this.VerValores(dtOrg, campo);
+                    }
+                }
+
                 dtOrg.TableName = "TablaResultado";
+                
                 var ds = new DataSet();
                 ds.Tables.Add(dtOrg);
                 if (!Generales.ExportadorDatos.ExportarExcel(ds, Xml))
@@ -225,9 +190,55 @@ namespace Ciencia.DAL
             }
         }
 
+        public Boolean ActualizarCampoACero(DataTable tabla, clsCampo campo)
+        /*
+         * Esta funcion tom un campo de tipo desplegable dentro de una tabla y
+         * lo actualiza a 0. Los demas campos los actualiza a 1;
+         */
+        {
+            string query;
+            int ret;
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                if(campo.ListaValores.Find(x=> x ==fila[campo.nombre].ToString()) != null )
+                {
+                    fila[campo.nombre] = "0";
+                }
+                else
+                {
+                    fila[campo.nombre] = "1";
+                }
+            }
+
+            return true;
+
+        }
+
+
+        public Boolean VerValores(DataTable tabla, clsCampo campo)
+        /* Esta funcion toma un campo de tipo desplegable 
+            * y deja los valores que estan  la lista ListaValores y los deja en su valor original
+            * Los demas valores los deja en 0
+            */
+        {
+            string query;
+            int ret;
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                if (campo.ListaValores.Find(x => x == fila[campo.nombre].ToString()) == null)
+                {
+                    fila[campo.nombre] = "0";
+                }
+            }
+
+            return true;
+
+        }
 
         //**************
-        public Boolean CopiaTablaLocal(string queryOrg, string queryDes, string where, string order)
+        public Boolean CopiaTablaTemp(string queryOrg, string queryDes, string where, string order)
         {
             TDatosAccess.conStr = conStr;
 
@@ -238,7 +249,7 @@ namespace Ciencia.DAL
 
             TDatos dataOrg = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
             System.Data.DataTable dtOrg = dataOrg.ExecuteCmd(queryOrg, CommandType.Text);
-            System.Data.DataTable dtDes = TDatosAccess.ExecuteCmd(queryDes, CommandType.Text);
+            System.Data.DataTable dtDes = dataOrg.ExecuteCmd(queryDes, CommandType.Text);
             int i = 0;
             foreach (DataRow row in dtOrg.Rows)
             {
@@ -251,11 +262,12 @@ namespace Ciencia.DAL
                 dtDes.Rows.Add(rowDes);
                 i++;
             }
-            TDatosAccess.UpdateTable(queryDes, dtDes);
+            dataOrg.UpdateTable(queryDes, dtDes);
+            
             return true;
         }
 
-
+  
 
         public Boolean ActualizarCampoACero(string tabla, clsCampo campo) 
             /*
@@ -265,14 +277,15 @@ namespace Ciencia.DAL
         {
             string query;
             int ret;
+            TDatos td = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
             foreach (var vcero in campo.ListaValores)
             {
                 query = "Update " + tabla + " set " + campo.nombre + " = '0' "+ 
                         " where " + campo.nombre + " = '" + vcero + "'";
 
-                TDatosAccess.conStr = conStr;
-                Thread.Sleep(1000);
-                ret= TDatosAccess.ExecuteQuery(query, CommandType.Text);
+                
+                Thread.Sleep(500);
+                ret= td.ExecuteQuery(query, CommandType.Text);
                 
                 if (ret < 1)
                     MessageBox.Show("No se modificaron registros\n"+ query);
@@ -280,7 +293,7 @@ namespace Ciencia.DAL
             Thread.Sleep(1000);
             query = "Update " + tabla + " set " + campo.nombre + " = '1' " +
                     " where " + campo.nombre + " <> '0'";
-            ret = TDatosAccess.ExecuteQuery(query, CommandType.Text);
+            ret = td.ExecuteQuery(query, CommandType.Text);
 
             return true;
 
@@ -294,8 +307,8 @@ namespace Ciencia.DAL
              */
             string query= string.Format("SELECT DISTINCT {0} from {1}", campo.nombre, tabla);
 
-            TDatosAccess.conStr = conStr;
-            System.Data.DataTable dt = TDatosAccess.GetDataNonQuery(query);
+            TDatos td = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+            System.Data.DataTable dt = td.GetDataNonQuery(query);
             List<string> valACero = new List<string>();
 
 
@@ -317,8 +330,8 @@ namespace Ciencia.DAL
                         " where " + campo.nombre + " = '" + vcero + "'";
 
                 
-                Thread.Sleep(1000);
-                ret = TDatosAccess.ExecuteQuery(query, CommandType.Text);
+                Thread.Sleep(500);
+                ret = td.ExecuteQuery(query, CommandType.Text);
 
                 if (ret < 1)
                     MessageBox.Show("No se modificaron registros\n" + query);
@@ -328,17 +341,20 @@ namespace Ciencia.DAL
 
         }
 
-
-        public Boolean ExportarAExcel(String NombreTabla)
+        public Boolean ExportarAExcel(String NombreTabla, string Xml)
         {
             try
             {
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Application.Workbooks.Add(true);
                 string query = "Select * from " + NombreTabla;
+                TDatos td = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+                System.Data.DataTable dt = td.GetDataNonQuery(query);
+                var ds = new DataSet();
+                ds.Tables.Add(dt);
+                if (!Generales.ExportadorDatos.ExportarExcel(ds, Xml))
+                    return false;
 
-                System.Data.DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
-                CopiarAExcel(excel, dt, 0);
                 return true;
 
             }
@@ -350,56 +366,56 @@ namespace Ciencia.DAL
             }
         }
 
-        public Boolean ExportarAExcel(List<String> listaTablas)
-        {
-            try
-            {
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Application.Workbooks.Add(true);
-                int columnaIncial = 0;
-                foreach(string tabla in listaTablas)
-                {
-                    string query = "Select * from " + tabla;
-                    System.Data.DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
-                    if (!CopiarAExcel(excel, dt, columnaIncial))
-                        return false;
-                    columnaIncial += dt.Columns.Count;
-                }
-                excel.Visible = true;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Mensajes.msgError(ex);
-                throw;
-                return false;
-            }
-        }
+        //public Boolean ExportarAExcel(List<String> listaTablas, string Xml)
+        //{
+        //    try
+        //    {
+        //        Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+        //        excel.Application.Workbooks.Add(true);
+        //        int columnaIncial = 0;
+        //        foreach(string tabla in listaTablas)
+        //        {
+        //            string query = "Select * from " + tabla;
+        //            System.Data.DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
+        //            if (!Generales.ExportadorDatos.ExportarExcel(ds, Xml))
+        //                return false;
+        //            columnaIncial += dt.Columns.Count;
+        //        }
+        //        excel.Visible = true;
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Mensajes.msgError(ex);
+        //        throw;
+        //        return false;
+        //    }
+        //}
 
-        public Boolean ExportarAXml(List<String> listaTablas)
-        {
-            try
-            {
+        //public Boolean ExportarAXml(List<String> listaTablas)
+        //{
+        //    try
+        //    {
 
-                //int columnaIncial = 0;
-                //foreach (string tabla in listaTablas)
-                //{
-                //    string query = "Select * from " + tabla;
-                //    DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
-                //    if (!CopiarAExcel(excel, dt, columnaIncial))
-                //        return false;
-                //    columnaIncial += dt.Columns.Count;
-                //}
-                //excel.Visible = true;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Mensajes.msgError(ex);
-                throw;
-                return false;
-            }
-        }
+        //        int columnaIncial = 0;
+        //        foreach (string tabla in listaTablas)
+        //        {
+        //            string query = "Select * from " + tabla;
+        //            DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
+        //            if (!CopiarAExcel(excel, dt, columnaIncial))
+        //                return false;
+        //            columnaIncial += dt.Columns.Count;
+        //        }
+        //        excel.Visible = true;
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Mensajes.msgError(ex);
+        //        throw;
+        //        return false;
+        //    }
+        //}
 
         private bool CopiarAExcel(Microsoft.Office.Interop.Excel.Application excel, System.Data.DataTable dt, int columnaInicial)
         {

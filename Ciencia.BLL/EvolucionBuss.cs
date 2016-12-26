@@ -67,7 +67,7 @@ namespace Ciencia.BLL
                 throw new Exception("Clave Externa Evolucion no establecida");
             }
 
-            string query = string.Format("{0} inner join {1} on {4}.{2} = {1}.{3}", tablasAgregadas, tablaEvol, clavePrimariaEvol, claveExternaEvol, tabla);
+            string query = string.Format("{0} inner join {1} on {4}.{2} = {1}.{3}", tabla, tablaEvol, clavePrimariaEvol, claveExternaEvol, tabla);
 
             return query;
         }

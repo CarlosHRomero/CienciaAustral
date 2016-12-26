@@ -139,14 +139,14 @@ namespace Ciencia.DAL
                 {
                     foreach (clsCampo campo in Campos)
                     {
-                        if (campo.Func == "primera" && dtPri != null)
+                        if (campo.Func == null ? false : campo.Func.ToLower() == "primera" && dtPri != null)
                         {
                             string wh = string.Format("{0} = {1}", claveExternaEvol, row[clavePrimariaEvol]);
                             DataRow[] result = dtPri.Select(wh);
                             if (result.Count() > 0)
                                 row[campo.nombre] = result.First()[campo.nombre];
                         }
-                        if (campo.Func == "ultima" && dtPri != null)
+                        if (campo.Func == null ? false : campo.Func.ToLower() == "ultima" && dtPri != null)
                         {
                             string wh = string.Format("{0} = {1}", claveExternaEvol, row[clavePrimariaEvol]);
                             DataRow[] result = dtUlt.Select(wh);

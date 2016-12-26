@@ -12,7 +12,7 @@ namespace Ciencia.BLL
 
 
         List<string> _tablasResultado = new List<string>();
-        private const int MAXCAMPOS = 50;
+        private const int MAXCAMPOS = 400;
 
         public string filtroSubDiag()
         {
@@ -29,8 +29,8 @@ namespace Ciencia.BLL
 
         public List<CienciaEquiv> ListaCampos(int moduloId, string conStr)
         {
-            List<CienciaEquiv> lista = man.ListarCamposPorModuloEvolucion(moduloId, false).Where(x => x.TipoDeDato != null && x.TipoDeDato.ToUpper() != "ID" && x.orden != null).ToList();
-
+            //List<CienciaEquiv> lista = man.ListarCamposPorModuloEvolucion(moduloId, false).Where(x => x.TipoDeDato != null && x.TipoDeDato.ToUpper() != "ID" && x.orden != null).ToList();
+            List<CienciaEquiv> lista = man.ListarCamposPorModuloEvolucion(moduloId, false).Where(x => x.TipoDeDato != null && x.TipoDeDato.ToUpper() != "ID" ).ToList();
             LocalCamposManager campManager = new LocalCamposManager(conStr);
             List<clsCampo> listaCampos = campManager.ObtenerCamposSeleccion();
             List<clsCampo> listaCampos2;
@@ -103,21 +103,27 @@ namespace Ciencia.BLL
             nombreArchivo = nombreArchivo.Replace(".mdb", ".xlsx");
             man.CrearXml2(tablasOrigen, nombreArchivo, campos, where, clavePrimaria);
             
-            List<List<clsCampo>> CamposPorTabla;
-            CamposPorTabla = DividirCampos(campos, MAXCAMPOS);
-            int n= 0;
-            _tablasResultado.Clear();
-            /*
-            foreach(List<clsCampo> listaCampos in CamposPorTabla)
-            {
-                string tablaResultado = tablasOrigen.First().nombre + "_sel_"+ n.ToString();
-                _tablasResultado.Add(tablaResultado);
-                if (!man.CrearTablaResultado(tablasOrigen, tablaResultado, listaCampos, where, clavePrimaria))
-                    return false;
-                n++;
-            }
-              */  
-            System.Threading.Thread.Sleep(3000);
+            //List<List<clsCampo>> CamposPorTabla;
+            ////CamposPorTabla = DividirCampos(campos, MAXCAMPOS);
+            //int n= 0;
+            //string tablaResultado = tablasOrigen.First().nombre + "_sel_" + n.ToString();
+            //if (!man.CrearTablaResultado(tablasOrigen, tablaResultado, campos, where, clavePrimaria))
+            //    return false;
+            //System.Threading.Thread.Sleep(3000);
+
+            //man.ExportarAExcel(tablaResultado, nombreArchivo);
+
+            //_tablasResultado.Clear();
+
+            //foreach (List<clsCampo> listaCampos in CamposPorTabla)
+            //{
+            //    string tablaResultado = tablasOrigen.First().nombre + "_sel_" + n.ToString();
+            //    _tablasResultado.Add(tablaResultado);
+            //    if (!man.CrearTablaResultado(tablasOrigen, tablaResultado, listaCampos, where, clavePrimaria))
+            //        return false;
+            //    n++;
+            //}
+            //man.CrearXml(_tablasResultado, nombreArchivo);
             return true;
         }
 
@@ -130,16 +136,16 @@ namespace Ciencia.BLL
                 .ToList();
         }
 
-        public Boolean ExportarAExcel(string conStr)
-        {
-            if (_tablasResultado.Count <1)
-                return false;
-            TablaManager man = new TablaManager(conStr);
-            int n=0;
-            if (!man.ExportarAExcel(_tablasResultado))
-                    return false;
+        //public Boolean ExportarAExcel(string conStr)
+        //{
+        //    if (_tablasResultado.Count <1)
+        //        return false;
+        //    TablaManager man = new TablaManager(conStr);
+        //    int n=0;
+        //    if (!man.ExportarAExcel(_tablasResultado))
+        //            return false;
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

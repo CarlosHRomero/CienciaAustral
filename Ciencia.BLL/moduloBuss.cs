@@ -29,7 +29,7 @@ namespace Ciencia.BLL
             tablasConvertidas.Remove(primeraTabla);
             foreach (string tabla in tablasConvertidas)
             {
-                tablasAgregadas += string.Format(" inner join {1} on {0}.{2} = {1}.{2}", primeraTabla, tabla, clavePrimariaTronco);
+                tablasAgregadas += string.Format(" left join {1} on {0}.{2} = {1}.{2}", primeraTabla, tabla, clavePrimariaTronco);
             }
             /////
             var tablasMultiple = tablasOrigenModulo.Where(x => x.EsMultiple == true);
