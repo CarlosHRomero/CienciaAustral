@@ -30,16 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProceso));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblEstado = new System.Windows.Forms.Label();
             this.DataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Proc_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelD_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelH_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnProceso = new System.Windows.Forms.ToolStripButton();
@@ -51,6 +45,15 @@
             this.lblProcesando = new System.Windows.Forms.Label();
             this.lblTablas = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Proc_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Maquina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proc_ini_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Proc_fin_F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tiempo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblPromedio = new System.Windows.Forms.Label();
+            this.lblProc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -58,7 +61,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(221, 206);
+            this.progressBar1.Location = new System.Drawing.Point(397, 287);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(337, 23);
             this.progressBar1.TabIndex = 1;
@@ -66,7 +69,7 @@
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(563, 213);
+            this.lblEstado.Location = new System.Drawing.Point(704, 297);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(0, 13);
             this.lblEstado.TabIndex = 4;
@@ -86,42 +89,17 @@
             this.DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Proc_F,
             this.Usuario,
-            this.SelD_F,
-            this.SelH_F,
-            this.Motivo});
+            this.Modulo,
+            this.Maquina,
+            this.Proc_ini_F,
+            this.Proc_fin_F,
+            this.Tiempo});
             this.DataGridView1.EnableHeadersVisualStyles = false;
             this.DataGridView1.Location = new System.Drawing.Point(1, 90);
             this.DataGridView1.Name = "DataGridView1";
-            this.DataGridView1.Size = new System.Drawing.Size(598, 87);
+            this.DataGridView1.Size = new System.Drawing.Size(807, 149);
             this.DataGridView1.TabIndex = 26;
             this.DataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
-            // 
-            // Proc_F
-            // 
-            this.Proc_F.HeaderText = "F. Proc";
-            this.Proc_F.Name = "Proc_F";
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.Name = "Usuario";
-            // 
-            // SelD_F
-            // 
-            this.SelD_F.HeaderText = "F. Sel. D";
-            this.SelD_F.Name = "SelD_F";
-            // 
-            // SelH_F
-            // 
-            this.SelH_F.HeaderText = "F. Sel. H";
-            this.SelH_F.Name = "SelH_F";
-            // 
-            // Motivo
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.Motivo.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Motivo.HeaderText = "Motivo";
-            this.Motivo.Name = "Motivo";
             // 
             // label2
             // 
@@ -142,7 +120,7 @@
             this.btnCncel,
             this.btnSalir});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(465, 9);
+            this.toolStrip1.Location = new System.Drawing.Point(635, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(124, 39);
             this.toolStrip1.TabIndex = 28;
@@ -189,7 +167,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(1, 45);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(588, 42);
+            this.panel1.Size = new System.Drawing.Size(807, 42);
             this.panel1.TabIndex = 29;
             // 
             // cboModulo
@@ -206,6 +184,7 @@
             this.cboModulo.ReadOnlyForeColor = System.Drawing.SystemColors.ControlText;
             this.cboModulo.Size = new System.Drawing.Size(166, 21);
             this.cboModulo.TabIndex = 12;
+            this.cboModulo.SelectedIndexChanged += new System.EventHandler(this.cboModulo_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -222,7 +201,7 @@
             // lblProcesando
             // 
             this.lblProcesando.AutoSize = true;
-            this.lblProcesando.Location = new System.Drawing.Point(219, 234);
+            this.lblProcesando.Location = new System.Drawing.Point(395, 315);
             this.lblProcesando.Name = "lblProcesando";
             this.lblProcesando.Size = new System.Drawing.Size(0, 13);
             this.lblProcesando.TabIndex = 30;
@@ -231,18 +210,75 @@
             // lblTablas
             // 
             this.lblTablas.AutoSize = true;
-            this.lblTablas.Location = new System.Drawing.Point(219, 183);
+            this.lblTablas.Location = new System.Drawing.Point(395, 264);
             this.lblTablas.Name = "lblTablas";
             this.lblTablas.Size = new System.Drawing.Size(0, 13);
             this.lblTablas.TabIndex = 31;
             this.lblTablas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // Proc_F
+            // 
+            this.Proc_F.HeaderText = "F. Proc";
+            this.Proc_F.Name = "Proc_F";
+            // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.Name = "Usuario";
+            // 
+            // Modulo
+            // 
+            this.Modulo.HeaderText = "Modulo";
+            this.Modulo.Name = "Modulo";
+            // 
+            // Maquina
+            // 
+            this.Maquina.HeaderText = "Maquina";
+            this.Maquina.Name = "Maquina";
+            // 
+            // Proc_ini_F
+            // 
+            this.Proc_ini_F.HeaderText = "Inicio Hora. Proc";
+            this.Proc_ini_F.Name = "Proc_ini_F";
+            this.Proc_ini_F.Width = 120;
+            // 
+            // Proc_fin_F
+            // 
+            this.Proc_fin_F.HeaderText = "Fin Hora. Proc";
+            this.Proc_fin_F.Name = "Proc_fin_F";
+            this.Proc_fin_F.Width = 120;
+            // 
+            // Tiempo
+            // 
+            this.Tiempo.HeaderText = "Tiempo";
+            this.Tiempo.Name = "Tiempo";
+            // 
+            // lblPromedio
+            // 
+            this.lblPromedio.AutoSize = true;
+            this.lblPromedio.Location = new System.Drawing.Point(53, 297);
+            this.lblPromedio.Name = "lblPromedio";
+            this.lblPromedio.Size = new System.Drawing.Size(0, 13);
+            this.lblPromedio.TabIndex = 32;
+            this.lblPromedio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblProc
+            // 
+            this.lblProc.AutoSize = true;
+            this.lblProc.Location = new System.Drawing.Point(53, 264);
+            this.lblProc.Name = "lblProc";
+            this.lblProc.Size = new System.Drawing.Size(0, 13);
+            this.lblProc.TabIndex = 33;
+            this.lblProc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmProceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 253);
+            this.ClientSize = new System.Drawing.Size(820, 343);
             this.ControlBox = false;
+            this.Controls.Add(this.lblProc);
+            this.Controls.Add(this.lblPromedio);
             this.Controls.Add(this.DataGridView1);
             this.Controls.Add(this.lblTablas);
             this.Controls.Add(this.lblProcesando);
@@ -274,11 +310,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnProceso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Proc_F;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SelD_F;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SelH_F;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Motivo;
         private System.Windows.Forms.ToolStripButton btnCncel;
         private System.Windows.Forms.ToolStripButton btnSalir;
         private System.Windows.Forms.Panel panel1;
@@ -287,6 +318,15 @@
         private System.Windows.Forms.Label lblProcesando;
         private System.Windows.Forms.Label lblTablas;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Proc_F;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Maquina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Proc_ini_F;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Proc_fin_F;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tiempo;
+        private System.Windows.Forms.Label lblPromedio;
+        private System.Windows.Forms.Label lblProc;
     }
 }
 

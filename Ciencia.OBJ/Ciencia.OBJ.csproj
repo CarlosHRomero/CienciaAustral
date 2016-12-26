@@ -49,13 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdmEquiv.cs" />
-    <Compile Include="CienciaCarAnt.cs" />
-    <Compile Include="CienciaCarAntC.cs" />
     <Compile Include="CienciaEquiv.cs" />
     <Compile Include="CienciaTablaEquiv.cs" />
-    <Compile Include="Ciencia_Car_Procesos.cs" />
     <Compile Include="Ciencia_Car_Sel.cs" />
     <Compile Include="Ciencia_Modulo.cs" />
+    <Compile Include="Ciencia_Procesos.cs" />
     <Compile Include="clsCampo.cs" />
     <Compile Include="clsSelector.cs" />
     <Compile Include="clsTablaEquivalente.cs" />

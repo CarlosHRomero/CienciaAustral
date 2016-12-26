@@ -12,17 +12,16 @@ namespace Ciencia.DAL
     public class ProcesosManager
     {
         private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.ConnStr");
-        public Ciencia_Car_Procesos Insertar(Ciencia_Car_Procesos Obj)
+        public Ciencia_Procesos Insertar(Ciencia_Procesos Obj)
         {
-
             try
             {
                if ((Obj.ProcId = ObtenerMaxId() + 1) > 0)
-                {
+               {
                     var res = db.Insert(Obj);
                 }
                 else
-                   Obj=null;
+                    Obj=null;
             }
             catch (Exception ex)
             {
@@ -31,15 +30,15 @@ namespace Ciencia.DAL
             }
             return Obj;
         }
-         private int ObtenerMaxId()
+        private int ObtenerMaxId()
         {
             try
             {
-                var sql = PetaPoco.Sql.Builder.Append("select COUNT(*) from Ciencia_Car_Procesos");
+                var sql = PetaPoco.Sql.Builder.Append("select COUNT(*) from Ciencia_Procesos");
                 var x = db.ExecuteScalar<int>(sql);
                 if (x == 0)
                     return 0;
-                sql = PetaPoco.Sql.Builder.Append("select MAX(procId) from Ciencia_Car_Procesos");
+                sql = PetaPoco.Sql.Builder.Append("select MAX(procId) from Ciencia_Procesos");
                 x = db.ExecuteScalar<int>(sql);
                 return Convert.ToInt32(x);
             }
@@ -50,7 +49,7 @@ namespace Ciencia.DAL
             }
         }
 
-        public bool Modificar(Ciencia_Car_Procesos Obj)
+        public bool Modificar(Ciencia_Procesos Obj)
         {
             Boolean result;
             try
@@ -65,11 +64,11 @@ namespace Ciencia.DAL
             }
             return result;
         }
-        public Ciencia_Car_Procesos GetByID(String Cod)
+        public Ciencia_Procesos GetByID(String Cod)
         {
             try
             {
-                var obj = db.SingleOrDefault<Ciencia_Car_Procesos>("WHERE Ant_Id=@0", Cod);
+                var obj = db.SingleOrDefault<Ciencia_Procesos>("WHERE Ant_Id=@0", Cod);
                 return obj;
             }
             catch (Exception ex)
@@ -78,14 +77,12 @@ namespace Ciencia.DAL
                 return null;
             }
         }
-        public List<Ciencia_Car_Procesos> Seleccionar(string Where, string OrderBy, string Limit)
+        public List<Ciencia_Procesos> Seleccionar(string Where, string OrderBy, string Limit)
         {
-            List<Ciencia_Car_Procesos> lista;
+            List<Ciencia_Procesos> lista;
             try
             {
-
                 var sql = PetaPoco.Sql.Builder.Append("");
-                //Where = "Ant_Id = 10";
                 if (!String.IsNullOrEmpty(Where))
                 {
                     sql.Where(Where);
@@ -94,7 +91,7 @@ namespace Ciencia.DAL
                 {
                     sql.OrderBy(OrderBy);
                 }
-                lista = db.Fetch<Ciencia_Car_Procesos>(sql);
+                lista = db.Fetch<Ciencia_Procesos>(sql);
             }
             catch (Exception ex)
             {
@@ -103,6 +100,5 @@ namespace Ciencia.DAL
             }
             return lista;
         }
-
     }
 }

@@ -35,12 +35,11 @@ namespace Ciencia.BLL
             var tablaEquivManager = new TablaEquivManager();
             //Tablas correspondientes al modulo
             _tablasOrigenModulo = tablaEquivManager.ObtenerTablasOrigenPorModulo(moduloId);
-            _cantidadTablas = _tablasOrigenModulo.Count;
+            _cantidadTablas = _tablasOrigenModulo.Where(x => x.Procesar != false).Count();
             _mapeadorTabla = new  MapeadorTabla();
             //Tabla paciente del modulo
             _tablaPaciente = _tablasOrigenModulo.FirstOrDefault(x => x.EsPaciente);
             _mensajes = new List<string>();
-
             //Actualiza la tabla elf_equiv apartir de la tabla elf_persvinc
             if (moduloId == 1)
             {
@@ -70,7 +69,7 @@ namespace Ciencia.BLL
                 _tablaPrincipal = _tablasOrigenModulo.First(x => x.EsTronco && x.EsEvolucion == false);
                 _mensajes.Add("Tablas procesadas " + _cantidadTablasProcesadas + " de " + _cantidadTablas);
                 //Nombre de las tablas destino donde se guardaron las tablas traducidas en un proceso anterior, exceptuando las que son evolución o seguimiento
-                var tablaDestino = _tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsTronco).Select(x => x.NombreTablaEquiv).Distinct().ToList();
+                var tablaDestino = _tablasOrigenModulo.Where(x => x.EsEvolucion == false).Select(x => x.NombreTablaEquiv).Distinct().ToList();
                 if (_tablaPrincipal != null)
                 {
                     //Borra tablas destino cradas en un proceso anterior
@@ -96,7 +95,7 @@ namespace Ciencia.BLL
                     if (!res)
                         return false;
                     var tabla = nombreTabla;
-                    foreach (var cienciaTablaEquiv in _tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == false && x.NombreTablaEquiv == tabla).OrderByDescending(x => x.EsTronco))
+                    foreach (var cienciaTablaEquiv in _tablasOrigenModulo.Where(x => x.EsEvolucion == false && x.EsMultiple == false && x.NombreTablaEquiv == tabla && x.Procesar == true).OrderByDescending(x => x.EsTronco))
                     {
                         _mensajes.Add("Procesando " + cienciaTablaEquiv.NombreTabla + " - " + cienciaTablaEquiv.Descripcion);
                         worker.ReportProgress(0, _mensajes);
@@ -111,17 +110,21 @@ namespace Ciencia.BLL
                         {
                             if (cienciaTablaEquiv.EsTronco == false)
                             {
-                                //Agrega datos de la tabla origen a la tabla destino relacionando la clave primaria de la tabla principal con la clave foránea de la tabla a procesar 
-                                res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClaveForanea);
-                                if (!res)
-                                    return false;
+                                //Si la tabla no tiene la marca correspondiente para ser procesada no se procesa
+                                if (cienciaTablaEquiv.Procesar)
+                                {
+                                    //Agrega datos de la tabla origen a la tabla destino relacionando la clave primaria de la tabla principal con la clave foránea de la tabla a procesar 
+                                    res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClaveForanea);
+                                    if (!res)
+                                        return false;
+                                }
                             }
                             else
                             {
-                                //Agrega datos de la tabla origen a la tabla destino relacionando, en el caso de la tabla principal esto se hace a través de su clave primaria ya previamente cargada en la tabla destino
-                                res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClavePrimaria);
-                                if (!res)
-                                    return false;
+                                    //Agrega datos de la tabla origen a la tabla destino relacionando, en el caso de la tabla principal esto se hace a través de su clave primaria ya previamente cargada en la tabla destino
+                                    res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClavePrimaria);
+                                    if (!res)
+                                        return false;
                             }
                         }
                         _mensajes.Clear();
@@ -129,7 +132,6 @@ namespace Ciencia.BLL
                     }
                     _mensajes.Clear();
                     _mensajes.Add("Tablas procesadas " + _cantidadTablasProcesadas + " de " + _cantidadTablas);
-
                     _mensajes.Add("Persistiendo Datos en BD");
                     _mensajes.Add(_mapeadorTabla.CantidadDeRegistrosAGuardar().ToString());
                     worker.ReportProgress(0, _mensajes);

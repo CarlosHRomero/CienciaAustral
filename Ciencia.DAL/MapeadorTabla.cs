@@ -4,6 +4,7 @@ using Ciencia.OBJ;
 using Electrofisiologia.DAL;
 using Generales;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -131,20 +132,20 @@ namespace Ciencia.DAL
                     i += campos.Count;
                     if (i > CantidadColumnas)
                     {
-                        crearTabla += ")";
-                        CrearTablaDestino(crearTabla);
-                        //_tdatosCiencia.AgregarClavePrimaria(clavePrimaria, nombreTablaDestino);
-                        foreach (var tablaOrigen in tablasOrigen)
-                        {
-                            tablaOrigen.NombreTablaEquiv = tablaDestino;
-                            _tablaEquivMan.Modificar(tablaOrigen);
-                        }
-                        ++j;
-                        tablaDestino = "";
-                        tablaDestino += nombreTablaDestino + "_" + j;
-                        crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
-                        tablasOrigen.Clear();
-                        i = 0;
+                         crearTabla += ")";
+                         CrearTablaDestino(crearTabla);
+                         _tdatosCiencia.AgregarClavePrimaria(clavePrimaria, tablaDestino);
+                         foreach (var tablaOrigen in tablasOrigen)
+                         {
+                             tablaOrigen.NombreTablaEquiv = tablaDestino;
+                             _tablaEquivMan.Modificar(tablaOrigen);
+                         }
+                         ++j;
+                         tablaDestino = "";
+                         tablaDestino += nombreTablaDestino + "_" + j;
+                         crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
+                         tablasOrigen.Clear();
+                         i = 0;
                     }
                     tablasOrigen.Add(tablaEquiv);
                     foreach (var campo in campos)
@@ -173,24 +174,25 @@ namespace Ciencia.DAL
             }
         }
 
-
+              
         public Boolean MapearDatosClavePrimaria(CienciaTablaEquiv nombreTablaOrigen, BackgroundWorker worker, string tablaDestino)
         {
             try
             {
-                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria + " FROM " + nombreTablaOrigen.NombreTabla;
+                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria  + " FROM " + nombreTablaOrigen.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + tablaDestino;
                 _dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
-                    var filaDest = _dtDes.NewRow();
-                    var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
-                    var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
-                    var campoDest = equiv.CampoEquivalente.Trim();
-                    filaDest[campoDest] = filaOrg[columna];
-                    _dtDes.Rows.Add(filaDest);
+                        var filaDest = _dtDes.NewRow();
+                        var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
+                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
+                        var campoDest = equiv.CampoEquivalente.Trim();
+                        filaDest[campoDest] = filaOrg[columna];
+                        _dtDes.Rows.Add(filaDest);
                 }
+                _dtDes.PrimaryKey = new DataColumn[] { _dtDes.Columns[nombreTablaOrigen.ClavePrimaria] };
                 return true;
             }
             catch (Exception ex)
@@ -210,19 +212,19 @@ namespace Ciencia.DAL
                 var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
                 var dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
                     if (worker.CancellationPending)
                     {
                         return false;
                     }
-                    var dataRowDes = _dtDes.Select(clavePrimaria + " = " + filaOrg[claveForanea]);
-                    if (dataRowDes.Length != 0)
+                    var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
+                    if (filaDest != null)
                     {
-                        DataRow filaDest = dataRowDes[0];
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
-                            var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                            var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                             if (equiv == null)
                                 continue;
                             var campoDest = equiv.CampoEquivalente.Trim();
@@ -230,33 +232,6 @@ namespace Ciencia.DAL
                             if (columna.ColumnName == "Ingr_Grpo_D")
                             {
                                 diag = Convert.ToInt32(valor);
-                            }
-                            int stTipo1=1, stTipo2=1, stTipo3=1, stTipo4=1, stTipo5=1;
-                            if (columna.ColumnName == "ATC_St_Tipo1_D")
-                                stTipo1= Convert.ToInt32(valor);
-                            if (columna.ColumnName == "ATC_St_Tipo2_D")
-                                stTipo2= Convert.ToInt32(valor);
-                            if (columna.ColumnName == "ATC_St_Tipo3_D")
-                                stTipo3= Convert.ToInt32(valor);
-                            if (columna.ColumnName == "ATC_St_Tipo4_D")
-                                stTipo4= Convert.ToInt32(valor);
-                            if (columna.ColumnName == "ATC_St_Tipo5_D")
-                                stTipo5= Convert.ToInt32(valor);
-                            if(columna.ColumnName== "ATC_Marca1_D" ||columna.ColumnName== "ATC_Marca2_D"||columna.ColumnName== "ATC_Marca3_D"||columna.ColumnName== "ATC_Marca4_D"||columna.ColumnName== "ATC_Marca5_D")
-                            {
-                                switch( columna.ColumnName)
-                                {
-                                    case "ATC_Marca1_D":
-                                        string s= BuscarMarca(valor, stTipo1);
-                                if (s == null)
-                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                                else
-                                    filaDest[campoDest] = s.Trim();
-                                continue;
-
-                                        break;
-                                }
-                                
                             }
                             if (String.IsNullOrEmpty(valor.ToString()))
                             {
@@ -278,11 +253,28 @@ namespace Ciencia.DAL
                             if (equiv.Filtro == null)
                             {
                                 if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
-                                    filaDest[campoDest] = (DateTime) valor;
+                                {
+                                    if (valor == null)
+                                        filaDest[campoDest] = DBNull.Value;
+                                    else
+                                        filaDest[campoDest] = (DateTime)valor;
+                                }
                                 else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
-                                    filaDest[campoDest] = (Boolean) valor == false ? "No" : "Si";
+                                    filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
                                 else if (columna.DataType == typeof(String))
-                                    filaDest[campoDest] = valor.ToString().Trim();
+                                {
+                                    if (int.TryParse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0], out maxLength))
+                                    {
+                                        if (valor.ToString().Trim().Length < maxLength)
+                                            filaDest[campoDest] = valor.ToString().Trim();
+                                        else
+                                            filaDest[campoDest] = valor.ToString().Trim().Substring(0, maxLength);
+                                    }
+                                    else
+                                    {
+                                        filaDest[campoDest] = valor.ToString().Trim();
+                                    }
+                                }
                                 else
                                     filaDest[campoDest] = valor;
                             }
@@ -292,16 +284,23 @@ namespace Ciencia.DAL
                                 if (s == null)
                                     filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                 else
-                                    filaDest[campoDest] = s.Trim();
+                                {
+                                    s = s.Trim();
+                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                    if (s.Length < maxLength)
+                                        filaDest[campoDest] = s;
+                                    else
+                                        filaDest[campoDest] = s.Substring(0, maxLength);
+                                }
                             }
                         }
                     }
                     else
                     {
-                         Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
+                        Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
                     }
                     i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }
@@ -312,22 +311,18 @@ namespace Ciencia.DAL
             }
         }
 
-        private string BuscarMarca(object valor, int stTipo1)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker, ref DataTable dtDes)
+        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker,ref DataTable dtDes)
         {
             try
             {
                 var modulo = _moduloMan.ObtenerDatosModulo(cienciaTablaEquiv.ModuloId.ToString());
                 int i = 0;
-                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
+                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla; 
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
                 dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 DataRow filaDest = null;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
@@ -338,7 +333,7 @@ namespace Ciencia.DAL
                     filaDest = dtDes.NewRow();
                     foreach (DataColumn columna in dtOrg.Columns)
                     {
-                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablaEquiv.TablaId);
+                        var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                         if (equiv == null)
                             continue;
                         var campoDest = equiv.CampoEquivalente.Trim();
@@ -358,7 +353,13 @@ namespace Ciencia.DAL
                             else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
                                 filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
                             else if (columna.DataType == typeof(String))
-                                filaDest[campoDest] = valor.ToString().Trim();
+                            {
+                                maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                if (valor.ToString().Trim().Length < maxLength)
+                                    filaDest[campoDest] = valor.ToString().Trim();
+                                else
+                                    filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                            }
                             else
                                 filaDest[campoDest] = valor;
                         }
@@ -368,12 +369,19 @@ namespace Ciencia.DAL
                             if (s == null)
                                 filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                             else
-                                filaDest[campoDest] = s.Trim();
+                            {
+                                s = s.Trim();
+                                maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                if (s.Length < maxLength)
+                                    filaDest[campoDest] = s;
+                                else
+                                    filaDest[campoDest] = s.Substring(0, --maxLength);
+                            }
                         }
                     }
                     dtDes.Rows.Add(filaDest);
                     i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
+                    worker.ReportProgress(i * 100 / max);
                 }
                 return true;
             }
@@ -393,61 +401,80 @@ namespace Ciencia.DAL
                 string queryOrg = "SELECT * FROM " + cienciaTablasEquiv.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var max = dtOrg.Rows.Count;
+                int maxLength;
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
                     if (worker.CancellationPending)
                     {
                         return false;
                     }
-                    var dataRowDes = _dtDes.Select(claveForanea + " = '" + filaOrg[cienciaTablasEquiv.ClavePrimaria] + "'");
-                    foreach (DataRow filaDest in dataRowDes)
+                    var ListfilaDest = (from DataRow Row in _dtDes.AsEnumerable()
+                                        where Row.Field<int?>(claveForanea) == Convert.ToInt32(filaOrg[cienciaTablasEquiv.ClavePrimaria])
+                                        select Row).ToList();
+                    if (ListfilaDest.Count() != 0)
                     {
-                        foreach (DataColumn columna in dtOrg.Columns)
+                        foreach (var filaDest in ListfilaDest)
                         {
-                            var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, cienciaTablasEquiv.TablaId);
-                            if (equiv == null)
-                                continue;
-                            var campoDest = equiv.CampoEquivalente.Trim();
-                            var valor = filaOrg[columna];
-                            //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
-                            if (columna.ColumnName.ToUpper() == _fechaNcimiento)
+                            foreach (DataColumn columna in dtOrg.Columns)
                             {
-                                int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
-                                filaDest[_edad] = edad.ToString();
-                                filaDest[_fechaNcimiento] = valor;
-                                continue;
-                            }
-                            if (String.IsNullOrEmpty(valor.ToString()))
-                            {
-                                if (equiv.ValorPorDefecto == null)
-                                    filaDest[campoDest] = DBNull.Value;
+                                var equiv = _eqMan.ObtenerPorOrigen(cienciaTablasEquiv.ModuloId, columna.ColumnName, cienciaTablasEquiv.TablaId);
+                                if (equiv == null)
+                                    continue;
+                                var campoDest = equiv.CampoEquivalente.Trim();
+                                var valor = filaOrg[columna];
+                                //Se le agrega la edad del paciente al campo proc_edad_n de la tabla hemo_proc1 corresponciente a ciencia hemodinamia
+                                if (columna.ColumnName.ToUpper() == _fechaNcimiento && tablaTroncal.ModuloId == 5)
+                                {
+                                    int edad = (DateTime.Today - Convert.ToDateTime(valor)).Days / 365;
+                                    filaDest[_edad] = edad.ToString();
+                                    filaDest[_fechaNcimiento] = valor;
+                                    continue;
+                                }
+                                if (String.IsNullOrEmpty(valor.ToString()))
+                                {
+                                    if (equiv.ValorPorDefecto == null)
+                                        filaDest[campoDest] = DBNull.Value;
+                                    else
+                                        filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                                    continue;
+                                }
+                                if (equiv.Filtro == null)
+                                {
+                                    if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
+                                        filaDest[campoDest] = (DateTime)valor;
+                                    else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
+                                        filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
+                                    else if (columna.DataType == typeof(String))
+                                    {
+                                        maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                        if (valor.ToString().Trim().Length < maxLength)
+                                            filaDest[campoDest] = valor.ToString().Trim();
+                                        else
+                                            filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
+                                    }
+                                    else
+                                        filaDest[campoDest] = valor;
+                                }
                                 else
-                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                                continue;
-                            }
-                            if (equiv.Filtro == null)
-                            {
-                                if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
-                                    filaDest[campoDest] = (DateTime)valor;
-                                else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
-                                    filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
-                                else if (columna.DataType == typeof(String))
-                                    filaDest[campoDest] = valor.ToString().Trim();
-                                else
-                                    filaDest[campoDest] = valor;
-                            }
-                            else
-                            {
-                                String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
-                                if (s == null)
-                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
-                                else
-                                    filaDest[campoDest] = s.Trim();
+                                {
+                                    String s = ObtenerEquivalente(equiv.Filtro.Trim(), valor, modulo.TablaEquiv);
+                                    if (s == null)
+                                        filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                                    else
+                                    {
+                                        s = s.Trim();
+                                        maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                        if (s.Length < maxLength)
+                                            filaDest[campoDest] = s;
+                                        else
+                                            filaDest[campoDest] = s.Substring(0, --maxLength);
+                                    }
+                                }
                             }
                         }
+                        i++;
+                        worker.ReportProgress(i * 100 / max);
                     }
-                    i++;
-                    worker.ReportProgress(Convert.ToInt32(i * 100 / max));
                 }
                 return true;
             }

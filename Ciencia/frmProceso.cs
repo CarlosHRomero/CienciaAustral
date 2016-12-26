@@ -9,13 +9,23 @@ using Ciencia.OBJ;
 using Ciencia.Properties;
 using Common;
 using Common.OBJ;
+using Common.BLL;
+using System.Linq;
 
 namespace Ciencia
 {
     public partial class frmProceso : Form
     {
         private readonly BackgroundWorker _bw= new BackgroundWorker();
+        private readonly ProcesosB _procB = new ProcesosB();
         private int _maximumProgressBar;
+        private String Titulo = "ICBA - Ciencia - frmProceso";
+        private DateTime _t;
+        private int _moduloId;
+        private Ciencia_Procesos _proc;
+        private UsuarioBuss _usuarioB;
+        private List<Ciencia_Modulo> _modulos;
+        private moduloBuss _moduloB;
 
         public frmProceso()
         {
@@ -27,19 +37,19 @@ namespace Ciencia
             _bw.DoWork += bw_DoWork;
             _bw.ProgressChanged += bw_ProgressChanged;
             _bw.RunWorkerCompleted += bw_RunWorkerCompleted;
+            _proc = new Ciencia_Procesos();
+            _usuarioB = new UsuarioBuss();
+            _moduloB = new moduloBuss();
         }
 
         private void CargarDesplegables()
         {
             ListasDesplegables obj = new ListasDesplegables();
+            _modulos = obj.ListaModulo();
             cboModulo.DataSource = obj.ListaModulo();
             cboModulo.ValueMember = "ModuloId";
             cboModulo.DisplayMember = "Nombre";
         }
-
-        String Titulo = "ICBA - Ciencia - frmProceso";
-        DateTime _t;
-        int _moduloId;
 
         private void btnProceso_Click(object sender, EventArgs e)
         {
@@ -47,10 +57,23 @@ namespace Ciencia
             {
                 if (_bw.IsBusy != true)
                 {
-                    lblProcesando.Text = "Proceso inicializado";
                     _t = DateTime.Now;
+                    List<Ciencia_Procesos> lista = _procB.ObtenerProcesos().Where(x => x.ModuloId == Convert.ToInt32(cboModulo.SelectedValue)).ToList();
+                    List<TimeSpan> listTiempoProc = new List<TimeSpan>();
+                    TimeSpan tiempoProc;
+                    foreach(Ciencia_Procesos proc in lista)
+                    {
+                        if (proc.User_LogOn != null)
+                        {
+                            tiempoProc = proc.Proc_fin_F.Value.Subtract(proc.Proc_ini_F.Value);
+                            listTiempoProc.Add(tiempoProc);
+                        }
+                    }
+                    lblPromedio.Text = "Tiempo estimado de finalización del proceso " + TimeSpan.FromTicks((long)listTiempoProc.Average(timeSpan => timeSpan.Ticks)).ToString(@"hh\:mm\:ss");
+                    lblProcesando.Text = "Proceso inicializado";
                     progressBar1.Visible = true;
                     _moduloId = Convert.ToInt32(cboModulo.SelectedValue);
+                    lblProc.Text = "Procesando el modulo " + _moduloB.ObtenerDatosModulo(_moduloId).Nombre;
                     _bw.RunWorkerAsync();
                 }
             }
@@ -62,16 +85,28 @@ namespace Ciencia
 
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
+                _proc.Proc_ini_F = DateTime.Now;
+                _proc.User_LogOn = Ambiente.Usuario.User_LogOn;
+                _proc.Proc_Maq_T = Ambiente.Maquina;
+                _proc.ModuloId = _moduloId;
                 BackgroundWorker worker = sender as BackgroundWorker;
                 ConversorCiencia conv = new ConversorCiencia(_moduloId);
                 bool res = conv.ConvertirTablas(worker);
-                if(!res)
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
+                if (!res)
                 {
                     e.Result = "error";
                     if (worker != null) worker.CancelAsync();
                     return;
                 }
                 res = conv.ConvertirTablasEvolucion(worker);
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
                 if (!res)
                 {
                     e.Result = "error";
@@ -79,6 +114,10 @@ namespace Ciencia
                     return;
                 }
                 res = conv.ConvertirTablasMultiples(worker);
+                //if (_bw.WorkerSupportsCancellation)
+                //{
+                //    return;
+                //}
                 if (!res)
                 {
                     e.Result = "error";
@@ -172,13 +211,9 @@ namespace Ciencia
                     progressBar1.Value = progressBar1.Maximum;
                     TimeSpan dt = DateTime.Now - _t;
                     lblProcesando.Text = "Tiempo total:  " + dt.ToString(@"hh\:mm\:ss");
-                    Ciencia_Car_Procesos obj = new Ciencia_Car_Procesos {Proc_F = DateTime.Today};
                     Ciencia.BLL.CienciaB cb = new Ciencia.BLL.CienciaB();
-                    obj.SelD_F = cb.ObtenerFechaDesde();
-                    obj.SelH_F = cb.ObtenerFechaHasta();
-                    obj.ProcId = 1;
-                    obj.UsrId = Ambiente.Usuario.User_Id;
-                    _procB.Modificar(obj);
+                    _proc.Proc_fin_F = DateTime.Now;
+                    _procB.Insertar(_proc);
                     CargarGrid();
                     MessageBox.Show(Resources.Form1_btnProceso_Click_ProcesoTerminado);
                 }
@@ -193,22 +228,24 @@ namespace Ciencia
         {
             CargarDesplegables();
             Text = Titulo;
-            CargarGrid();
         }
-
-        private readonly ProcesosB _procB = new ProcesosB();
 
         void CargarGrid()
         {
-            List<Ciencia_Car_Procesos> lista = _procB.ObtenerProcesos();
+            clsUsuario usuario;
+            TimeSpan tiempoProc;
+            List<Ciencia_Procesos> lista = _procB.ObtenerProcesos();
             DataGridView1.Rows.Clear();
-            foreach (var proc in lista)
-            {
-                if (proc.Proc_F != null)
-                    if (proc.SelD_F != null)
-                        if (proc.SelH_F != null)
-                            DataGridView1.Rows.Add(((DateTime)proc.Proc_F).ToShortDateString(), proc.UsrId, ((DateTime)proc.SelD_F).ToShortDateString(), ((DateTime)proc.SelH_F).ToShortDateString(), proc.Motivo);
-            }
+            if (!(cboModulo.SelectedValue is Ciencia_Modulo))
+                foreach (var proc in lista.Where(x => x.ModuloId == Convert.ToInt32(cboModulo.SelectedValue)).OrderByDescending(x => x.Proc_ini_F))
+                {
+                    usuario = _usuarioB.ObtenerUsuario(proc.User_LogOn);
+                    if (usuario != null)
+                    {
+                        tiempoProc = proc.Proc_fin_F.Value.Subtract(proc.Proc_ini_F.Value);
+                        DataGridView1.Rows.Add(proc.Proc_fin_F.Value.ToShortDateString(), usuario.User_Nombre, _modulos.FirstOrDefault(x => x.ModuloId == proc.ModuloId).Nombre, proc.Proc_Maq_T, proc.Proc_ini_F.Value.ToLongTimeString(), proc.Proc_fin_F.Value.ToLongTimeString(), tiempoProc.ToString(@"hh\:mm\:ss"));
+                    }
+                }
         }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -245,6 +282,11 @@ namespace Ciencia
         private void frmProceso_FormClosing(object sender, FormClosingEventArgs e)
         {
             Formularios.fMenu.Show();
+        }
+
+        private void cboModulo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarGrid();
         }
     }
 }
