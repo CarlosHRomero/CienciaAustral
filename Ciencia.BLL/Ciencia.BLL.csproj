@@ -52,6 +52,7 @@
     <Compile Include="CienciaB.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CienciaEquivBuss.cs" />
     <Compile Include="ComplementoBuss.cs" />
     <Compile Include="ConversorCiencia.cs">
       <SubType>Code</SubType>

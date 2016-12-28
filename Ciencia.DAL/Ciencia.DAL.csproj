@@ -42,8 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
     </Reference>
-    <Reference Include="Electrofisiologia.DAL, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Electrofisiologia.DAL">
       <HintPath>..\..\..\Electrofisiologia\trunk\dll\Electrofisiologia.DAL.dll</HintPath>
     </Reference>
     <Reference Include="Electrofisiologia.OBJ, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
