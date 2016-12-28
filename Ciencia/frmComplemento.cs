@@ -345,10 +345,10 @@ namespace Ciencia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            if (cb.ExportarAExcel(ConStr) == false)
-                MessageBox.Show("Error Exportando a Excel", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Cursor.Current = Cursors.Default;
+            //Cursor.Current = Cursors.WaitCursor;
+            //if (cb.ExportarAExcel(ConStr) == false)
+            //    MessageBox.Show("Error Exportando a Excel", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //Cursor.Current = Cursors.Default;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

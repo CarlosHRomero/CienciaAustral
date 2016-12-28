@@ -253,6 +253,7 @@
             this.btnProceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProceso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProceso.UseVisualStyleBackColor = false;
+            this.btnProceso.Visible = false;
             this.btnProceso.Click += new System.EventHandler(this.btnProceso_Click);
             // 
             // label2

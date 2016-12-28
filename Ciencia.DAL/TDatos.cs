@@ -539,5 +539,20 @@ namespace Ciencia.DAL
                 return null;
             }
         }
+        public  bool BorrarTabla(string tabla)
+        {
+            try
+            {
+                string s = string.Format("IF OBJECT_ID ('{0}', 'U') IS NOT NULL DROP TABLE {0}", tabla);
+                ExecuteQuery(s, CommandType.Text);
+                return true;
+            }
+            catch( Exception ex)
+            {
+                Utiles.WriteErrorLog(ex.Message);
+                return false;
+            }
+        }
+
     }
 }
