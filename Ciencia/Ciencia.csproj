@@ -89,6 +89,12 @@
       <DependentUpon>dlgAbrirBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios.cs" />
+    <Compile Include="frmActualizarModulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmActualizarModulo.Designer.cs">
+      <DependentUpon>frmActualizarModulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmComplemento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </Compile>
     <EmbeddedResource Include="dlgAbrirBase.resx">
       <DependentUpon>dlgAbrirBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActualizarModulo.resx">
+      <DependentUpon>frmActualizarModulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmComplemento.resx">
       <DependentUpon>frmComplemento.cs</DependentUpon>

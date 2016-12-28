@@ -162,6 +162,13 @@ namespace Ciencia
 
         }
 
+        public void AbrirActualizarMod()
+        {
+            Formularios.fActualizarMod.MdiParent = this.MdiParent;
+            Formularios.fActualizarMod.Show();
+            Hide();
+        }
+
         private void btnComplemento_Click(object sender, EventArgs e)
         {
             AbrirComplemento();
@@ -170,6 +177,11 @@ namespace Ciencia
         private void btnEvolucion_Click(object sender, EventArgs e)
         {
             AbrirEvolucion();
+        }
+
+        private void btnActualizarMod_Click(object sender, EventArgs e)
+        {
+            AbrirActualizarMod();
         }
 
         private void btnCalc_Click(object sender, EventArgs e)

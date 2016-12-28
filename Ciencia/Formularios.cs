@@ -12,6 +12,16 @@ namespace Ciencia
     {
         private static frmMenu _fMenu;
         private static frmProceso _fProceso;
+        private static frmActualizarModulo _fActualizarMod;
+        public static frmActualizarModulo fActualizarMod
+        {
+            get
+            {
+                if (_fActualizarMod == null || _fActualizarMod.IsDisposed)
+                    _fActualizarMod = new frmActualizarModulo();
+                return _fActualizarMod;
+            }
+        }
         public static frmProceso fProceso
         {
             get

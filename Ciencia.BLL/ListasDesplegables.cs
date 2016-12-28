@@ -9,6 +9,13 @@ namespace Ciencia.BLL
 {
     public class ListasDesplegables
     {
+        public List<CienciaTablaEquiv> ListaTabla(int moduloId)
+        {
+            TablaEquivManager man = new TablaEquivManager();
+            List<CienciaTablaEquiv> lista = man.ObtenerTablasOrigenPorModulo(moduloId);
+            return lista;
+        }
+
         public List<Ciencia_Modulo> ListaModulo()
         {
             ModuloManager man = new ModuloManager();
