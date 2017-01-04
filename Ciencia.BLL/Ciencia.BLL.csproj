@@ -62,6 +62,7 @@
     <Compile Include="LocalEquivB.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MantenimientoArchivos.cs" />
     <Compile Include="moduloBuss.cs" />
     <Compile Include="NumDePacB.cs">
       <SubType>Code</SubType>

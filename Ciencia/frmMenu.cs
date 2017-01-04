@@ -34,7 +34,7 @@ namespace Ciencia
         private void btnSelector_Click(object sender, EventArgs e)
         {
             AbrirSelector();
-            
+
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -60,9 +60,9 @@ namespace Ciencia
         }
         public void AbrirSelector()
         {
-                        //OpenFileDialog ofd = new OpenFileDialog();
+            //OpenFileDialog ofd = new OpenFileDialog();
             Ciencia.dlgAbrirBase ofd = new Ciencia.dlgAbrirBase();
-            
+
             //ofd.DefaultExt = "mdb";
             //ofd.Filter = "Access (*.mdb) | *.mdb";
             ofd.Text = "Seleccione la base de datos";
@@ -126,7 +126,7 @@ namespace Ciencia
                     return;
                 }
                 if (!Formularios.fComplemento.CargarInfSelector())
-                {                    
+                {
                     return;
                 }
                 Formularios.fComplemento.Show();
@@ -145,7 +145,7 @@ namespace Ciencia
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Formularios.fEvolucion.MdiParent = this.MdiParent;
-                
+
 
                 SelectorBuss sB = new SelectorBuss();
                 sB.constr = Formularios.fEvolucion.EstablecerCadenaDeConexion(ofd.FileName); ;
@@ -188,5 +188,24 @@ namespace Ciencia
         {
             System.Diagnostics.Process.Start("calc.exe");
         }
+
+        private void btnMantArc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dlgBorrarBase dlg = new dlgBorrarBase();
+                if (dlg.ShowDialog() != DialogResult.OK)
+                    return;
+                MantenimientoArchivos mA = new MantenimientoArchivos();
+                mA.BorrarArchivos(dlgBorrarBase.path, dlg.ListaArchivos);
+                MessageBox.Show("Archivos borrados", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                Generales.Mensajes.msgError(ex);
+            }
+        }
+
+
     }
 }

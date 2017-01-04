@@ -88,6 +88,12 @@
     <Compile Include="dlgAbrirBase.Designer.cs">
       <DependentUpon>dlgAbrirBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="dlgBorrarBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgBorrarBase.Designer.cs">
+      <DependentUpon>dlgBorrarBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios.cs" />
     <Compile Include="frmActualizarModulo.cs">
       <SubType>Form</SubType>
@@ -158,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="dlgAbrirBase.resx">
       <DependentUpon>dlgAbrirBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgBorrarBase.resx">
+      <DependentUpon>dlgBorrarBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmActualizarModulo.resx">
       <DependentUpon>frmActualizarModulo.cs</DependentUpon>

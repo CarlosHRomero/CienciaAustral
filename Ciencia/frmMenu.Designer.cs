@@ -36,6 +36,7 @@
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMantArc = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnEvolucion = new System.Windows.Forms.Button();
             this.btnComplemento = new System.Windows.Forms.Button();
@@ -140,6 +141,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnMantArc);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEvolucion);
             this.panel1.Controls.Add(this.btnComplemento);
@@ -149,6 +151,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(396, 364);
             this.panel1.TabIndex = 51;
+            // 
+            // btnMantArc
+            // 
+            this.btnMantArc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMantArc.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
+            this.btnMantArc.FlatAppearance.BorderSize = 0;
+            this.btnMantArc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnMantArc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMantArc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMantArc.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnMantArc.Image = global::Ciencia.Properties.Resources.Tarea;
+            this.btnMantArc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMantArc.Location = new System.Drawing.Point(0, 165);
+            this.btnMantArc.Name = "btnMantArc";
+            this.btnMantArc.Size = new System.Drawing.Size(394, 33);
+            this.btnMantArc.TabIndex = 14;
+            this.btnMantArc.Text = "Mantenimiento de archivos";
+            this.btnMantArc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMantArc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMantArc.UseVisualStyleBackColor = false;
+            this.btnMantArc.Click += new System.EventHandler(this.btnMantArc_Click);
             // 
             // button1
             // 
@@ -169,6 +192,7 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.btnActualizarMod_Click);
             // 
             // btnEvolucion
@@ -253,6 +277,7 @@
             this.btnProceso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProceso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProceso.UseVisualStyleBackColor = false;
+            this.btnProceso.Visible = false;
             this.btnProceso.Click += new System.EventHandler(this.btnProceso_Click);
             // 
             // label2
@@ -484,5 +509,6 @@
         private System.Windows.Forms.Button btnComplemento;
         private System.Windows.Forms.Button btnSelector;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMantArc;
     }
 }
