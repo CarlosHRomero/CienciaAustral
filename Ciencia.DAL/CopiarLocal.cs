@@ -23,7 +23,7 @@ namespace Ciencia.DAL
             if (!string.IsNullOrEmpty(where))
                 queryOrg = queryOrg + " where " + where;
 
-            TDatos data = new TDatos("ICBA.Properties.Settings.ConnStr"); 
+            TDatos data = new TDatos("ICBA.Properties.Settings.conStr"); 
             string querydel = string.Format("delete from {0}", tabla);
             TDatosAccess.ExecuteQuery(querydel, CommandType.Text);
             Thread.Sleep(1000);

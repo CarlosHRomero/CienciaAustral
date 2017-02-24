@@ -30,8 +30,8 @@ namespace Ciencia.DAL
         private const string _edad = "PROC_EDAD_N";
         public MapeadorTabla()
         {
-            _tdatos = new TDatos("ICBA.Properties.Settings.ConnStr");
-            _tdatosCiencia = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+            _tdatos = new TDatos("ICBA.Properties.Settings.conStr");
+            _tdatosCiencia = new TDatos("ICBA.Properties.Settings.conStrCiencia");
             _carEquivManager = new EquivMAnager();
             _admMan = new AdmEquivMan();
             _eqMan = new CienciaEquivManager();
@@ -210,6 +210,8 @@ namespace Ciencia.DAL
                 int i = 0;
                 int diag = 0;
                 var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
+                //if (cienciaTablaEquiv.NombreTabla == "Car_Evol_New" || cienciaTablaEquiv.NombreTabla == "Car_Proc_New")
+                //    queryOrg += " ORDER BY " + cienciaTablaEquiv.CampoFecha + " DESC";
                 var dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var max = dtOrg.Rows.Count;
                 int maxLength;

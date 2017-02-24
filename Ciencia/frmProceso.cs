@@ -69,7 +69,8 @@ namespace Ciencia
                             listTiempoProc.Add(tiempoProc);
                         }
                     }
-                    lblPromedio.Text = "Tiempo estimado de finalización del proceso " + TimeSpan.FromTicks((long)listTiempoProc.Average(timeSpan => timeSpan.Ticks)).ToString(@"hh\:mm\:ss");
+                    if (lista.Count>0) 
+                        lblPromedio.Text = "Tiempo estimado de finalización del proceso " + TimeSpan.FromTicks((long)listTiempoProc.Average(timeSpan => timeSpan.Ticks)).ToString(@"hh\:mm\:ss");
                     lblProcesando.Text = "Proceso inicializado";
                     progressBar1.Visible = true;
                     _moduloId = Convert.ToInt32(cboModulo.SelectedValue);

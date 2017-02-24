@@ -11,7 +11,7 @@ namespace Ciencia.DAL
 {
     public class ProcesosManager
     {
-        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.ConnStr");
+        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
         public Ciencia_Procesos Insertar(Ciencia_Procesos Obj)
         {
             try

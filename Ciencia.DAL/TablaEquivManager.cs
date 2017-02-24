@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class TablaEquivManager
     {
-        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.ConnStr");
+        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
 
 
         public CienciaTablaEquiv BuscarTablaTronco(int moduloId)
@@ -143,7 +143,7 @@ namespace Ciencia.DAL
             foreach(string tabla in TablasOrg)
             {
                 sql = PetaPoco.Sql.Builder.Append("select * from cienciatablaequiv");
-                where = string.Format("ModuloId = {0} and  NombreTabla = '{1}'", moduloId, tabla);
+                where = string.Format("ModuloId = {0} and  NombreTabla = '{1}' and EsEvolucion = 0", moduloId, tabla);
                 sql.Where(where);
                 tE = db.Single<CienciaTablaEquiv>(sql);
                 if(lista.Find(x=> x.NombreTabla == tE.NombreTabla)== null)

@@ -45,8 +45,8 @@ namespace Ciencia.DAL
             {
                 TDatosAccess.conStr = conStr;
                 string query;
-                TDatos data = new TDatos("ICBA.Properties.Settings.ConnStr");
-                TDatos dataCiencia = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+                TDatos data = new TDatos("ICBA.Properties.Settings.conStr");
+                TDatos dataCiencia = new TDatos("ICBA.Properties.Settings.conStrCiencia");
                 TablaEquivManager teMan = new TablaEquivManager();
                 string tablaOrigenEvol = teMan.ObtenerTablaEquivalenteEvolucion(moduloId);
                 string tablaResultadoEvol = tablaOrigenEvol + "_Sel";
@@ -362,7 +362,7 @@ namespace Ciencia.DAL
             {
                 //DataTable dt = SeleccionarTablaEvolucion(Campos);
 
-                TDatos data = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+                TDatos data = new TDatos("ICBA.Properties.Settings.conStrCiencia");
                 TablaEquivManager teMan = new TablaEquivManager();
                 string tablaOrigenEvol = teMan.ObtenerTablaEquivalenteEvolucion(moduloId);
                 string tablaResultadoEvol = tablaOrigenEvol + "_Sel";
@@ -442,7 +442,7 @@ namespace Ciencia.DAL
         {
             try
             {
-                TDatos data = new TDatos("ICBA.Properties.Settings.ConnStrCiencia");
+                TDatos data = new TDatos("ICBA.Properties.Settings.conStrCiencia");
                 string query = string.Format("select * from {0} where {1}", tabla, where);
                 ModuloManager modMan = new ModuloManager();
                 string clavePrimariaEvol = modMan.ObtenerDatosModulo(moduloId.ToString()).ClavePrimariaEvol;

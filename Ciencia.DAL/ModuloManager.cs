@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class ModuloManager : IBaseManager<Ciencia_Modulo>
     {
-        private PetaPoco.Database _db = new PetaPoco.Database("ICBA.Properties.Settings.ConnStr");
+        private PetaPoco.Database _db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
 
         public Ciencia_Modulo ObtenerDatosModulo(String moduloId)
         {
