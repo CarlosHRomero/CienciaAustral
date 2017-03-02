@@ -50,10 +50,6 @@
     <Reference Include="Common.BLL">
       <HintPath>..\..\..\Common\trunk\Common\dll\Common.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="Common.OBJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
-    </Reference>
     <Reference Include="DrawFlat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Common\trunk\Common\dll\DrawFlat.dll</HintPath>
@@ -157,6 +153,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad.cs" />
     <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -228,6 +225,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
+      <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
+      <Name>Common.OBJ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\trunk\Common\Common\Common.csproj">
       <Project>{241cd245-931b-4077-9d16-632ae8ce842c}</Project>
       <Name>Common</Name>

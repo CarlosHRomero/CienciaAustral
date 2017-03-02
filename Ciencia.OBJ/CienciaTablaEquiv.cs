@@ -20,6 +20,7 @@ namespace Ciencia.OBJ
         public int ModuloId { get; set; }
         public string ClaveForanea { get; set; }
         public string ClavePrimaria { get; set; }
+        public string ClavePrimariaEquiv { get; set; }
         public string ClaveForaneaEvol { get; set; }
         public bool EsMultiple { get; set; }
         public bool Procesar { get; set; }

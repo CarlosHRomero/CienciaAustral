@@ -192,7 +192,7 @@ namespace Ciencia.DAL
                         filaDest[campoDest] = filaOrg[columna];
                         _dtDes.Rows.Add(filaDest);
                 }
-                _dtDes.PrimaryKey = new DataColumn[] { _dtDes.Columns[nombreTablaOrigen.ClavePrimaria] };
+                _dtDes.PrimaryKey = new DataColumn[] { _dtDes.Columns[nombreTablaOrigen.ClavePrimariaEquiv] };
                 return true;
             }
             catch (Exception ex)

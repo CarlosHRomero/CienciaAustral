@@ -45,13 +45,20 @@ namespace Ciencia
             btnUsuario.Text = Ambiente.Usuario.User_Nombre;
             lblMaquina.Text = Ambiente.Maquina;
             lblVersion.Text = Ambiente.ver.ToString();
+            EstablecerSeguridad();
         }
 
         private void frmMenu_Shown(object sender, EventArgs e)
         {
             StartPosition = FormStartPosition.CenterScreen;
         }
-
+        private void EstablecerSeguridad()
+        {
+            if (Seguridad.VerProcesoCiencia())
+                btnProceso.Visible = true;
+            else
+                btnProceso.Visible = false;
+        }
         public void AbrirProceso()
         {
             Formularios.fProceso.MdiParent = this.MdiParent;
