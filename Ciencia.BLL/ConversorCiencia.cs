@@ -161,7 +161,9 @@ namespace Ciencia.BLL
             {
                 _mensajes.Add("Tablas procesadas " + _cantidadTablasProcesadas + " de " + _cantidadTablas);
                 //Conjunto de tablas evolución o seguimiento
-                var tablaEvolucion = _tablasOrigenModulo.Where(x => x.EsEvolucion);
+                var tablaEvolucion = _tablasOrigenModulo.Where(x => (x.EsEvolucion && x.Procesar));
+                if (tablaEvolucion.Count() < 1)
+                    return true;
                 //Tabla principal de evolución
                 var tablaPrincipalEvol = _tablasOrigenModulo.First(x => x.EsTronco && x.EsEvolucion);
                 //Nombre de las tablas destino para evolucion o seguimiento donde se guardaron las tablas traducidas en un proceso anterior

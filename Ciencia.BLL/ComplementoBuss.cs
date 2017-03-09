@@ -94,7 +94,7 @@ namespace Ciencia.BLL
                 clsCampo campo = new clsCampo();
                 campo.tablaId = c.TablaId;
                     campo.nombre =c.CampoEquivalente;
-                campos.Add(campo);
+                //campos.Add(campo);
             }
             //string tablaOrigen = teMan.ObtenerTablaEquivalente(moduloId);
             LocalSelectInfManager infMan = new LocalSelectInfManager(constr);

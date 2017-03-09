@@ -263,6 +263,11 @@ namespace Ciencia.DAL
                                 }
                                 else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
                                     filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
+                                else if ((columna.DataType == typeof(short) || columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length - 2) == "_B")
+                                {
+                                    var val = ConvertirIntABool((short)valor);
+                                    filaDest[campoDest] =  val == false ? "No" : "Si";
+                                }
                                 else if (columna.DataType == typeof(String))
                                 {
                                     if (int.TryParse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0], out maxLength))
@@ -362,6 +367,8 @@ namespace Ciencia.DAL
                                 else
                                     filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
                             }
+                            else if ((columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length - 2) == "_B")
+                                filaDest[campoDest] = (Boolean)ConvertirIntABool((int?)valor) == false ? "No" : "Si";
                             else
                                 filaDest[campoDest] = valor;
                         }
@@ -454,6 +461,8 @@ namespace Ciencia.DAL
                                         else
                                             filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
                                     }
+                                    else if((columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length-2) == "_B")
+                                        filaDest[campoDest] = (Boolean)ConvertirIntABool((int?)valor) == false ? "No" : "Si";
                                     else
                                         filaDest[campoDest] = valor;
                                 }
@@ -487,6 +496,31 @@ namespace Ciencia.DAL
             }
         }
 
+        private bool ConvertirIntABool(int? valor)
+        {
+            if(valor == null)
+                return false;
+            if (valor == 0)
+                return false;
+            else
+                return true;
+        }
+        private bool ConvertirIntABool(short? valor)
+        {
+            if(valor == null)
+                return false;
+            if (valor == 0)
+                return false;
+            else
+                return true;
+        }
+        private bool ConvertirIntABool(short valor)
+        {
+            if (valor == 0)
+                return false;
+            else
+                return true;
+        }
         public bool Modificar(string nombreTablaDestino)
         {
             Boolean result;
