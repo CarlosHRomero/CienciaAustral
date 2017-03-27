@@ -59,6 +59,10 @@ namespace Ciencia
                 btnProceso.Visible = true;
             else
                 btnProceso.Visible = false;
+            if (Seguridad.VerSeguimientoAnualHemo())
+                btnSegHemo.Visible = true;
+            else
+                btnSegHemo.Visible = false;
         }
         public void AbrirProceso()
         {

@@ -19,5 +19,12 @@ namespace Ciencia
             return true;
         }
 
+
+        internal static bool VerSeguimientoAnualHemo()
+        {
+            if (Permisos.Find(x => x.Formulario_Id == 31) == null)
+                return false;
+            return true;
+        }
     }
 }
