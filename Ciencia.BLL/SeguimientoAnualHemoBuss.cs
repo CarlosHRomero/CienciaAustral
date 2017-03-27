@@ -42,7 +42,10 @@ namespace Ciencia.BLL
                     ProcesarPaciente(pac);
                     //man.Modificar(pac);
                 }
-                nombreArchivo = nombreArchivo.Replace(".mdb", ".xlsx");
+                nombreArchivo = nombreArchivo.Substring(0, nombreArchivo.Length - 4);
+                nombreArchivo = string.Format("{0}_Seguimiento.xlsx", nombreArchivo);
+
+                nombreArchivo = nombreArchivo.Replace(".mdb", "");
                 if (!Generales.ExportadorDatos.ExportaListaAExcel2(ListaPacientes, nombreArchivo, "aaaa"))
                     throw new Exception(string.Format("Error al exportar a Excel. Verifique que el archivo {0} no este abierto", nombreArchivo));
                 return true;
