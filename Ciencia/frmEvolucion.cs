@@ -51,7 +51,9 @@ namespace Ciencia
                 _where = inf.where;
             }
             moduloBuss mb = new moduloBuss();
-            lblModulo.Text = mb.ObtenerDatosModulo(_moduloId).Nombre;
+            var mod = mb.ObtenerDatosModulo(_moduloId);
+            if(mod != null)
+                lblModulo.Text = mod.Nombre;
 
         }
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -173,7 +175,7 @@ namespace Ciencia
             //dataGridView1.Rows.Clear();
             if (lista == null)
                 return;
-            LocalEquivB eqB = new LocalEquivB(_localConStr);
+            TablaEquivBuss eqB = new TablaEquivBuss();
             EvolucionBuss evol = new EvolucionBuss();
             List<SelTablaEvol> selTe = null;
             foreach (var obj in lista)

@@ -52,6 +52,7 @@
     <Compile Include="CienciaEquiv.cs" />
     <Compile Include="CienciaTablaEquiv.cs" />
     <Compile Include="Ciencia_Car_Sel.cs" />
+    <Compile Include="Ciencia_Hemo_Evol.cs" />
     <Compile Include="Ciencia_Modulo.cs" />
     <Compile Include="Ciencia_Procesos.cs" />
     <Compile Include="clsCampo.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Equivalencia.cs" />
     <Compile Include="NumDePac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeguimientoAnualHemodianmia.cs" />
     <Compile Include="SelecInf.cs" />
     <Compile Include="SelTablaEvol.cs" />
   </ItemGroup>

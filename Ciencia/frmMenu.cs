@@ -1,5 +1,6 @@
 ﻿using Ciencia;
 using Ciencia.BLL;
+using Ciencia.OBJ;
 using Common;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,7 @@ namespace Ciencia
         {
             //OpenFileDialog ofd = new OpenFileDialog();
             Ciencia.dlgAbrirBase ofd = new Ciencia.dlgAbrirBase();
-
+            ofd.Nueva = true;
             //ofd.DefaultExt = "mdb";
             //ofd.Filter = "Access (*.mdb) | *.mdb";
             ofd.Text = "Seleccione la base de datos";
@@ -113,14 +114,13 @@ namespace Ciencia
         public void AbrirComplemento()
         {
             Ciencia.dlgAbrirBase ofd = new Ciencia.dlgAbrirBase();
-
+            ofd.Nueva = false;
             //ofd.DefaultExt = "mdb";
             //ofd.Filter = "Access (*.mdb) | *.mdb";
             ofd.Text = "Seleccione la base de datos";
             //ofd.CheckFileExists = false;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-
                 Formularios.fComplemento.MdiParent = this.MdiParent;
                 string constr = Formularios.fComplemento.EstablecerCadenaDeConexion(ofd.FileName);
                 Formularios.fComplemento.nombreArchivo = ofd.FileName;
@@ -149,13 +149,13 @@ namespace Ciencia
             //ofd.DefaultExt = "mdb";
             //ofd.Filter = "Access (*.mdb) | *.mdb";
             ofd.Text = "Seleccione la base de datos";
+            ofd.Nueva = false;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                var nombreArchivo = CrearBaseLocal(ofd.FileName);
                 Formularios.fEvolucion.MdiParent = this.MdiParent;
-
-
                 SelectorBuss sB = new SelectorBuss();
-                sB.constr = Formularios.fEvolucion.EstablecerCadenaDeConexion(ofd.FileName); ;
+                sB.constr = Formularios.fEvolucion.EstablecerCadenaDeConexion(nombreArchivo); ;
                 if (!sB.VerificarBaseDeDatos())
                 {
                     MessageBox.Show("La base de datos no tiene el formato correcto", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -166,9 +166,30 @@ namespace Ciencia
 
                 Formularios.fEvolucion.Show();
             }
-
         }
 
+        public string CrearBaseLocal(string nombreArchivo)
+        {
+            if (!nombreArchivo.Contains(".mdb"))
+            {
+                nombreArchivo = string.Format("{0}.mdb", nombreArchivo);
+            }
+
+            if (!System.IO.File.Exists(nombreArchivo))
+            {
+                nombreArchivo = nombreArchivo.Substring(0, nombreArchivo.Length - 4);
+                nombreArchivo = string.Format("{0}_{1}_{2}_{3}.mdb", nombreArchivo, DateTime.Today.Day.ToString(), DateTime.Today.Month.ToString(), DateTime.Today.Year.ToString());
+                if (!Formularios.fSelector.CopiarBaseDeDatos(nombreArchivo))
+                {
+                    MessageBox.Show("No se pudo copiar base de datos", "", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return null;
+                }
+                MessageBox.Show("Base de datos creada con exito", "Selector", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return nombreArchivo;
+            }
+            return nombreArchivo;
+        }
         public void AbrirActualizarMod()
         {
             Formularios.fActualizarMod.MdiParent = this.MdiParent;
@@ -211,6 +232,40 @@ namespace Ciencia
             {
                 Generales.Mensajes.msgError(ex);
             }
+        }
+
+        private void btnSegHemo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Ciencia.dlgAbrirBase ofd = new Ciencia.dlgAbrirBase();
+
+                ofd.Text = "Seleccione la base de datos";
+                ofd.Nueva = false;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    var nombreArchivo = CrearBaseLocal(ofd.FileName);
+                    //Formularios.fSegAnualHemo.MdiParent = this.MdiParent;
+                    SelectorBuss sB = new SelectorBuss();
+                    sB.constr = Formularios.fSegAnualHemo.EstablecerCadenaDeConexion(nombreArchivo); ;
+                    if (!sB.VerificarBaseDeDatos())
+                    {
+                        MessageBox.Show("La base de datos no tiene el formato correcto", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        btnSelector.PerformClick();
+                        return;
+                    }
+                    SelecInf inf = sB.ObtenerSelectInf();
+                    if (inf.moduloId != 5)
+                        throw new Exception("LA base de datos no corresponde a Hemodinamia");
+                    Formularios.fSegAnualHemo.ShowDialog();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Generales.Mensajes.msgError(ex);
+            }
+            
         }
 
 

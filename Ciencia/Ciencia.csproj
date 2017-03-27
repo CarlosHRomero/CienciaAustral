@@ -139,6 +139,12 @@
     <Compile Include="frmProceso.Designer.cs">
       <DependentUpon>frmProceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeguimientoAnualHemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeguimientoAnualHemo.Designer.cs">
+      <DependentUpon>frmSeguimientoAnualHemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProceso.resx">
       <DependentUpon>frmProceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeguimientoAnualHemo.resx">
+      <DependentUpon>frmSeguimientoAnualHemo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSelector.resx">
       <DependentUpon>frmSelector.cs</DependentUpon>

@@ -72,6 +72,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SeguimientoAnualHemoBuss.cs" />
     <Compile Include="SelectorBuss.cs" />
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>

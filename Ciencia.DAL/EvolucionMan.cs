@@ -52,8 +52,11 @@ namespace Ciencia.DAL
                 string tablaResultadoEvol = tablaOrigenEvol + "_Sel";
                 CienciaEquivManager ceMan = new CienciaEquivManager();
                 string fechaEvolucion  = ceMan.BuscarFechaEvolucion(moduloId);
+                if (fechaEvolucion == null)
+                    throw new Exception("El modulo no contiene una fecha evolucion");
                 string fechaEventoprincipal = ceMan.BuscarFechaEventoPrincipal(moduloId).CampoEquivalente;
-
+                if (fechaEventoprincipal == null)
+                    throw new Exception("El modulo no contiene fecha de evento principal");
                 LocalSelectInfManager infMan = new LocalSelectInfManager(conStr);
                 string where = infMan.ObtenerInfSeleccion().where;
 

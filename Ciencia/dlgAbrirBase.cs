@@ -15,6 +15,7 @@ namespace Ciencia
     {
         string path = @"C:\Sistemas\Ciencia\";
         public string FileName { get; set; }
+        public bool Nueva { get; set;}
         public dlgAbrirBase()
         {
             InitializeComponent();
@@ -27,7 +28,12 @@ namespace Ciencia
 
         private void dlgAbrirBase_Load(object sender, EventArgs e)
         {
+            if (Nueva)
+                txtfileName.ReadOnly = false;
+            else
+                txtfileName.ReadOnly = true;
             CargarGrid();
+
         }
 
         private void CargarGrid()

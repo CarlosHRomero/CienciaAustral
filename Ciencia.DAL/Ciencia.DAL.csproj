@@ -38,10 +38,6 @@
     <Reference Include="Cardiologia.OBJ">
       <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.OBJ.dll</HintPath>
     </Reference>
-    <Reference Include="Common.OBJ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Common\trunk\Common\dll\Common.OBJ.dll</HintPath>
-    </Reference>
     <Reference Include="Electrofisiologia.DAL, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Electrofisiologia\trunk\Electrofisiologia.DAL\bin\Debug\Electrofisiologia.DAL.dll</HintPath>
@@ -69,12 +65,15 @@
     <Compile Include="AdmEquivMan.cs" />
     <Compile Include="AdministradorGenerico.cs" />
     <Compile Include="CienciaEquivManager.cs" />
+    <Compile Include="CienciaHemoEvolManager.cs" />
     <Compile Include="EvolucionMan.cs" />
     <Compile Include="LocalCamposManager.cs" />
     <Compile Include="LocalCarEquivMan.cs" />
     <Compile Include="LocalTablaEquivManager.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SegAnualHemoMananger.cs" />
+    <Compile Include="SeguimientoAnualHemoData.cs" />
     <Compile Include="SelEvolManager.cs" />
     <Compile Include="SelManager.cs">
       <SubType>Code</SubType>
@@ -106,6 +105,10 @@
     <Compile Include="TipoDeDato.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
+      <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
+      <Name>Common.OBJ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Generales\Generales.csproj">
       <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
       <Name>Generales</Name>

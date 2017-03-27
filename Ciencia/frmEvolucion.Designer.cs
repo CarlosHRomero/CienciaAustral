@@ -31,16 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.TablaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Campo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Filtro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tabla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquivId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Solapa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelEvol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnProcesar = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -56,6 +46,16 @@
             this.txtArchivo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
+            this.TablaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Campo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Filtro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tabla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquivId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Solapa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelEvol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -91,87 +91,12 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 26;
-            this.dataGridView1.Size = new System.Drawing.Size(679, 398);
+            this.dataGridView1.Size = new System.Drawing.Size(781, 398);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
-            // 
-            // TablaId
-            // 
-            this.TablaId.Frozen = true;
-            this.TablaId.HeaderText = "TablaId";
-            this.TablaId.Name = "TablaId";
-            this.TablaId.Visible = false;
-            // 
-            // Campo
-            // 
-            this.Campo.Frozen = true;
-            this.Campo.HeaderText = "Campo Ciencia";
-            this.Campo.Name = "Campo";
-            this.Campo.Width = 290;
-            // 
-            // Sel
-            // 
-            this.Sel.FillWeight = 50F;
-            this.Sel.Frozen = true;
-            this.Sel.HeaderText = "Sel.";
-            this.Sel.Name = "Sel";
-            this.Sel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Sel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Sel.Width = 60;
-            // 
-            // Tipo
-            // 
-            this.Tipo.Frozen = true;
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.Width = 80;
-            // 
-            // Valor
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
-            this.Valor.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Valor.Frozen = true;
-            this.Valor.HeaderText = "Valor Requerido";
-            this.Valor.Name = "Valor";
-            this.Valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Filtro
-            // 
-            this.Filtro.Frozen = true;
-            this.Filtro.HeaderText = "Filtro";
-            this.Filtro.Name = "Filtro";
-            this.Filtro.Visible = false;
-            // 
-            // Tabla
-            // 
-            this.Tabla.Frozen = true;
-            this.Tabla.HeaderText = "Tabla";
-            this.Tabla.Name = "Tabla";
-            this.Tabla.Visible = false;
-            // 
-            // EquivId
-            // 
-            this.EquivId.Frozen = true;
-            this.EquivId.HeaderText = "EquivId";
-            this.EquivId.Name = "EquivId";
-            this.EquivId.Visible = false;
-            // 
-            // Solapa
-            // 
-            this.Solapa.Frozen = true;
-            this.Solapa.HeaderText = "Solapa";
-            this.Solapa.Name = "Solapa";
-            // 
-            // SelEvol
-            // 
-            this.SelEvol.Frozen = true;
-            this.SelEvol.HeaderText = "SelEvol";
-            this.SelEvol.Name = "SelEvol";
-            this.SelEvol.Visible = false;
             // 
             // btnProcesar
             // 
@@ -191,7 +116,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 532);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.statusStrip1.Size = new System.Drawing.Size(682, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(793, 22);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -223,7 +148,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(682, 43);
+            this.panel1.Size = new System.Drawing.Size(793, 43);
             this.panel1.TabIndex = 1;
             // 
             // cboTabla
@@ -342,11 +267,85 @@
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
+            // TablaId
+            // 
+            this.TablaId.Frozen = true;
+            this.TablaId.HeaderText = "TablaId";
+            this.TablaId.Name = "TablaId";
+            this.TablaId.Visible = false;
+            // 
+            // Campo
+            // 
+            this.Campo.Frozen = true;
+            this.Campo.HeaderText = "Campo Ciencia";
+            this.Campo.Name = "Campo";
+            this.Campo.Width = 290;
+            // 
+            // Sel
+            // 
+            this.Sel.FillWeight = 50F;
+            this.Sel.Frozen = true;
+            this.Sel.HeaderText = "Sel.";
+            this.Sel.Name = "Sel";
+            this.Sel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Sel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Sel.Width = 60;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Frozen = true;
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.Width = 80;
+            // 
+            // Valor
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
+            this.Valor.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Valor.Frozen = true;
+            this.Valor.HeaderText = "Valor Requerido";
+            this.Valor.Name = "Valor";
+            this.Valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Filtro
+            // 
+            this.Filtro.Frozen = true;
+            this.Filtro.HeaderText = "Filtro";
+            this.Filtro.Name = "Filtro";
+            this.Filtro.Visible = false;
+            // 
+            // Tabla
+            // 
+            this.Tabla.Frozen = true;
+            this.Tabla.HeaderText = "Tabla";
+            this.Tabla.Name = "Tabla";
+            // 
+            // EquivId
+            // 
+            this.EquivId.Frozen = true;
+            this.EquivId.HeaderText = "EquivId";
+            this.EquivId.Name = "EquivId";
+            this.EquivId.Visible = false;
+            // 
+            // Solapa
+            // 
+            this.Solapa.Frozen = true;
+            this.Solapa.HeaderText = "Solapa";
+            this.Solapa.Name = "Solapa";
+            // 
+            // SelEvol
+            // 
+            this.SelEvol.Frozen = true;
+            this.SelEvol.HeaderText = "SelEvol";
+            this.SelEvol.Name = "SelEvol";
+            this.SelEvol.Visible = false;
+            // 
             // frmEvolucion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 554);
+            this.ClientSize = new System.Drawing.Size(793, 554);
             this.Controls.Add(this.btnExportar);
             this.Controls.Add(this.txtArchivo);
             this.Controls.Add(this.label11);
@@ -391,6 +390,7 @@
         private System.Windows.Forms.Label lblModulo;
         private System.Windows.Forms.TextBox txtArchivo;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.DataGridViewTextBoxColumn TablaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Campo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Sel;
@@ -401,6 +401,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EquivId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Solapa;
         private System.Windows.Forms.DataGridViewTextBoxColumn SelEvol;
-        private System.Windows.Forms.Button btnExportar;
     }
 }

@@ -56,6 +56,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.lblHoy = new System.Windows.Forms.Label();
+            this.btnSegHemo = new System.Windows.Forms.Button();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -141,6 +142,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnSegHemo);
             this.panel1.Controls.Add(this.btnMantArc);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnEvolucion);
@@ -450,6 +452,27 @@
             this.lblHoy.TabIndex = 61;
             this.lblHoy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnSegHemo
+            // 
+            this.btnSegHemo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSegHemo.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
+            this.btnSegHemo.FlatAppearance.BorderSize = 0;
+            this.btnSegHemo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSegHemo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSegHemo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSegHemo.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSegHemo.Image = global::Ciencia.Properties.Resources.Tarea;
+            this.btnSegHemo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSegHemo.Location = new System.Drawing.Point(0, 198);
+            this.btnSegHemo.Name = "btnSegHemo";
+            this.btnSegHemo.Size = new System.Drawing.Size(394, 33);
+            this.btnSegHemo.TabIndex = 15;
+            this.btnSegHemo.Text = "Seguimiento Anual Hemodinamia";
+            this.btnSegHemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSegHemo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSegHemo.UseVisualStyleBackColor = false;
+            this.btnSegHemo.Click += new System.EventHandler(this.btnSegHemo_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,5 +532,6 @@
         private System.Windows.Forms.Button btnSelector;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnMantArc;
+        private System.Windows.Forms.Button btnSegHemo;
     }
 }
