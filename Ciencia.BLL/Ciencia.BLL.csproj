@@ -55,9 +55,6 @@
     </Compile>
     <Compile Include="EvolucionBuss.cs" />
     <Compile Include="ListasDesplegables.cs" />
-    <Compile Include="LocalEquivB.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MantenimientoArchivos.cs" />
     <Compile Include="moduloBuss.cs" />
     <Compile Include="NumDePacB.cs">

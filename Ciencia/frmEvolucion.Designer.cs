@@ -31,6 +31,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TablaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Campo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Filtro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tabla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquivId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Solapa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelEvol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnProcesar = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -46,16 +56,6 @@
             this.txtArchivo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.TablaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Campo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sel = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Filtro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tabla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquivId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Solapa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelEvol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,6 +97,81 @@
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
+            // 
+            // TablaId
+            // 
+            this.TablaId.Frozen = true;
+            this.TablaId.HeaderText = "TablaId";
+            this.TablaId.Name = "TablaId";
+            this.TablaId.Visible = false;
+            // 
+            // Campo
+            // 
+            this.Campo.Frozen = true;
+            this.Campo.HeaderText = "Campo Ciencia";
+            this.Campo.Name = "Campo";
+            this.Campo.Width = 290;
+            // 
+            // Sel
+            // 
+            this.Sel.FillWeight = 50F;
+            this.Sel.Frozen = true;
+            this.Sel.HeaderText = "Sel.";
+            this.Sel.Name = "Sel";
+            this.Sel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Sel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Sel.Width = 60;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Frozen = true;
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.Width = 80;
+            // 
+            // Valor
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
+            this.Valor.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Valor.Frozen = true;
+            this.Valor.HeaderText = "Valor Requerido";
+            this.Valor.Name = "Valor";
+            this.Valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Filtro
+            // 
+            this.Filtro.Frozen = true;
+            this.Filtro.HeaderText = "Filtro";
+            this.Filtro.Name = "Filtro";
+            this.Filtro.Visible = false;
+            // 
+            // Tabla
+            // 
+            this.Tabla.Frozen = true;
+            this.Tabla.HeaderText = "Tabla";
+            this.Tabla.Name = "Tabla";
+            this.Tabla.Visible = false;
+            // 
+            // EquivId
+            // 
+            this.EquivId.Frozen = true;
+            this.EquivId.HeaderText = "EquivId";
+            this.EquivId.Name = "EquivId";
+            this.EquivId.Visible = false;
+            // 
+            // Solapa
+            // 
+            this.Solapa.Frozen = true;
+            this.Solapa.HeaderText = "Solapa";
+            this.Solapa.Name = "Solapa";
+            // 
+            // SelEvol
+            // 
+            this.SelEvol.Frozen = true;
+            this.SelEvol.HeaderText = "SelEvol";
+            this.SelEvol.Name = "SelEvol";
+            this.SelEvol.Visible = false;
             // 
             // btnProcesar
             // 
@@ -157,13 +232,13 @@
             this.cboTabla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboTabla.ForeColor = System.Drawing.Color.Navy;
             this.cboTabla.FormattingEnabled = true;
-            this.cboTabla.Location = new System.Drawing.Point(202, 64);
+            this.cboTabla.Location = new System.Drawing.Point(182, 64);
             this.cboTabla.Name = "cboTabla";
             this.cboTabla.ReadOnly = false;
             this.cboTabla.ReadOnlyBackColor = System.Drawing.SystemColors.Control;
             this.cboTabla.ReadOnlyFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTabla.ReadOnlyForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboTabla.Size = new System.Drawing.Size(200, 21);
+            this.cboTabla.Size = new System.Drawing.Size(180, 21);
             this.cboTabla.TabIndex = 20;
             this.cboTabla.SelectedIndexChanged += new System.EventHandler(this.cboTabla_SelectedIndexChanged_1);
             // 
@@ -172,10 +247,10 @@
             this.label7.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label7.ForeColor = System.Drawing.Color.Maroon;
-            this.label7.Location = new System.Drawing.Point(401, 46);
+            this.label7.Location = new System.Drawing.Point(361, 46);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(200, 19);
+            this.label7.Size = new System.Drawing.Size(180, 19);
             this.label7.TabIndex = 19;
             this.label7.Text = "Solapa";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,10 +260,10 @@
             this.label6.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(202, 46);
+            this.label6.Location = new System.Drawing.Point(182, 46);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(200, 19);
+            this.label6.Size = new System.Drawing.Size(180, 19);
             this.label6.TabIndex = 18;
             this.label6.Text = "Tabla";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -199,13 +274,13 @@
             this.cboSolapa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboSolapa.ForeColor = System.Drawing.Color.Navy;
             this.cboSolapa.FormattingEnabled = true;
-            this.cboSolapa.Location = new System.Drawing.Point(401, 64);
+            this.cboSolapa.Location = new System.Drawing.Point(361, 64);
             this.cboSolapa.Name = "cboSolapa";
             this.cboSolapa.ReadOnly = false;
             this.cboSolapa.ReadOnlyBackColor = System.Drawing.SystemColors.Control;
             this.cboSolapa.ReadOnlyFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSolapa.ReadOnlyForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboSolapa.Size = new System.Drawing.Size(200, 21);
+            this.cboSolapa.Size = new System.Drawing.Size(180, 21);
             this.cboSolapa.TabIndex = 21;
             this.cboSolapa.SelectedIndexChanged += new System.EventHandler(this.cboSolapa_SelectedIndexChanged);
             // 
@@ -217,7 +292,7 @@
             this.label2.Location = new System.Drawing.Point(3, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 19);
+            this.label2.Size = new System.Drawing.Size(180, 19);
             this.label2.TabIndex = 22;
             this.label2.Text = "Modulo";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -229,7 +304,7 @@
             this.lblModulo.Location = new System.Drawing.Point(3, 64);
             this.lblModulo.Margin = new System.Windows.Forms.Padding(0);
             this.lblModulo.Name = "lblModulo";
-            this.lblModulo.Size = new System.Drawing.Size(200, 20);
+            this.lblModulo.Size = new System.Drawing.Size(180, 20);
             this.lblModulo.TabIndex = 23;
             this.lblModulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -259,87 +334,13 @@
             // btnExportar
             // 
             this.btnExportar.Enabled = false;
-            this.btnExportar.Location = new System.Drawing.Point(582, 499);
+            this.btnExportar.Location = new System.Drawing.Point(577, 499);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(89, 23);
             this.btnExportar.TabIndex = 26;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
-            // TablaId
-            // 
-            this.TablaId.Frozen = true;
-            this.TablaId.HeaderText = "TablaId";
-            this.TablaId.Name = "TablaId";
-            this.TablaId.Visible = false;
-            // 
-            // Campo
-            // 
-            this.Campo.Frozen = true;
-            this.Campo.HeaderText = "Campo Ciencia";
-            this.Campo.Name = "Campo";
-            this.Campo.Width = 290;
-            // 
-            // Sel
-            // 
-            this.Sel.FillWeight = 50F;
-            this.Sel.Frozen = true;
-            this.Sel.HeaderText = "Sel.";
-            this.Sel.Name = "Sel";
-            this.Sel.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Sel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Sel.Width = 60;
-            // 
-            // Tipo
-            // 
-            this.Tipo.Frozen = true;
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.Width = 80;
-            // 
-            // Valor
-            // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightCyan;
-            this.Valor.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Valor.Frozen = true;
-            this.Valor.HeaderText = "Valor Requerido";
-            this.Valor.Name = "Valor";
-            this.Valor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Valor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Filtro
-            // 
-            this.Filtro.Frozen = true;
-            this.Filtro.HeaderText = "Filtro";
-            this.Filtro.Name = "Filtro";
-            this.Filtro.Visible = false;
-            // 
-            // Tabla
-            // 
-            this.Tabla.Frozen = true;
-            this.Tabla.HeaderText = "Tabla";
-            this.Tabla.Name = "Tabla";
-            // 
-            // EquivId
-            // 
-            this.EquivId.Frozen = true;
-            this.EquivId.HeaderText = "EquivId";
-            this.EquivId.Name = "EquivId";
-            this.EquivId.Visible = false;
-            // 
-            // Solapa
-            // 
-            this.Solapa.Frozen = true;
-            this.Solapa.HeaderText = "Solapa";
-            this.Solapa.Name = "Solapa";
-            // 
-            // SelEvol
-            // 
-            this.SelEvol.Frozen = true;
-            this.SelEvol.HeaderText = "SelEvol";
-            this.SelEvol.Name = "SelEvol";
-            this.SelEvol.Visible = false;
             // 
             // frmEvolucion
             // 
@@ -375,7 +376,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnProcesar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar ProgressBar1;
@@ -401,5 +401,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EquivId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Solapa;
         private System.Windows.Forms.DataGridViewTextBoxColumn SelEvol;
+        protected System.Windows.Forms.DataGridView dataGridView1;
     }
 }

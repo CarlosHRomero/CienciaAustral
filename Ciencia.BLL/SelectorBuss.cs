@@ -155,14 +155,6 @@ namespace Ciencia.BLL
             }
         }
 
-        public Boolean CopiarTablas()
-        {
-            CopiarLocal.conString = constr;
-            CopiarLocal.CopiaTablaLocal("CienciaEquiv");
-            CopiarLocal.CopiaTablaLocal("CienciaTablaEquiv");
-            return true;
-        }
-
         public Boolean VerificarBaseDeDatos()
         {
             LocalSelectorManager selman = new LocalSelectorManager(constr);

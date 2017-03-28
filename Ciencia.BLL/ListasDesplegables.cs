@@ -79,22 +79,7 @@ namespace Ciencia.BLL
             lista.AddRange(man.ObtenerListaSolapas(moduloId, tablaId, false));
             return lista;
         }
-        public List<CienciaTablaEquiv> ListaTablaLocal(string constr, bool evol)
-        {
-            LocalTablaEquivManager man = new LocalTablaEquivManager(constr);
-            List<CienciaTablaEquiv> lista = new List<CienciaTablaEquiv>();
-
-            CienciaTablaEquiv obj = new CienciaTablaEquiv
-            {
-                TablaId = 0,
-                NombreTabla = "*"
-            };
-            lista.Add(obj);
-            lista.AddRange(man.TraerListaTabla(evol));
-
-            return lista;
-        }
-
+      
         public List<CienciaEquiv> ListaCampos(int TablaId, int moduloId)
         {
             string where;

@@ -102,6 +102,7 @@ namespace Ciencia
             try
             {
                 CargarInfSelector();
+                InicializarDataGridView();
                 InicializarDesplegables();
                 //InicializarDataGridView();
                 //LocalEquivB eqB = new LocalEquivB(_localConStr);
@@ -118,23 +119,19 @@ namespace Ciencia
 
         void InicializarDataGridView()
         {
-            //LocalCarEqB eqB = new LocalCarEqB();
-            //dataGridView1.AutoGenerateColumns = false;
-            //_lista = eqB.ListaTodosCampos(_localConStr);
-            //dataGridView1.DataSource = _lista;
-            //dataGridView1.Columns["TablaId"].DataPropertyName = "TablaId";
-            //dataGridView1.Columns["Campo"].DataPropertyName = "CampoEquivalente";
-            //dataGridView1.Columns["Sel"].DataPropertyName = "Seleccion";
-            //dataGridView1.Columns["Tipo"].DataPropertyName = "TipoDeDato";
-            //dataGridView1.Columns["Sel"].DataPropertyName = "Seleccion";
-            //dataGridView1.Columns["Filtro"].DataPropertyName = "Filtro";
-            //dataGridView1.Columns["EquivId"].DataPropertyName = "EquivId";
-            //dataGridView1.Columns["Solapa"].DataPropertyName = "Solapa";
+            int w= dataGridView1.RowHeadersWidth;
+            foreach(DataGridViewColumn column in dataGridView1.Columns )
+            {
+                if(column.Visible)
+                    w += column.Width;
+            }
+            dataGridView1.Width = w + 20;
+            Width = dataGridView1.Width + 20;
         }
 
         private void cboTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LocalEquivB eqB = new LocalEquivB(_localConStr);
+            //LocalEquivB eqB = new LocalEquivB(_localConStr);
             //List<CienciaCarEquiv> lista;
             int val;
             if (cboTabla.SelectedValue == null || cboTabla.SelectedIndex == 0)
@@ -313,39 +310,17 @@ namespace Ciencia
             }
 
         }
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        protected virtual void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             List<clsCampo> campos = new List<clsCampo>();
             clsCampo campo = new clsCampo();
-            //campo = new clsCampo
-            //{
-            //    tabla = "Ciencia_car_ingr_sel",
-            //    nombre = "Ingr_pac_id"
-            //};
-            //campos.Add(campo);
-            //campo = new clsCampo
-            //{
-            //    tabla = "Ciencia_car_ingr_sel",
-            //    nombre = "Ingr_id"
-            //};
-            //campos.Add(campo);
 
-            LocalEquivB eqB = new LocalEquivB(_localConStr);
 
-            //bw.ReportProgress(2);
             int c, i = 0;
             c = dataGridView1.Rows.Count;
             List<CienciaEquiv> lista = new List<CienciaEquiv>();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                //CienciaEquiv obj = new CienciaEquiv();
-                //obj.EquivId = Convert.ToInt32(row.Cells["EquivId"].Value);
-                //obj.Seleccion = Convert.ToBoolean(row.Cells["Sel"].Value);
-                //if (row.Cells["Valor"].Value != null)
-                //    obj.ValoresACero = row.Cells["Valor"].Value.ToString();
-                ////eqB.ActualizarSelecciónCampo(obj);
-                //lista.Add(obj);
-                ////dataGridView1.Rows.fi
                 if (row.Cells["Valor"].Value == null)
                 {
                     continue;
@@ -378,7 +353,6 @@ namespace Ciencia
                 bw.ReportProgress(10 * i / c + 1);
 
             }
-            eqB.ActualizarSelección(lista);
 
 
             EvolucionBuss evol = new EvolucionBuss();

@@ -68,17 +68,12 @@
     <Compile Include="CienciaHemoEvolManager.cs" />
     <Compile Include="EvolucionMan.cs" />
     <Compile Include="LocalCamposManager.cs" />
-    <Compile Include="LocalCarEquivMan.cs" />
-    <Compile Include="LocalTablaEquivManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="SegAnualHemoMananger.cs" />
     <Compile Include="SeguimientoAnualHemoData.cs" />
     <Compile Include="SelEvolManager.cs" />
     <Compile Include="SelManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CopiarLocal.cs" />
     <Compile Include="IBaseManager.cs" />
     <Compile Include="LocalCienciaEquivMan.cs" />
     <Compile Include="LocalSelectInfManager.cs" />

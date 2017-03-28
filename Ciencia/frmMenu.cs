@@ -145,7 +145,7 @@ namespace Ciencia
                 //Dispose();
             }
         }
-        public void AbrirEvolucion()
+        public void AbrirEvolucion(frmEvolucion f)
         {
             Ciencia.dlgAbrirBase ofd = new Ciencia.dlgAbrirBase();
 
@@ -157,9 +157,9 @@ namespace Ciencia
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 var nombreArchivo = CrearBaseLocal(ofd.FileName);
-                Formularios.fEvolucion.MdiParent = this.MdiParent;
+                f.MdiParent = this.MdiParent;
                 SelectorBuss sB = new SelectorBuss();
-                sB.constr = Formularios.fEvolucion.EstablecerCadenaDeConexion(nombreArchivo); ;
+                sB.constr = f.EstablecerCadenaDeConexion(nombreArchivo); ;
                 if (!sB.VerificarBaseDeDatos())
                 {
                     MessageBox.Show("La base de datos no tiene el formato correcto", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -167,8 +167,6 @@ namespace Ciencia
                     return;
                 }
 
-
-                Formularios.fEvolucion.Show();
             }
         }
 
@@ -208,7 +206,9 @@ namespace Ciencia
 
         private void btnEvolucion_Click(object sender, EventArgs e)
         {
-            AbrirEvolucion();
+            AbrirEvolucion(Formularios.fEvolucion);
+            Formularios.fEvolucion.Show();
+
         }
 
         private void btnActualizarMod_Click(object sender, EventArgs e)
@@ -270,6 +270,12 @@ namespace Ciencia
                 Generales.Mensajes.msgError(ex);
             }
             
+        }
+
+        private void btnSegumientoMult_Click(object sender, EventArgs e)
+        {
+            AbrirEvolucion(Formularios.fSeguimientoMul);
+            Formularios.fSeguimientoMul.Show();
         }
 
 

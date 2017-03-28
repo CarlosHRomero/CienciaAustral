@@ -15,6 +15,18 @@ namespace Ciencia
         private static frmActualizarModulo _fActualizarMod;
 
         private static frmSeguimientoAnualHemo _fSegAnualHemo;
+        private static frmSeguimientoMul _fSegMul;
+        public static frmSeguimientoMul  fSeguimientoMul
+        {
+            get
+            {
+                if (_fSegMul == null)
+                {
+                    _fSegMul = new frmSeguimientoMul();
+                }
+                return _fSegMul;
+            }
+        }
         public static frmSeguimientoAnualHemo fSegAnualHemo
         {
             get

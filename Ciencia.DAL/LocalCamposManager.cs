@@ -12,10 +12,16 @@ namespace Ciencia.DAL
     {
         public string conStr {get; set;}
 
+
+
+
         public LocalCamposManager( string con)
         {
             conStr = con;
         }
+
+
+
 
         public Boolean BorrarCamposEvolucion()
         {
