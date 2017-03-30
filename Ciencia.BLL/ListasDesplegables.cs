@@ -36,6 +36,8 @@ namespace Ciencia.BLL
             if(incTodas)
                 lista.Add(obj);
             lista.AddRange( man.ObtenerTablasOrigenPorModulo(ModuloId, esEvolucion));
+            var tablaPaciente = man.ObtenerTablasOrigenPorModulo(ModuloId).Where(x => x.EsPaciente).FirstOrDefault();
+            lista.Add(tablaPaciente);
             return lista;
         }
 

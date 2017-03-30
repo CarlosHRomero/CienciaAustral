@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using Ciencia.DAL;
 using Ciencia.OBJ;
-using Ciencia.DAL;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 
 namespace Ciencia.BLL
@@ -77,7 +74,7 @@ namespace Ciencia.BLL
             try
             {
                 CienciaEquivManager eqMan = new CienciaEquivManager();
-                
+                //Agrega campo Clave primaria evol
                 clsCampo campo = new clsCampo();
 
                 ModuloManager modMan = new ModuloManager();
@@ -88,6 +85,7 @@ namespace Ciencia.BLL
                 campo.tablaId = c.TablaId;
                 campo.nombre = c.CampoEquivalente;
                 Campos.Add(campo);
+                //Agrega campo fecha principal evol               
                 CienciaEquiv fechaEventoprincipal = eqMan.BuscarFechaEventoPrincipal(moduloId);
                 clsCampo campo2 = new clsCampo();
                 campo2.tablaId = fechaEventoprincipal.TablaId;

@@ -167,7 +167,7 @@ namespace Ciencia
 
                 foreach (var obj in lista)
                 {
-                    string tabla = teB.TablaPorCodigo(obj.TablaId, ConStr, false);
+                    string tabla = teB.TablaPorCodigo(obj.TablaId, false);
                     if (!string.IsNullOrEmpty(obj.TipoDeDato))
                         dataGridView1.Rows.Add(obj.TablaId, obj.CampoEquivalente,obj.Solapa, obj.Seleccion, obj.TipoDeDato, obj.ValoresACero, obj.Filtro, obj.ValoresACeroStr, tabla, obj.EquivId, obj.VerValor);
                 }

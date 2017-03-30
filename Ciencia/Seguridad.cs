@@ -26,5 +26,12 @@ namespace Ciencia
                 return false;
             return true;
         }
+
+        internal static bool VerSeguimientoMultiple()
+        {
+            if (Permisos.Find(x => x.Formulario_Id == 32) == null)
+                return false;
+            return true;
+        }
     }
 }

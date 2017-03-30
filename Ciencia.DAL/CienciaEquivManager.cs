@@ -56,7 +56,6 @@ namespace Ciencia.DAL
             return null;
         }
 
-        
         public List<CienciaEquiv> ListarCamposPorModuloEvolucion(int moduloId, bool esEvolucion)
         {
             List<CienciaEquiv> lista;

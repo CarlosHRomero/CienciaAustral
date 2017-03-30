@@ -88,51 +88,51 @@ namespace Ciencia.DAL
             
         }
 
-        public List<clsTablaEquivalente> ObtenerTablaSEquivalente(int moduloId)
-        {
-            var lista = ObtenerTablasSimpleEquivalente(moduloId);
-            lista.AddRange(ObtenerTablasMultiplesEquivalente(moduloId));
-            return lista;
-        }
+        //public List<clsTablaEquivalente> ObtenerTablaSEquivalente(int moduloId)
+        //{
+        //    var lista = ObtenerTablasSimpleEquivalente(moduloId);
+        //    lista.AddRange(ObtenerTablasMultiplesEquivalente(moduloId));
+        //    return lista;
+        //}
 
         
-        public List<clsTablaEquivalente> ObtenerTablasSimpleEquivalente(int moduloId)
-        {
+        //public List<clsTablaEquivalente> ObtenerTablasSimpleEquivalente(int moduloId)
+        //{
 
-            String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 0", moduloId.ToString());
-            var sql = PetaPoco.Sql.Builder.Append("select distinct NombreTablaEquiv from cienciatablaequiv");
-            sql.Where(where);
-            var lista = db.Fetch<string>(sql);
-            var tablasOrigenModulo = ObtenerTablasOrigenPorModulo(moduloId, false);
-            var clavePrimariaTronco = tablasOrigenModulo.Where(x => x.EsTronco == true).First().ClavePrimaria;
-            var listaRes = new List<clsTablaEquivalente>();
-            foreach(string tabla in lista)
-            {
-                clsTablaEquivalente obRes = new clsTablaEquivalente();
-                obRes.nombre = tabla;
-                obRes.claveForanea = clavePrimariaTronco;
-                listaRes.Add(obRes);
-            }
-            return listaRes;
-        }
+        //    String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 0", moduloId.ToString());
+        //    var sql = PetaPoco.Sql.Builder.Append("select distinct NombreTablaEquiv from cienciatablaequiv");
+        //    sql.Where(where);
+        //    var lista = db.Fetch<string>(sql);
+        //    var tablasOrigenModulo = ObtenerTablasOrigenPorModulo(moduloId, false);
+        //    var clavePrimariaTronco = tablasOrigenModulo.Where(x => x.EsTronco == true).First().ClavePrimaria;
+        //    var listaRes = new List<clsTablaEquivalente>();
+        //    foreach(string tabla in lista)
+        //    {
+        //        clsTablaEquivalente obRes = new clsTablaEquivalente();
+        //        obRes.nombre = tabla;
+        //        obRes.claveForanea = clavePrimariaTronco;
+        //        listaRes.Add(obRes);
+        //    }
+        //    return listaRes;
+        //}
 
-        public List<clsTablaEquivalente> ObtenerTablasMultiplesEquivalente(int moduloId)
-        {
+        //public List<clsTablaEquivalente> ObtenerTablasMultiplesEquivalente(int moduloId)
+        //{
 
-            String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 1", moduloId.ToString());
-            var sql = PetaPoco.Sql.Builder.Append("select * from cienciatablaequiv");
-            sql.Where(where);
-            var lista = db.Fetch<CienciaTablaEquiv>(sql);
-            var listaRes = new List<clsTablaEquivalente>();
-            foreach( var obj in lista)
-            {
-                var obRes = new clsTablaEquivalente();
-                obRes.nombre = obj.NombreTablaEquiv;
-                obRes.claveForanea= obj.ClaveForanea;
-                listaRes.Add(obRes);
-            }
-            return listaRes;
-        }
+        //    String where = string.Format("ModuloId = {0} and  EsEvolucion = 0 and esMultiple = 1", moduloId.ToString());
+        //    var sql = PetaPoco.Sql.Builder.Append("select * from cienciatablaequiv");
+        //    sql.Where(where);
+        //    var lista = db.Fetch<CienciaTablaEquiv>(sql);
+        //    var listaRes = new List<clsTablaEquivalente>();
+        //    foreach( var obj in lista)
+        //    {
+        //        var obRes = new clsTablaEquivalente();
+        //        obRes.nombre = obj.NombreTablaEquiv;
+        //        obRes.claveForanea= obj.ClaveForanea;
+        //        listaRes.Add(obRes);
+        //    }
+        //    return listaRes;
+        //}
 
         public List<clsTablaEquivalente> ObtenerTablasEquivalente(int moduloId, List<string> TablasOrg)
         {

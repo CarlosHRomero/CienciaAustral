@@ -45,9 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CienciaB.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CienciaEquivBuss.cs" />
     <Compile Include="ComplementoBuss.cs" />
     <Compile Include="ConversorCiencia.cs">
@@ -70,6 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SeguimientoAnualHemoBuss.cs" />
+    <Compile Include="SeguimientoMultBuss.cs" />
     <Compile Include="SelectorBuss.cs" />
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>

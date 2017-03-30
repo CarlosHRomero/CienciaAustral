@@ -16,7 +16,7 @@ namespace Ciencia
 {
     public partial class frmEvolucion : Form
     {
-        private String _localConStr;
+        protected String _localConStr;
         private string Titulo = "ICBA - Cardiología - Ciencia - frmEvolucion ";
         private int _moduloId;
         private string _where;
@@ -52,7 +52,7 @@ namespace Ciencia
             }
             moduloBuss mb = new moduloBuss();
             var mod = mb.ObtenerDatosModulo(_moduloId);
-            if(mod != null)
+            if (mod != null)
                 lblModulo.Text = mod.Nombre;
 
         }
@@ -96,7 +96,6 @@ namespace Ciencia
 
         }
 
-        List<CienciaEquiv> _lista;
         private void frmEvolucion_Load(object sender, EventArgs e)
         {
             try
@@ -104,11 +103,8 @@ namespace Ciencia
                 CargarInfSelector();
                 InicializarDataGridView();
                 InicializarDesplegables();
-                //InicializarDataGridView();
-                //LocalEquivB eqB = new LocalEquivB(_localConStr);
-                EvolucionBuss evol = new EvolucionBuss();
-                _lista = evol.ListaCampos(_moduloId, _localConStr);
-                CargarGrid(_lista);
+
+                CargarGrid();
                 Formularios.fMenu.Hide();
             }
             catch (Exception ex)
@@ -119,10 +115,10 @@ namespace Ciencia
 
         void InicializarDataGridView()
         {
-            int w= dataGridView1.RowHeadersWidth;
-            foreach(DataGridViewColumn column in dataGridView1.Columns )
+            int w = dataGridView1.RowHeadersWidth;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
-                if(column.Visible)
+                if (column.Visible)
                     w += column.Width;
             }
             dataGridView1.Width = w + 20;
@@ -167,17 +163,18 @@ namespace Ciencia
 
         }
 
-        private void CargarGrid(List<CienciaEquiv> lista)
+        protected virtual void CargarGrid()
         {
-            //dataGridView1.Rows.Clear();
+            EvolucionBuss evol = new EvolucionBuss();
+            var lista = evol.ListaCampos(_moduloId, _localConStr);
+
             if (lista == null)
                 return;
             TablaEquivBuss eqB = new TablaEquivBuss();
-            EvolucionBuss evol = new EvolucionBuss();
             List<SelTablaEvol> selTe = null;
             foreach (var obj in lista)
             {
-                string tabla = eqB.TablaPorCodigo(obj.TablaId, _localConStr, true);
+                string tabla = eqB.TablaPorCodigo(obj.TablaId, true);
                 if (!string.IsNullOrEmpty(obj.TipoDeDato))
                 {
                     if (obj.Seleccion)
@@ -291,7 +288,7 @@ namespace Ciencia
 
             }
         }
-        private BackgroundWorker bw = new BackgroundWorker();
+        protected BackgroundWorker bw = new BackgroundWorker();
         private void btnProcesar_Click(object sender, EventArgs e)
         {
             if (bw.IsBusy == true)
@@ -310,15 +307,13 @@ namespace Ciencia
             }
 
         }
-        protected virtual void bw_DoWork(object sender, DoWorkEventArgs e)
+
+        protected virtual List<clsCampo> LeerGrid()
         {
             List<clsCampo> campos = new List<clsCampo>();
-            clsCampo campo = new clsCampo();
-
-
             int c, i = 0;
             c = dataGridView1.Rows.Count;
-            List<CienciaEquiv> lista = new List<CienciaEquiv>();
+            clsCampo campo;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells["Valor"].Value == null)
@@ -351,9 +346,17 @@ namespace Ciencia
                 }
                 i++;
                 bw.ReportProgress(10 * i / c + 1);
-
             }
+            return campos;
 
+        }
+
+        protected virtual void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+            clsCampo campo = new clsCampo();
+
+            var campos = LeerGrid();
 
             EvolucionBuss evol = new EvolucionBuss();
 
@@ -546,7 +549,7 @@ namespace Ciencia
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Mensajes.msgError("cboSolapa_SelectedIndexChanged", ex);
             }

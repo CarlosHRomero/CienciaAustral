@@ -36,6 +36,7 @@
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSegumientoMult = new System.Windows.Forms.Button();
             this.btnSegHemo = new System.Windows.Forms.Button();
             this.btnMantArc = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.lblHoy = new System.Windows.Forms.Label();
-            this.btnSegumientoMult = new System.Windows.Forms.Button();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -155,6 +155,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(396, 364);
             this.panel1.TabIndex = 51;
+            // 
+            // btnSegumientoMult
+            // 
+            this.btnSegumientoMult.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSegumientoMult.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
+            this.btnSegumientoMult.FlatAppearance.BorderSize = 0;
+            this.btnSegumientoMult.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSegumientoMult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSegumientoMult.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSegumientoMult.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnSegumientoMult.Image = global::Ciencia.Properties.Resources.Tarea;
+            this.btnSegumientoMult.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSegumientoMult.Location = new System.Drawing.Point(0, 231);
+            this.btnSegumientoMult.Name = "btnSegumientoMult";
+            this.btnSegumientoMult.Size = new System.Drawing.Size(394, 33);
+            this.btnSegumientoMult.TabIndex = 16;
+            this.btnSegumientoMult.Text = "Seguimiento Múltiple";
+            this.btnSegumientoMult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSegumientoMult.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSegumientoMult.UseVisualStyleBackColor = false;
+            this.btnSegumientoMult.Click += new System.EventHandler(this.btnSegumientoMult_Click);
             // 
             // btnSegHemo
             // 
@@ -474,27 +495,6 @@
             this.lblHoy.Size = new System.Drawing.Size(151, 18);
             this.lblHoy.TabIndex = 61;
             this.lblHoy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSegumientoMult
-            // 
-            this.btnSegumientoMult.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSegumientoMult.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
-            this.btnSegumientoMult.FlatAppearance.BorderSize = 0;
-            this.btnSegumientoMult.FlatAppearance.MouseDownBackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSegumientoMult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSegumientoMult.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSegumientoMult.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btnSegumientoMult.Image = global::Ciencia.Properties.Resources.Tarea;
-            this.btnSegumientoMult.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSegumientoMult.Location = new System.Drawing.Point(0, 231);
-            this.btnSegumientoMult.Name = "btnSegumientoMult";
-            this.btnSegumientoMult.Size = new System.Drawing.Size(394, 33);
-            this.btnSegumientoMult.TabIndex = 16;
-            this.btnSegumientoMult.Text = "Seguimiento Anual Hemodinamia";
-            this.btnSegumientoMult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSegumientoMult.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSegumientoMult.UseVisualStyleBackColor = false;
-            this.btnSegumientoMult.Click += new System.EventHandler(this.btnSegumientoMult_Click);
             // 
             // frmMenu
             // 

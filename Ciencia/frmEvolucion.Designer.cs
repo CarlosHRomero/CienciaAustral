@@ -376,7 +376,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnProcesar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar ProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel stLabel;
@@ -402,5 +401,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Solapa;
         private System.Windows.Forms.DataGridViewTextBoxColumn SelEvol;
         protected System.Windows.Forms.DataGridView dataGridView1;
+        protected System.Windows.Forms.Button btnProcesar;
     }
 }

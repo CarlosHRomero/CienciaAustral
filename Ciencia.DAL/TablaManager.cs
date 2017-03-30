@@ -21,7 +21,7 @@ namespace Ciencia.DAL
         }
 
         //public string Where { get; set; }
-
+        /*
         public Boolean CrearTabla(String nombreTabla, List<clsCampo> Campos)
         {
             try
@@ -56,9 +56,9 @@ namespace Ciencia.DAL
 
             
         }
+        */
 
-
-
+        /*
         public Boolean CrearTablaResultado(List<clsTablaEquivalente> TablasOrigen, String TablaResultado, List<clsCampo> Campos, string where, string clavePrimaria)
         {
             int i = 0;
@@ -123,7 +123,7 @@ namespace Ciencia.DAL
                 return false;
             }
         }
-
+        */
 
 
 //*************
@@ -237,7 +237,7 @@ namespace Ciencia.DAL
 
         }
 
-        //**************
+        /**************
         public Boolean CopiaTablaTemp(string queryOrg, string queryDes, string where, string order)
         {
             TDatosAccess.conStr = conStr;
@@ -266,9 +266,9 @@ namespace Ciencia.DAL
             
             return true;
         }
-
+        */
   
-
+        
         public Boolean ActualizarCampoACero(string tabla, clsCampo campo) 
             /*
              * Esta funcion tom un campo de tipo desplegable dentro de una tabla y
@@ -340,7 +340,7 @@ namespace Ciencia.DAL
             return true;
 
         }
-
+/*
         public Boolean ExportarAExcel(String NombreTabla, string Xml)
         {
             try
@@ -365,101 +365,7 @@ namespace Ciencia.DAL
                 return false;
             }
         }
-
-        //public Boolean ExportarAExcel(List<String> listaTablas, string Xml)
-        //{
-        //    try
-        //    {
-        //        Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-        //        excel.Application.Workbooks.Add(true);
-        //        int columnaIncial = 0;
-        //        foreach(string tabla in listaTablas)
-        //        {
-        //            string query = "Select * from " + tabla;
-        //            System.Data.DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
-        //            if (!Generales.ExportadorDatos.ExportarExcel(ds, Xml))
-        //                return false;
-        //            columnaIncial += dt.Columns.Count;
-        //        }
-        //        excel.Visible = true;
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Mensajes.msgError(ex);
-        //        throw;
-        //        return false;
-        //    }
-        //}
-
-        //public Boolean ExportarAXml(List<String> listaTablas)
-        //{
-        //    try
-        //    {
-
-        //        int columnaIncial = 0;
-        //        foreach (string tabla in listaTablas)
-        //        {
-        //            string query = "Select * from " + tabla;
-        //            DataTable dt = TDatosAccess.GetDataNonQuery(query, conStr);
-        //            if (!CopiarAExcel(excel, dt, columnaIncial))
-        //                return false;
-        //            columnaIncial += dt.Columns.Count;
-        //        }
-        //        excel.Visible = true;
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Mensajes.msgError(ex);
-        //        throw;
-        //        return false;
-        //    }
-        //}
-
-        private bool CopiarAExcel(Microsoft.Office.Interop.Excel.Application excel, System.Data.DataTable dt, int columnaInicial)
-        {
-            try
-            {
-                int ColumnIndex = columnaInicial;
-                if (dt.Rows.Count == 0)
-                {
-                    Utiles.WriteErrorLog("No se adicionaron campos ");
-                    throw new Exception();
-                }
-                foreach (DataColumn col in dt.Columns)
-                {
-                    ColumnIndex++;
-                    excel.Cells[1, ColumnIndex] = col.ColumnName;
-                }
-                int rowIndex = 0;
-                foreach (DataRow row in dt.Rows)
-                {
-                    rowIndex++;
-                    ColumnIndex = columnaInicial;
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        ColumnIndex++;
-
-                        string dato = row[col.ColumnName].ToString();
-                        DateTime val;
-
-                        if (DateTime.TryParse(dato, out val) == true)
-                            dato = val.ToString("yyyy/MM/dd");
-                        Microsoft.Office.Interop.Excel.Range range = excel.Cells[rowIndex + 1, ColumnIndex];
-                        range.Value = dato;
-                        
-                        range.HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlLeft;
-                        //excel.Cells[rowIndex + 1, ColumnIndex]
-                    }
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+*/
 
 
     }

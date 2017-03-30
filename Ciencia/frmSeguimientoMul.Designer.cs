@@ -35,7 +35,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(793, 554);
             this.Name = "frmSeguimientoMul";
-            this.Load += new System.EventHandler(this.frmSeguimientoMul_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

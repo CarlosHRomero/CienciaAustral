@@ -12,7 +12,7 @@ namespace Ciencia.BLL
     {
         TablaEquivManager man = new TablaEquivManager();
         private List<CienciaTablaEquiv> ListaTablas;
-        public string TablaPorCodigo(int tablaId, string constr, bool esEvol)
+        public string TablaPorCodigo(int tablaId, bool esEvol)
         {
             if (ListaTablas == null)
             {

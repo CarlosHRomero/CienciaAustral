@@ -20,7 +20,7 @@ namespace Ciencia
         {
             get
             {
-                if (_fSegMul == null)
+                if (_fSegMul == null || _fSegMul.IsDisposed)
                 {
                     _fSegMul = new frmSeguimientoMul();
                 }

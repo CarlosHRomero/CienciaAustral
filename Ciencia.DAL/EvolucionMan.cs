@@ -15,29 +15,7 @@ namespace Ciencia.DAL
     {
         public string conStr { get; set; }
 
-        public DataTable SeleccionarTablaEvolucion(List<clsCampo> Campos)
-        {
-            int i = 0;
-            var tablas = (from campo in Campos
-                          select campo.tabla).Distinct();
-            try
-            {
-                string query;
-                TDatosAccess.conStr = conStr;
-
-                query = Campos.Aggregate("SELECT DISTINCT ", (current, campo) => current + campo.tabla.Trim() + "." + campo.nombre.Trim() + ", ");
-                query = query.Substring(0, query.Length - 2);
-                query += " FROM Ciencia_Car_Ingr_Sel INNER JOIN Ciencia_Car_Evol_Sel ON Ciencia_Car_Ingr_Sel.Ingr_Id = Ciencia_Car_Evol_Sel.Evol_Ingr_Id";
-                DataTable ret = TDatosAccess.GetDataNonQuery(query);
-                return ret;
-            }
-            catch (Exception ex)
-            {
-                Utiles.WriteErrorLog("En EvolucionMan.seleccionar: " + ex.Message);
-                return null;
-            }
-
-        }
+        
 
         public Boolean copiarDatos(List<clsCampo> Campos, string vistaOrigen, int moduloId, BackgroundWorker bw)
         {
@@ -372,7 +350,7 @@ namespace Ciencia.DAL
 
                 string tablaOrigen = teMan.ObtenerTablaEquivalente(moduloId);
 
-                LocalSelectInfManager infMan = new LocalSelectInfManager(conStr);
+                LocalSelectInfManager infMan = new LocalSelectInfManager(conStr);   
                 string where = infMan.ObtenerInfSeleccion().where;
 
                 string query = string.Format("select * from {0} where {1}", tablaOrigen, where);

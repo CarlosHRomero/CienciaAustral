@@ -38,6 +38,7 @@
     <Reference Include="Cardiologia.OBJ">
       <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.OBJ.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=14.0.0.9, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="Electrofisiologia.DAL, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Electrofisiologia\trunk\Electrofisiologia.DAL\bin\Debug\Electrofisiologia.DAL.dll</HintPath>
@@ -63,19 +64,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdmEquivMan.cs" />
-    <Compile Include="AdministradorGenerico.cs" />
     <Compile Include="CienciaEquivManager.cs" />
     <Compile Include="CienciaHemoEvolManager.cs" />
     <Compile Include="EvolucionMan.cs" />
     <Compile Include="LocalCamposManager.cs" />
+    <Compile Include="LocalCamposSgmtoMan.cs" />
     <Compile Include="SegAnualHemoMananger.cs" />
-    <Compile Include="SeguimientoAnualHemoData.cs" />
+    <Compile Include="SeguimientoData.cs" />
     <Compile Include="SelEvolManager.cs" />
-    <Compile Include="SelManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IBaseManager.cs" />
-    <Compile Include="LocalCienciaEquivMan.cs" />
     <Compile Include="LocalSelectInfManager.cs" />
     <Compile Include="LocalSelectorManager.cs" />
     <Compile Include="MapeadorTabla.cs">

@@ -212,7 +212,7 @@ namespace Ciencia
                     progressBar1.Value = progressBar1.Maximum;
                     TimeSpan dt = DateTime.Now - _t;
                     lblProcesando.Text = "Tiempo total:  " + dt.ToString(@"hh\:mm\:ss");
-                    Ciencia.BLL.CienciaB cb = new Ciencia.BLL.CienciaB();
+                    //Ciencia.BLL.CienciaB cb = new Ciencia.BLL.CienciaB();
                     _proc.Proc_fin_F = DateTime.Now;
                     _procB.Insertar(_proc);
                     CargarGrid();
