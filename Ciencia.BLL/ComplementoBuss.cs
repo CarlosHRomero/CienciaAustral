@@ -101,7 +101,8 @@ namespace Ciencia.BLL
             string where = infMan.ObtenerInfSeleccion().where;
             TablaManager man = new TablaManager(constr);
             nombreArchivo = nombreArchivo.Replace(".mdb", ".xlsx");
-            man.CrearXml2(tablasOrigen, nombreArchivo, campos, where, clavePrimaria);
+            if (!man.CrearXml2(tablasOrigen, nombreArchivo, campos, where, clavePrimaria))
+                return false;
             
             //List<List<clsCampo>> CamposPorTabla;
             ////CamposPorTabla = DividirCampos(campos, MAXCAMPOS);

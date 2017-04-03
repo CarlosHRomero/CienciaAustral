@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cardiologia.DAL;
+//using Cardiologia.DAL;
 using  Ciencia.OBJ;
 using  Ciencia.DAL;
+using Generales;
 
 namespace Ciencia.BLL
 {
