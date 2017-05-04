@@ -31,10 +31,6 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cardiologia.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.DAL.dll</HintPath>
-    </Reference>
     <Reference Include="Cardiologia.OBJ">
       <HintPath>..\..\..\Cardiologia\trunk\dll\Cardiologia.OBJ.dll</HintPath>
     </Reference>
@@ -64,8 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdmEquivMan.cs" />
+    <Compile Include="car_evol1Manager.cs" />
     <Compile Include="CienciaEquivManager.cs" />
     <Compile Include="CienciaHemoEvolManager.cs" />
+    <Compile Include="car_evolUManager.cs" />
+    <Compile Include="EvolPrimeraCarData.cs" />
     <Compile Include="EvolucionMan.cs" />
     <Compile Include="LocalCamposManager.cs" />
     <Compile Include="LocalCamposSgmtoMan.cs" />
@@ -97,6 +96,10 @@
     <Compile Include="TipoDeDato.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj">
+      <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
+      <Name>Cardiologia.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
       <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
       <Name>Common.OBJ</Name>

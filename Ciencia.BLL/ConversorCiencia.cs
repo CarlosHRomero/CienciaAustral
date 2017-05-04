@@ -9,14 +9,12 @@ using Ciencia.DAL;
 using System.Windows.Forms;
 using System.Data;
 
-
-
 namespace Ciencia.BLL
 {
     /// <summary>
     /// Clase encargada en la conversión de datos para su posterior procesamiento
     /// </summary>
-    public class ConversorCiencia 
+    public class ConversorCiencia
     {
         private readonly List<CienciaTablaEquiv> _tablasOrigenModulo;
         private readonly MapeadorTabla _mapeadorTabla;
@@ -36,7 +34,7 @@ namespace Ciencia.BLL
             //Tablas correspondientes al modulo
             _tablasOrigenModulo = tablaEquivManager.ObtenerTablasOrigenPorModulo(moduloId);
             _cantidadTablas = _tablasOrigenModulo.Where(x => x.Procesar != false).Count();
-            _mapeadorTabla = new  MapeadorTabla();
+            _mapeadorTabla = new MapeadorTabla();
             //Tabla paciente del modulo
             _tablaPaciente = _tablasOrigenModulo.FirstOrDefault(x => x.EsPaciente);
             _mensajes = new List<string>();
@@ -53,6 +51,14 @@ namespace Ciencia.BLL
                 _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=7)", "Instrumentista");
                 //Medico
                 _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Per_D=1 Or PVi_Per_D=6", "Medico");
+                // Primer evento cardiologia
+            }
+            if (moduloId == 2)
+            {
+                EvolPrimeraCar epc = new EvolPrimeraCar();
+                epc.ActualizarTabla();
+                EvolUltimaCar euc = new EvolUltimaCar();
+                euc.ActualizarTabla();
             }
         }
 
@@ -64,6 +70,7 @@ namespace Ciencia.BLL
         {
             try
             {
+                //Solo para cardiología
                 bool res;
                 //Tabla principal del modulo
                 _tablaPrincipal = _tablasOrigenModulo.First(x => x.EsTronco && x.EsEvolucion == false);
@@ -121,10 +128,10 @@ namespace Ciencia.BLL
                             }
                             else
                             {
-                                    //Agrega datos de la tabla origen a la tabla destino relacionando, en el caso de la tabla principal esto se hace a través de su clave primaria ya previamente cargada en la tabla destino
-                                    res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClavePrimaria);
-                                    if (!res)
-                                        return false;
+                                //Agrega datos de la tabla origen a la tabla destino relacionando, en el caso de la tabla principal esto se hace a través de su clave primaria ya previamente cargada en la tabla destino
+                                res = _mapeadorTabla.MapearDatosTablaOrigen(cienciaTablaEquiv, worker, _tablaPrincipal.ClavePrimaria, cienciaTablaEquiv.ClavePrimaria);
+                                if (!res)
+                                    return false;
                             }
                         }
                         _mensajes.Clear();
@@ -240,7 +247,7 @@ namespace Ciencia.BLL
                     if (!res)
                         return false;
                     DataTable dtDes = new DataTable();
-                    res = _mapeadorTabla.MapearDatosTablaOrigen(tablaMul, worker,ref dtDes);
+                    res = _mapeadorTabla.MapearDatosTablaOrigen(tablaMul, worker, ref dtDes);
                     if (!res)
                         return false;
                     _mensajes.Clear();

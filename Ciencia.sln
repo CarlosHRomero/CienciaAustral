@@ -19,11 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generales", "..\..\Generale
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.DAL", "..\..\Common\trunk\Common\Common.DAL\Common.DAL.csproj", "{B2DD1B83-DA29-443B-95C9-4C72A43BD0B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.DAL", "..\..\Cardiologia\trunk\Cardiología.DAL\Cardiologia.DAL.csproj", "{E80D9B6C-9067-4F72-B856-94AAB0863576}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.BLL", "..\..\Common\trunk\Common\Common.BLL\Common.BLL\Common.BLL.csproj", "{3DD97D1E-E0D5-48B6-A8C3-04B772D434A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.OBJ", "..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj", "{423E4D38-8F89-4A65-8A35-D6AF22D1C79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.DAL", "..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj", "{E80D9B6C-9067-4F72-B856-94AAB0863576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.OBJ", "..\..\Cardiologia\Cardiolgia.OBJ\Cardiologia.OBJ.csproj", "{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +65,6 @@ Global
 		{B2DD1B83-DA29-443B-95C9-4C72A43BD0B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2DD1B83-DA29-443B-95C9-4C72A43BD0B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2DD1B83-DA29-443B-95C9-4C72A43BD0B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DD97D1E-E0D5-48B6-A8C3-04B772D434A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DD97D1E-E0D5-48B6-A8C3-04B772D434A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DD97D1E-E0D5-48B6-A8C3-04B772D434A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +73,14 @@ Global
 		{423E4D38-8F89-4A65-8A35-D6AF22D1C79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{423E4D38-8F89-4A65-8A35-D6AF22D1C79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{423E4D38-8F89-4A65-8A35-D6AF22D1C79C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80D9B6C-9067-4F72-B856-94AAB0863576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

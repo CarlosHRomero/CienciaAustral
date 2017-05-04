@@ -115,8 +115,11 @@ namespace Ciencia
 
         private void btnQuitarFila_Click(object sender, EventArgs e)
         {
-            ListaSel.RemoveAt(ListaSel.Count - 1);
-            ActualizarGrid2();
+            if (ListaSel.Count > 0)
+            {
+                ListaSel.RemoveAt(ListaSel.Count - 1);
+                ActualizarGrid2();
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

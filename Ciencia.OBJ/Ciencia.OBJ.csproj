@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdmEquiv.cs" />
+    <Compile Include="car_evol_1.cs" />
+    <Compile Include="car_evol_u.cs" />
     <Compile Include="CienciaEquiv.cs" />
     <Compile Include="CienciaTablaEquiv.cs" />
     <Compile Include="Ciencia_Car_Sel.cs" />

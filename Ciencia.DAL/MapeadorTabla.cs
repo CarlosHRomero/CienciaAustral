@@ -221,11 +221,17 @@ namespace Ciencia.DAL
                     {
                         return false;
                     }
+                    if (cienciaTablaEquiv.NombreTabla == "Hemo_Comp")
+                    {
+                        if (filaOrg["Comp_Id"].ToString() == "9588")
+                            max = max;
+                    }
                     var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
                     if (filaDest != null)
                     {
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
+                            
                             var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                             if (equiv == null)
                                 continue;
@@ -252,6 +258,8 @@ namespace Ciencia.DAL
                                     filaDest[campoDest] = s.Trim();
                                 continue;
                             }
+                            if (columna.ColumnName == "Comp_CC_CuadroClin_D")
+                                max = max;
                             if (equiv.Filtro == null)
                             {
                                 if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
@@ -307,7 +315,9 @@ namespace Ciencia.DAL
                         Generales.Utiles.WriteErrorLog("La tabla " + cienciaTablaEquiv.NombreTabla + " tiene un registro que no tiene equivalente en la tabla principal o tronco.");
                     }
                     i++;
+
                     worker.ReportProgress(i * 100 / max);
+                    var n = _dtDes.Rows.IndexOf(filaDest);
                 }
                 return true;
             }
@@ -573,6 +583,8 @@ namespace Ciencia.DAL
 
         private string ObtenerEquivalente(string filtro, object valor, string tablaEquivModulo)
         {
+            if (filtro == "Com_CC")
+                throw new Exception("");
             return _admMan.ObtenerEquivalente(filtro, valor, tablaEquivModulo);
         }
 

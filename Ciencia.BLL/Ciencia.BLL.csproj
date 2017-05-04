@@ -50,7 +50,9 @@
     <Compile Include="ConversorCiencia.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EvolPrimeraCar.cs" />
     <Compile Include="EvolucionBuss.cs" />
+    <Compile Include="EvolUltimaCar.cs" />
     <Compile Include="ListasDesplegables.cs" />
     <Compile Include="MantenimientoArchivos.cs" />
     <Compile Include="moduloBuss.cs" />
@@ -72,7 +74,11 @@
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Cardiologia\trunk\Cardiología.DAL\Cardiologia.DAL.csproj">
+    <ProjectReference Include="..\..\..\Cardiologia\Cardiolgia.OBJ\Cardiologia.OBJ.csproj">
+      <Project>{a93225cc-e2c5-499f-a1dd-03fa76a94bf3}</Project>
+      <Name>Cardiologia.OBJ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj">
       <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
       <Name>Cardiologia.DAL</Name>
     </ProjectReference>

@@ -35,14 +35,14 @@ namespace Ciencia.BLL
         {
            return(tbMan.ObtenerTablaEquivalenteEvolucion(moduloId));
         }
-        public string CrearVista(int moduloId, string conStr)
-        {
-            LocalSelectInfManager infMan = new LocalSelectInfManager(conStr);
-            string where = infMan.ObtenerInfSeleccion().where;
-            string tabla = tbMan.ObtenerTablaEquivalente(moduloId);
-            string tablaEvol = tbMan.ObtenerTablaEquivalenteEvolucion(moduloId);
-            return man.CrearVista(tabla, tablaEvol, where, moduloId);
-        }
+        //public string CrearVista(int moduloId, string conStr)
+        //{
+        //    LocalSelectInfManager infMan = new LocalSelectInfManager(conStr);
+        //    string where = infMan.ObtenerInfSeleccion().where;
+        //    string tabla = tbMan.ObtenerTablaEquivalente(moduloId);
+        //    string tablaEvol = tbMan.ObtenerTablaEquivalenteEvolucion(moduloId);
+        //    return man.CrearVista(tabla, tablaEvol, where, moduloId);
+        //}
 
         public string JoinEvolucion(int moduloId, string conStr)
         {
