@@ -62,9 +62,6 @@
     <ManifestCertificateThumbprint>040DBDBCBA23B58C6E49B6CB03FA96DD56AD28BA</ManifestCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.BLL">
-      <HintPath>..\..\..\Common\trunk\Common\dll\Common.BLL.dll</HintPath>
-    </Reference>
     <Reference Include="DrawFlat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Common\trunk\Common\dll\DrawFlat.dll</HintPath>
@@ -258,6 +255,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.BLL\Common.BLL\Common.BLL.csproj">
+      <Project>{3dd97d1e-e0d5-48b6-a8c3-04b772d434a0}</Project>
+      <Name>Common.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
       <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
       <Name>Common.OBJ</Name>

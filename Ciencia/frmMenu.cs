@@ -2,6 +2,7 @@
 using Ciencia.BLL;
 using Ciencia.OBJ;
 using Common;
+using Common.BLL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,11 +42,11 @@ namespace Ciencia
         private void frmMenu_Load(object sender, EventArgs e)
         {
             StartPosition = FormStartPosition.CenterScreen;
-            Ambiente.ver = typeof(Program).Assembly.GetName().Version;
+            Ambiente.Ver = typeof(Program).Assembly.GetName().Version;
             this.lblHoy.Text = DateTime.Now.ToString();
             btnUsuario.Text = Ambiente.Usuario.User_Nombre;
             lblMaquina.Text = Ambiente.Maquina;
-            lblVersion.Text = Ambiente.ver.ToString();
+            lblVersion.Text = Ambiente.Ver.ToString();
             EstablecerSeguridad();
         }
 

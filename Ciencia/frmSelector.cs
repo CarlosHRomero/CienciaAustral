@@ -91,7 +91,7 @@ namespace Ciencia
             
             //lblDesde.Text = cb.ObtenerFechaDesde().ToShortDateString();
             //lblHasta.Text = cb.ObtenerFechaHasta().ToShortDateString();
-            lblUsuario.Text = Common.Ambiente.Usuario.User_Nombre;
+            lblUsuario.Text = Common.BLL.Ambiente.Usuario.User_Nombre;
             lblSelMed.Text = Where;
             txtArchivo.Text = _nombreArchivo;
         }
