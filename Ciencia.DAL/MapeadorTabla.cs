@@ -132,20 +132,20 @@ namespace Ciencia.DAL
                     i += campos.Count;
                     if (i > CantidadColumnas)
                     {
-                         crearTabla += ")";
-                         CrearTablaDestino(crearTabla);
-                         _tdatosCiencia.AgregarClavePrimaria(clavePrimaria, tablaDestino);
-                         foreach (var tablaOrigen in tablasOrigen)
-                         {
-                             tablaOrigen.NombreTablaEquiv = tablaDestino;
-                             _tablaEquivMan.Modificar(tablaOrigen);
-                         }
-                         ++j;
-                         tablaDestino = "";
-                         tablaDestino += nombreTablaDestino + "_" + j;
-                         crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
-                         tablasOrigen.Clear();
-                         i = 0;
+                        crearTabla += ")";
+                        CrearTablaDestino(crearTabla);
+                        _tdatosCiencia.AgregarClavePrimaria(clavePrimaria, tablaDestino);
+                        foreach (var tablaOrigen in tablasOrigen)
+                        {
+                            tablaOrigen.NombreTablaEquiv = tablaDestino;
+                            _tablaEquivMan.Modificar(tablaOrigen);
+                        }
+                        ++j;
+                        tablaDestino = "";
+                        tablaDestino += nombreTablaDestino + "_" + j;
+                        crearTabla = "CREATE TABLE " + tablaDestino + " ( " + clavePrimaria + " int, ";
+                        tablasOrigen.Clear();
+                        i = 0;
                     }
                     tablasOrigen.Add(tablaEquiv);
                     foreach (var campo in campos)
@@ -174,23 +174,23 @@ namespace Ciencia.DAL
             }
         }
 
-              
+
         public Boolean MapearDatosClavePrimaria(CienciaTablaEquiv nombreTablaOrigen, BackgroundWorker worker, string tablaDestino)
         {
             try
             {
-                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria  + " FROM " + nombreTablaOrigen.NombreTabla;
+                string queryOrg = "SELECT " + nombreTablaOrigen.ClavePrimaria + " FROM " + nombreTablaOrigen.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + tablaDestino;
                 _dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
                 foreach (DataRow filaOrg in dtOrg.Rows)
                 {
-                        var filaDest = _dtDes.NewRow();
-                        var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
-                        var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
-                        var campoDest = equiv.CampoEquivalente.Trim();
-                        filaDest[campoDest] = filaOrg[columna];
-                        _dtDes.Rows.Add(filaDest);
+                    var filaDest = _dtDes.NewRow();
+                    var columna = dtOrg.Columns[nombreTablaOrigen.ClavePrimaria];
+                    var equiv = _eqMan.ObtenerPorOrigen(columna.ColumnName, nombreTablaOrigen.TablaId);
+                    var campoDest = equiv.CampoEquivalente.Trim();
+                    filaDest[campoDest] = filaOrg[columna];
+                    _dtDes.Rows.Add(filaDest);
                 }
                 _dtDes.PrimaryKey = new DataColumn[] { _dtDes.Columns[nombreTablaOrigen.ClavePrimariaEquiv] };
                 return true;
@@ -221,25 +221,26 @@ namespace Ciencia.DAL
                     {
                         return false;
                     }
-                    if (cienciaTablaEquiv.NombreTabla == "Hemo_Comp")
+                    if (cienciaTablaEquiv.NombreTabla == "CVP_Parte_Q")
                     {
-                        if (filaOrg["Comp_Id"].ToString() == "9588")
-                            max = max;
+                        //if (filaOrg["Comp_Id"].ToString() == "9588")
+                        max = max;
                     }
                     var filaDest = _dtDes.Rows.Find(filaOrg[claveForanea]);
                     if (filaDest != null)
                     {
                         foreach (DataColumn columna in dtOrg.Columns)
                         {
-                            
+
                             var equiv = _eqMan.ObtenerPorOrigen(cienciaTablaEquiv.ModuloId, columna.ColumnName, cienciaTablaEquiv.TablaId);
                             if (equiv == null)
                                 continue;
                             var campoDest = equiv.CampoEquivalente.Trim();
                             var valor = filaOrg[columna];
-                            if (columna.ColumnName == "Ingr_Grpo_D")
+                            if (columna.ColumnName == "Ingr_Grpo_D" || columna.ColumnName == "Ini_Grpo_D" || columna.ColumnName == "Fin_Grpo_D")
                             {
-                                diag = Convert.ToInt32(valor);
+                                if(valor != DBNull.Value)
+                                    diag = Convert.ToInt32(valor);
                             }
                             if (String.IsNullOrEmpty(valor.ToString()))
                             {
@@ -249,17 +250,38 @@ namespace Ciencia.DAL
                                     filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                 continue;
                             }
-                            if (columna.ColumnName == "Ingr_Diag_D")
+                            if (columna.ColumnName == "Ingr_Diag_D" || columna.ColumnName == "Ini_Diag_D" || columna.ColumnName == "Fin_Diag_D")
                             {
-                                string s = BuscarSubDiagnostico(valor, diag);
+                                string s;
+                                if (diag == 0)
+                                    s = string.Empty;
+                                else
+                                    s= BuscarSubDiagnostico(valor, diag);
                                 if (s == null)
                                     filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
                                 else
                                     filaDest[campoDest] = s.Trim();
                                 continue;
                             }
-                            if (columna.ColumnName == "Comp_CC_CuadroClin_D")
+                            if (columna.ColumnName == "Ini_Prediabetes_B")
                                 max = max;
+                            if (equiv.Filtro_var != null)
+                            {
+                                object valorDependiente = filaOrg[equiv.Filtro_var];
+                                string s = ObtenerEquivalenteSecundario(valor, equiv.Filtro_var, valorDependiente, modulo.TablaEquiv, cienciaTablaEquiv.TablaId);
+                                if (s == null)
+                                    filaDest[campoDest] = equiv.ValorPorDefecto.Trim();
+                                else
+                                {
+                                    s = s.Trim();
+                                    maxLength = int.Parse(equiv.TipoDatoSqlServer.ToUpper().Split('(')[1].Split(')')[0]);
+                                    if (s.Length < maxLength)
+                                        filaDest[campoDest] = s;
+                                    else
+                                        filaDest[campoDest] = s.Substring(0, maxLength);
+                                }
+                            }
+
                             if (equiv.Filtro == null)
                             {
                                 if (columna.DataType == typeof(DateTime) || columna.DataType == typeof(DateTime?))
@@ -271,10 +293,12 @@ namespace Ciencia.DAL
                                 }
                                 else if (columna.DataType == typeof(Boolean) || columna.DataType == typeof(Boolean?))
                                     filaDest[campoDest] = (Boolean)valor == false ? "No" : "Si";
-                                else if ((columna.DataType == typeof(short) || columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length - 2) == "_B")
+                                else if ((columna.DataType == typeof(int) || columna.DataType == typeof(short) || columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length - 2) == "_B")
                                 {
+                                    if (columna.DataType == typeof(int))
+                                        valor = Convert.ToInt16(valor);
                                     var val = ConvertirIntABool((short)valor);
-                                    filaDest[campoDest] =  val == false ? "No" : "Si";
+                                    filaDest[campoDest] = val == false ? "No" : "Si";
                                 }
                                 else if (columna.DataType == typeof(String))
                                 {
@@ -328,13 +352,13 @@ namespace Ciencia.DAL
             }
         }
 
-        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker,ref DataTable dtDes)
+        public Boolean MapearDatosTablaOrigen(CienciaTablaEquiv cienciaTablaEquiv, BackgroundWorker worker, ref DataTable dtDes)
         {
             try
             {
                 var modulo = _moduloMan.ObtenerDatosModulo(cienciaTablaEquiv.ModuloId.ToString());
                 int i = 0;
-                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla; 
+                var queryOrg = "SELECT * FROM " + cienciaTablaEquiv.NombreTabla;
                 DataTable dtOrg = _tdatos.ExecuteCmd(queryOrg, CommandType.Text);
                 var queryDes = "SELECT * FROM " + cienciaTablaEquiv.NombreTablaEquiv;
                 dtDes = _tdatosCiencia.ExecuteCmd(queryDes, CommandType.Text);
@@ -471,7 +495,7 @@ namespace Ciencia.DAL
                                         else
                                             filaDest[campoDest] = valor.ToString().Trim().Substring(0, --maxLength);
                                     }
-                                    else if((columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length-2) == "_B")
+                                    else if ((columna.DataType == typeof(int?) || columna.DataType == typeof(short?)) && columna.ColumnName.Substring(columna.ColumnName.Length - 2) == "_B")
                                         filaDest[campoDest] = (Boolean)ConvertirIntABool((int?)valor) == false ? "No" : "Si";
                                     else
                                         filaDest[campoDest] = valor;
@@ -508,7 +532,7 @@ namespace Ciencia.DAL
 
         private bool ConvertirIntABool(int? valor)
         {
-            if(valor == null)
+            if (valor == null)
                 return false;
             if (valor == 0)
                 return false;
@@ -517,7 +541,7 @@ namespace Ciencia.DAL
         }
         private bool ConvertirIntABool(short? valor)
         {
-            if(valor == null)
+            if (valor == null)
                 return false;
             if (valor == 0)
                 return false;
@@ -580,6 +604,21 @@ namespace Ciencia.DAL
                 throw new Exception();
             }
         }
+        private string ObtenerEquivalenteSecundario(object valor, string CampoDependiente, object valorDependiente, string tablaEquivModulo, int tablaId)
+        {
+            try
+            {
+                string filtro1 = _eqMan.ObtenerPorOrigen(CampoDependiente, tablaId).Filtro;
+                string filtro2 = _admMan.ObtenerContinua(filtro1, valorDependiente, tablaEquivModulo);
+                if (filtro2 == null)
+                    return null;
+                return ObtenerEquivalente(filtro2, valor, tablaEquivModulo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
+            }
+        }
 
         private string ObtenerEquivalente(string filtro, object valor, string tablaEquivModulo)
         {
@@ -605,7 +644,7 @@ namespace Ciencia.DAL
                     var operador = operadores.First(x => x.PVi_ApNo == persona);
                     clsEquiv.Eqv_Tit = titulo;
                     clsEquiv.Eqv_desc = operador.PVi_ApNo;
-                    clsEquiv.Eqv_val = operador.PVi_Id;
+                    clsEquiv.Eqv_val = (short)operador.PVi_Id;
                     clsEquiv.Eqv_ord = ++i;
                     elfMan.Insertar(clsEquiv);
                 }
@@ -617,7 +656,7 @@ namespace Ciencia.DAL
                 {
                     clsEquiv.Eqv_Tit = titulo;
                     clsEquiv.Eqv_desc = operador.PVi_ApNo;
-                    clsEquiv.Eqv_val = operador.PVi_Id;
+                    clsEquiv.Eqv_val = (short)operador.PVi_Id;
                     clsEquiv.Eqv_ord = ++i;
                     elfMan.Insertar(clsEquiv);
                 }

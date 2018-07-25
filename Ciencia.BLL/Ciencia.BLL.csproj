@@ -74,7 +74,7 @@
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Cardiologia\Cardiolgia.OBJ\Cardiologia.OBJ.csproj">
+    <ProjectReference Include="..\..\..\Cardiologia\Cardiologia.OBJ\Cardiologia.OBJ.csproj">
       <Project>{a93225cc-e2c5-499f-a1dd-03fa76a94bf3}</Project>
       <Name>Cardiologia.OBJ</Name>
     </ProjectReference>

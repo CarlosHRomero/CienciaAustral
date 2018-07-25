@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ICBA_Cirugia_TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CC_Partes">
+          <Key>
+            <PropertyRef Name="Parte_Id" />
+          </Key>
+          <Property Name="Parte_Id" Type="int" Nullable="false" />
+          <Property Name="Parte_DOp_Cir_F" Type="date" />
+          <Property Name="Parte_HC_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Edad_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Paciente_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_T_Cir_T" Type="nvarchar" MaxLength="150" />
+          <Property Name="Parte_Ciruj_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Ayudante_T" Type="nvarchar" MaxLength="128" />
+          <Property Name="Parte_Instrumentador_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Anest_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Perfus_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Oxigen_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Oxigen_Name_N" Type="int" />
+          <Property Name="Parte_DOp_Cirugia_D" Type="int" />
+          <Property Name="Parte_Dop_TiemClampeo_N" Type="int" />
+          <Property Name="Parte_Dop_TiemNoS_Cec_N" Type="int" />
+          <Property Name="Parte_Dop_TiemCec_N" Type="int" />
+          <Property Name="Parte_Dop_TiemPielPiel_N" Type="int" />
+          <Property Name="Parte_DOp_CEC_D" Type="int" />
+          <Property Name="Parte_CD_Img_T" Type="ntext" Nullable="false" />
+          <Property Name="Parte_Texto_1_T" Type="ntext" />
+          <Property Name="Parte_CirCor_MII" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_MID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_MII_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MII_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MII_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MII_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MID_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MID_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MID_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_MID_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ao_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ao_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ao_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ao_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Mi_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Mi_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Mi_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Mi_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ve_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ve_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ve_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ve_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ot_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ot_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ot_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_Ot_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V1_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V1_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V1_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V1_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V2_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V2_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V2_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V2_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V3_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V3_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V3_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V3_CD_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V4_DA_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V4_DG_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V4_CX_N" Type="smallint" />
+          <Property Name="Parte_CirCor_V4_CD_N" Type="smallint" />
+          <Property Name="Parte_LD_DA_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_LD_CX_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_LD_CX2_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_LD_CD_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_DA_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_DA_N_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_DG_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_DG_N_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CX_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CX_N_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CX2_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CX2_N_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CD_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_sCECInt_Shunt_CD_N_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_LD_DA_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_LD_CX_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_LD_CX2_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_CirCor_LD_CD_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_Texto_2_T" Type="ntext" />
+          <Property Name="Parte_HCNumIng_T" Type="nvarchar" MaxLength="50" />
+          <Property Name="Parte_DOp_Id" Type="int" />
+          <Property Name="Parte_Est" Type="int" />
+          <Property Name="Parte_Usr" Type="int" />
+          <Property Name="Parte_Texto_3" Type="ntext" />
+          <Property Name="Parte_DOp_MP_Electrof" Type="int" />
+          <Property Name="Parte_DOp_MP_TecnicoRadiol" Type="nvarchar" MaxLength="100" />
+          <Property Name="Parte_DOp_MP_Tecnico" Type="nvarchar" MaxLength="100" />
+          <Property Name="Parte_DOp_CellSaver_D" Type="smallint" />
+          <Property Name="Parte_CellSaver_T" Type="nvarchar" MaxLength="5" />
+          <Property Name="Parte_CIPNumInt_N" Type="int" />
+          <Property Name="Parte_CCCliDOp_Cir_HI_T" Type="nvarchar" MaxLength="8" />
+          <Property Name="Parte_CCCliDOp_Cir_HF_T" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityContainer Name="ICBA_Cirugia_TestModelStoreContainer">
+          <EntitySet Name="CC_Partes" EntityType="Self.CC_Partes" Schema="cirugia" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICBA_Cirugia_TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CC_Partes">
+          <Key>
+            <PropertyRef Name="Parte_Id" />
+          </Key>
+          <Property Name="Parte_Id" Type="Int32" Nullable="false" />
+          <Property Name="Parte_DOp_Cir_F" Type="DateTime" Precision="0" />
+          <Property Name="Parte_HC_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Edad_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Paciente_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_T_Cir_T" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Ciruj_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Ayudante_T" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Instrumentador_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Anest_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Perfus_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Oxigen_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Oxigen_Name_N" Type="Int32" />
+          <Property Name="Parte_DOp_Cirugia_D" Type="Int32" />
+          <Property Name="Parte_Dop_TiemClampeo_N" Type="Int32" />
+          <Property Name="Parte_Dop_TiemNoS_Cec_N" Type="Int32" />
+          <Property Name="Parte_Dop_TiemCec_N" Type="Int32" />
+          <Property Name="Parte_Dop_TiemPielPiel_N" Type="Int32" />
+          <Property Name="Parte_DOp_CEC_D" Type="Int32" />
+          <Property Name="Parte_CD_Img_T" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Parte_Texto_1_T" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_MII" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_MID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_MII_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MII_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MII_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MII_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MID_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MID_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MID_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_MID_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ao_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ao_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ao_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ao_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Mi_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Mi_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Mi_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Mi_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ve_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ve_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ve_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ve_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ot_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ot_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ot_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_Ot_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V1_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V1_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V1_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V1_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V2_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V2_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V2_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V2_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V3_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V3_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V3_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V3_CD_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V4_DA_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V4_DG_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V4_CX_N" Type="Int16" />
+          <Property Name="Parte_CirCor_V4_CD_N" Type="Int16" />
+          <Property Name="Parte_LD_DA_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_LD_CX_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_LD_CX2_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_LD_CD_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_DA_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_DA_N_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_DG_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_DG_N_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CX_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CX_N_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CX2_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CX2_N_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CD_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_sCECInt_Shunt_CD_N_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_LD_DA_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_LD_CX_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_LD_CX2_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CirCor_LD_CD_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_Texto_2_T" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_HCNumIng_T" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_DOp_Id" Type="Int32" />
+          <Property Name="Parte_Est" Type="Int32" />
+          <Property Name="Parte_Usr" Type="Int32" />
+          <Property Name="Parte_Texto_3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_DOp_MP_Electrof" Type="Int32" />
+          <Property Name="Parte_DOp_MP_TecnicoRadiol" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_DOp_MP_Tecnico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_DOp_CellSaver_D" Type="Int16" />
+          <Property Name="Parte_CellSaver_T" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CIPNumInt_N" Type="Int32" />
+          <Property Name="Parte_CCCliDOp_Cir_HI_T" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Parte_CCCliDOp_Cir_HF_T" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="ICBA_Cirugia_TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CC_Partes" EntityType="Self.CC_Partes" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICBA_Cirugia_TestModelStoreContainer" CdmEntityContainer="ICBA_Cirugia_TestEntities">
+          <EntitySetMapping Name="CC_Partes">
+            <EntityTypeMapping TypeName="ICBA_Cirugia_TestModel.CC_Partes">
+              <MappingFragment StoreEntitySet="CC_Partes">
+                <ScalarProperty Name="Parte_Id" ColumnName="Parte_Id" />
+                <ScalarProperty Name="Parte_DOp_Cir_F" ColumnName="Parte_DOp_Cir_F" />
+                <ScalarProperty Name="Parte_HC_T" ColumnName="Parte_HC_T" />
+                <ScalarProperty Name="Parte_Edad_T" ColumnName="Parte_Edad_T" />
+                <ScalarProperty Name="Parte_Paciente_T" ColumnName="Parte_Paciente_T" />
+                <ScalarProperty Name="Parte_T_Cir_T" ColumnName="Parte_T_Cir_T" />
+                <ScalarProperty Name="Parte_Ciruj_T" ColumnName="Parte_Ciruj_T" />
+                <ScalarProperty Name="Parte_Ayudante_T" ColumnName="Parte_Ayudante_T" />
+                <ScalarProperty Name="Parte_Instrumentador_T" ColumnName="Parte_Instrumentador_T" />
+                <ScalarProperty Name="Parte_Anest_T" ColumnName="Parte_Anest_T" />
+                <ScalarProperty Name="Parte_Perfus_T" ColumnName="Parte_Perfus_T" />
+                <ScalarProperty Name="Parte_Oxigen_T" ColumnName="Parte_Oxigen_T" />
+                <ScalarProperty Name="Parte_Oxigen_Name_N" ColumnName="Parte_Oxigen_Name_N" />
+                <ScalarProperty Name="Parte_DOp_Cirugia_D" ColumnName="Parte_DOp_Cirugia_D" />
+                <ScalarProperty Name="Parte_Dop_TiemClampeo_N" ColumnName="Parte_Dop_TiemClampeo_N" />
+                <ScalarProperty Name="Parte_Dop_TiemNoS_Cec_N" ColumnName="Parte_Dop_TiemNoS_Cec_N" />
+                <ScalarProperty Name="Parte_Dop_TiemCec_N" ColumnName="Parte_Dop_TiemCec_N" />
+                <ScalarProperty Name="Parte_Dop_TiemPielPiel_N" ColumnName="Parte_Dop_TiemPielPiel_N" />
+                <ScalarProperty Name="Parte_DOp_CEC_D" ColumnName="Parte_DOp_CEC_D" />
+                <ScalarProperty Name="Parte_CD_Img_T" ColumnName="Parte_CD_Img_T" />
+                <ScalarProperty Name="Parte_Texto_1_T" ColumnName="Parte_Texto_1_T" />
+                <ScalarProperty Name="Parte_CirCor_MII" ColumnName="Parte_CirCor_MII" />
+                <ScalarProperty Name="Parte_CirCor_MID" ColumnName="Parte_CirCor_MID" />
+                <ScalarProperty Name="Parte_CirCor_MII_DA_N" ColumnName="Parte_CirCor_MII_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_MII_DG_N" ColumnName="Parte_CirCor_MII_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_MII_CX_N" ColumnName="Parte_CirCor_MII_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_MII_CD_N" ColumnName="Parte_CirCor_MII_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_MID_DA_N" ColumnName="Parte_CirCor_MID_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_MID_DG_N" ColumnName="Parte_CirCor_MID_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_MID_CX_N" ColumnName="Parte_CirCor_MID_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_MID_CD_N" ColumnName="Parte_CirCor_MID_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_Ao_DA_N" ColumnName="Parte_CirCor_Ao_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_Ao_DG_N" ColumnName="Parte_CirCor_Ao_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_Ao_CX_N" ColumnName="Parte_CirCor_Ao_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_Ao_CD_N" ColumnName="Parte_CirCor_Ao_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_Mi_DA_N" ColumnName="Parte_CirCor_Mi_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_Mi_DG_N" ColumnName="Parte_CirCor_Mi_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_Mi_CX_N" ColumnName="Parte_CirCor_Mi_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_Mi_CD_N" ColumnName="Parte_CirCor_Mi_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_Ve_DA_N" ColumnName="Parte_CirCor_Ve_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_Ve_DG_N" ColumnName="Parte_CirCor_Ve_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_Ve_CX_N" ColumnName="Parte_CirCor_Ve_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_Ve_CD_N" ColumnName="Parte_CirCor_Ve_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_Ot_DA_N" ColumnName="Parte_CirCor_Ot_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_Ot_DG_N" ColumnName="Parte_CirCor_Ot_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_Ot_CX_N" ColumnName="Parte_CirCor_Ot_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_Ot_CD_N" ColumnName="Parte_CirCor_Ot_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_V1_DA_N" ColumnName="Parte_CirCor_V1_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_V1_DG_N" ColumnName="Parte_CirCor_V1_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_V1_CX_N" ColumnName="Parte_CirCor_V1_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_V1_CD_N" ColumnName="Parte_CirCor_V1_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_V2_DA_N" ColumnName="Parte_CirCor_V2_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_V2_DG_N" ColumnName="Parte_CirCor_V2_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_V2_CX_N" ColumnName="Parte_CirCor_V2_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_V2_CD_N" ColumnName="Parte_CirCor_V2_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_V3_DA_N" ColumnName="Parte_CirCor_V3_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_V3_DG_N" ColumnName="Parte_CirCor_V3_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_V3_CX_N" ColumnName="Parte_CirCor_V3_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_V3_CD_N" ColumnName="Parte_CirCor_V3_CD_N" />
+                <ScalarProperty Name="Parte_CirCor_V4_DA_N" ColumnName="Parte_CirCor_V4_DA_N" />
+                <ScalarProperty Name="Parte_CirCor_V4_DG_N" ColumnName="Parte_CirCor_V4_DG_N" />
+                <ScalarProperty Name="Parte_CirCor_V4_CX_N" ColumnName="Parte_CirCor_V4_CX_N" />
+                <ScalarProperty Name="Parte_CirCor_V4_CD_N" ColumnName="Parte_CirCor_V4_CD_N" />
+                <ScalarProperty Name="Parte_LD_DA_T" ColumnName="Parte_LD_DA_T" />
+                <ScalarProperty Name="Parte_LD_CX_T" ColumnName="Parte_LD_CX_T" />
+                <ScalarProperty Name="Parte_LD_CX2_T" ColumnName="Parte_LD_CX2_T" />
+                <ScalarProperty Name="Parte_LD_CD_T" ColumnName="Parte_LD_CD_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_DA_T" ColumnName="Parte_sCECInt_Shunt_DA_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_DA_N_T" ColumnName="Parte_sCECInt_Shunt_DA_N_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_DG_T" ColumnName="Parte_sCECInt_Shunt_DG_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_DG_N_T" ColumnName="Parte_sCECInt_Shunt_DG_N_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CX_T" ColumnName="Parte_sCECInt_Shunt_CX_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CX_N_T" ColumnName="Parte_sCECInt_Shunt_CX_N_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CX2_T" ColumnName="Parte_sCECInt_Shunt_CX2_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CX2_N_T" ColumnName="Parte_sCECInt_Shunt_CX2_N_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CD_T" ColumnName="Parte_sCECInt_Shunt_CD_T" />
+                <ScalarProperty Name="Parte_sCECInt_Shunt_CD_N_T" ColumnName="Parte_sCECInt_Shunt_CD_N_T" />
+                <ScalarProperty Name="Parte_CirCor_LD_DA_T" ColumnName="Parte_CirCor_LD_DA_T" />
+                <ScalarProperty Name="Parte_CirCor_LD_CX_T" ColumnName="Parte_CirCor_LD_CX_T" />
+                <ScalarProperty Name="Parte_CirCor_LD_CX2_T" ColumnName="Parte_CirCor_LD_CX2_T" />
+                <ScalarProperty Name="Parte_CirCor_LD_CD_T" ColumnName="Parte_CirCor_LD_CD_T" />
+                <ScalarProperty Name="Parte_Texto_2_T" ColumnName="Parte_Texto_2_T" />
+                <ScalarProperty Name="Parte_HCNumIng_T" ColumnName="Parte_HCNumIng_T" />
+                <ScalarProperty Name="Parte_DOp_Id" ColumnName="Parte_DOp_Id" />
+                <ScalarProperty Name="Parte_Est" ColumnName="Parte_Est" />
+                <ScalarProperty Name="Parte_Usr" ColumnName="Parte_Usr" />
+                <ScalarProperty Name="Parte_Texto_3" ColumnName="Parte_Texto_3" />
+                <ScalarProperty Name="Parte_DOp_MP_Electrof" ColumnName="Parte_DOp_MP_Electrof" />
+                <ScalarProperty Name="Parte_DOp_MP_TecnicoRadiol" ColumnName="Parte_DOp_MP_TecnicoRadiol" />
+                <ScalarProperty Name="Parte_DOp_MP_Tecnico" ColumnName="Parte_DOp_MP_Tecnico" />
+                <ScalarProperty Name="Parte_DOp_CellSaver_D" ColumnName="Parte_DOp_CellSaver_D" />
+                <ScalarProperty Name="Parte_CellSaver_T" ColumnName="Parte_CellSaver_T" />
+                <ScalarProperty Name="Parte_CIPNumInt_N" ColumnName="Parte_CIPNumInt_N" />
+                <ScalarProperty Name="Parte_CCCliDOp_Cir_HI_T" ColumnName="Parte_CCCliDOp_Cir_HI_T" />
+                <ScalarProperty Name="Parte_CCCliDOp_Cir_HF_T" ColumnName="Parte_CCCliDOp_Cir_HF_T" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

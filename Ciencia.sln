@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ciencia.OBJ", "Ciencia.OBJ\Ciencia.OBJ.csproj", "{D8526ED8-6A5B-4538-B5E2-29C6F5048E79}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.OBJ", "..\..\Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.DAL", "..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj", "{E80D9B6C-9067-4F72-B856-94AAB0863576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.OBJ", "..\..\Cardiologia\Cardiolgia.OBJ\Cardiologia.OBJ.csproj", "{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardiologia.OBJ", "..\..\Cardiologia\Cardiologia.OBJ\Cardiologia.OBJ.csproj", "{A93225CC-E2C5-499F-A1DD-03FA76A94BF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

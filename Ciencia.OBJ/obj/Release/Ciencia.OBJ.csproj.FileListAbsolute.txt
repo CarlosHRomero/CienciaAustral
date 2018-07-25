@@ -1,0 +1,6 @@
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Release\Ciencia.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Release\Ciencia.OBJ.pdb
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Release\Common.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Release\Generales.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\obj\Release\Ciencia.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\obj\Release\Ciencia.OBJ.pdb

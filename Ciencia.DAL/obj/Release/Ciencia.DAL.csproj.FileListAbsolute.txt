@@ -1,0 +1,17 @@
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Ciencia.DAL.dll.config
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Ciencia.DAL.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Ciencia.DAL.pdb
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Cardiologia.DAL.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Cardiologia.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Ciencia.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Common.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Electrofisiologia.DAL.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Electrofisiologia.OBJ.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Generales.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Newtonsoft.Json.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Ciencia.OBJ.pdb
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\bin\Release\Newtonsoft.Json.xml
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\obj\Release\Ciencia.DAL.csprojResolveAssemblyReference.cache
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\obj\Release\Ciencia.DAL.csproj.ResolveComReference.cache
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\obj\Release\Ciencia.DAL.dll
+C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.DAL\obj\Release\Ciencia.DAL.pdb

@@ -37,23 +37,57 @@ namespace Ciencia.DAL
             }
             return lista;
         }
+
         
         public  string ObtenerEquivalente(string filtro, object valor, string tablaEquivModulo)
         {
-            if (tablaEquivModulo == null)
+            try
             {
-                throw new Exception("Los Modulos deben tener cargado una tabla TablaEquiv en la cual se encuentran los datos de los desplegables");
+                if (tablaEquivModulo == null)
+                {
+                    throw new Exception("Los Modulos deben tener cargado una tabla TablaEquiv en la cual se encuentran los datos de los desplegables");
+                }
+                if (_lista == null)
+                    _lista = ListadoCompleto(tablaEquivModulo);
+                List<AdmEquiv> lista = _lista.Where(x => appFiltroVal(x, filtro, Convert.ToInt32(valor))).ToList<AdmEquiv>();
+                if (lista.Count == 0)
+                    return null;
+                if (lista.Count > 1)
+                {
+                    throw new Exception("En MapeadorIngresos. ObtenerEquivalente. Se encontró mas de un registro que cumple la condición");
+                }
+                return lista.First<AdmEquiv>().Eqv_Desc;
             }
-            if (_lista == null)
-                _lista = ListadoCompleto(tablaEquivModulo);
-            List<AdmEquiv> lista = _lista.Where(x => appFiltroVal(x, filtro, Convert.ToInt32(valor))).ToList<AdmEquiv>();
-            if (lista.Count == 0)
-                return null;
-            if (lista.Count > 1)
+            catch(Exception  ex)
             {
-                throw new Exception("En MapeadorIngresos. ObtenerEquivalente. Se encontró mas de un registro que cumple la condición");
+                throw ex;
             }
-            return lista.First<AdmEquiv>().Eqv_Desc;
+        }
+
+        public string ObtenerContinua(string filtro, object valor, string tablaEquivModulo)
+        {
+            try
+            {
+                if (tablaEquivModulo == null)
+                {
+                    throw new Exception("Los Modulos deben tener cargado una tabla TablaEquiv en la cual se encuentran los datos de los desplegables");
+                }
+                if (_lista == null)
+                    _lista = ListadoCompleto(tablaEquivModulo);
+                List<AdmEquiv> lista = _lista.Where(x => appFiltroVal(x, filtro, Convert.ToInt32(valor))).ToList<AdmEquiv>();
+                if (lista.Count == 0)
+                    return null;
+                if (lista.Count > 1)
+                {
+                    throw new Exception("En MapeadorIngresos. ObtenerEquivalente. Se encontró mas de un registro que cumple la condición");
+                }
+                return lista.First<AdmEquiv>().Eqv_Continua;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
 

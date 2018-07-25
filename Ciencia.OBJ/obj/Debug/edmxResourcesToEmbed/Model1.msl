@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ICBA_Cirugia_TestModelStoreContainer" CdmEntityContainer="ICBA_Cirugia_TestEntities">
+    <EntitySetMapping Name="CC_Partes">
+      <EntityTypeMapping TypeName="ICBA_Cirugia_TestModel.CC_Partes">
+        <MappingFragment StoreEntitySet="CC_Partes">
+          <ScalarProperty Name="Parte_Id" ColumnName="Parte_Id" />
+          <ScalarProperty Name="Parte_DOp_Cir_F" ColumnName="Parte_DOp_Cir_F" />
+          <ScalarProperty Name="Parte_HC_T" ColumnName="Parte_HC_T" />
+          <ScalarProperty Name="Parte_Edad_T" ColumnName="Parte_Edad_T" />
+          <ScalarProperty Name="Parte_Paciente_T" ColumnName="Parte_Paciente_T" />
+          <ScalarProperty Name="Parte_T_Cir_T" ColumnName="Parte_T_Cir_T" />
+          <ScalarProperty Name="Parte_Ciruj_T" ColumnName="Parte_Ciruj_T" />
+          <ScalarProperty Name="Parte_Ayudante_T" ColumnName="Parte_Ayudante_T" />
+          <ScalarProperty Name="Parte_Instrumentador_T" ColumnName="Parte_Instrumentador_T" />
+          <ScalarProperty Name="Parte_Anest_T" ColumnName="Parte_Anest_T" />
+          <ScalarProperty Name="Parte_Perfus_T" ColumnName="Parte_Perfus_T" />
+          <ScalarProperty Name="Parte_Oxigen_T" ColumnName="Parte_Oxigen_T" />
+          <ScalarProperty Name="Parte_Oxigen_Name_N" ColumnName="Parte_Oxigen_Name_N" />
+          <ScalarProperty Name="Parte_DOp_Cirugia_D" ColumnName="Parte_DOp_Cirugia_D" />
+          <ScalarProperty Name="Parte_Dop_TiemClampeo_N" ColumnName="Parte_Dop_TiemClampeo_N" />
+          <ScalarProperty Name="Parte_Dop_TiemNoS_Cec_N" ColumnName="Parte_Dop_TiemNoS_Cec_N" />
+          <ScalarProperty Name="Parte_Dop_TiemCec_N" ColumnName="Parte_Dop_TiemCec_N" />
+          <ScalarProperty Name="Parte_Dop_TiemPielPiel_N" ColumnName="Parte_Dop_TiemPielPiel_N" />
+          <ScalarProperty Name="Parte_DOp_CEC_D" ColumnName="Parte_DOp_CEC_D" />
+          <ScalarProperty Name="Parte_CD_Img_T" ColumnName="Parte_CD_Img_T" />
+          <ScalarProperty Name="Parte_Texto_1_T" ColumnName="Parte_Texto_1_T" />
+          <ScalarProperty Name="Parte_CirCor_MII" ColumnName="Parte_CirCor_MII" />
+          <ScalarProperty Name="Parte_CirCor_MID" ColumnName="Parte_CirCor_MID" />
+          <ScalarProperty Name="Parte_CirCor_MII_DA_N" ColumnName="Parte_CirCor_MII_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_MII_DG_N" ColumnName="Parte_CirCor_MII_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_MII_CX_N" ColumnName="Parte_CirCor_MII_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_MII_CD_N" ColumnName="Parte_CirCor_MII_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_MID_DA_N" ColumnName="Parte_CirCor_MID_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_MID_DG_N" ColumnName="Parte_CirCor_MID_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_MID_CX_N" ColumnName="Parte_CirCor_MID_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_MID_CD_N" ColumnName="Parte_CirCor_MID_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_Ao_DA_N" ColumnName="Parte_CirCor_Ao_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_Ao_DG_N" ColumnName="Parte_CirCor_Ao_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_Ao_CX_N" ColumnName="Parte_CirCor_Ao_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_Ao_CD_N" ColumnName="Parte_CirCor_Ao_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_Mi_DA_N" ColumnName="Parte_CirCor_Mi_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_Mi_DG_N" ColumnName="Parte_CirCor_Mi_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_Mi_CX_N" ColumnName="Parte_CirCor_Mi_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_Mi_CD_N" ColumnName="Parte_CirCor_Mi_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_Ve_DA_N" ColumnName="Parte_CirCor_Ve_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_Ve_DG_N" ColumnName="Parte_CirCor_Ve_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_Ve_CX_N" ColumnName="Parte_CirCor_Ve_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_Ve_CD_N" ColumnName="Parte_CirCor_Ve_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_Ot_DA_N" ColumnName="Parte_CirCor_Ot_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_Ot_DG_N" ColumnName="Parte_CirCor_Ot_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_Ot_CX_N" ColumnName="Parte_CirCor_Ot_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_Ot_CD_N" ColumnName="Parte_CirCor_Ot_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_V1_DA_N" ColumnName="Parte_CirCor_V1_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_V1_DG_N" ColumnName="Parte_CirCor_V1_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_V1_CX_N" ColumnName="Parte_CirCor_V1_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_V1_CD_N" ColumnName="Parte_CirCor_V1_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_V2_DA_N" ColumnName="Parte_CirCor_V2_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_V2_DG_N" ColumnName="Parte_CirCor_V2_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_V2_CX_N" ColumnName="Parte_CirCor_V2_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_V2_CD_N" ColumnName="Parte_CirCor_V2_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_V3_DA_N" ColumnName="Parte_CirCor_V3_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_V3_DG_N" ColumnName="Parte_CirCor_V3_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_V3_CX_N" ColumnName="Parte_CirCor_V3_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_V3_CD_N" ColumnName="Parte_CirCor_V3_CD_N" />
+          <ScalarProperty Name="Parte_CirCor_V4_DA_N" ColumnName="Parte_CirCor_V4_DA_N" />
+          <ScalarProperty Name="Parte_CirCor_V4_DG_N" ColumnName="Parte_CirCor_V4_DG_N" />
+          <ScalarProperty Name="Parte_CirCor_V4_CX_N" ColumnName="Parte_CirCor_V4_CX_N" />
+          <ScalarProperty Name="Parte_CirCor_V4_CD_N" ColumnName="Parte_CirCor_V4_CD_N" />
+          <ScalarProperty Name="Parte_LD_DA_T" ColumnName="Parte_LD_DA_T" />
+          <ScalarProperty Name="Parte_LD_CX_T" ColumnName="Parte_LD_CX_T" />
+          <ScalarProperty Name="Parte_LD_CX2_T" ColumnName="Parte_LD_CX2_T" />
+          <ScalarProperty Name="Parte_LD_CD_T" ColumnName="Parte_LD_CD_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_DA_T" ColumnName="Parte_sCECInt_Shunt_DA_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_DA_N_T" ColumnName="Parte_sCECInt_Shunt_DA_N_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_DG_T" ColumnName="Parte_sCECInt_Shunt_DG_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_DG_N_T" ColumnName="Parte_sCECInt_Shunt_DG_N_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CX_T" ColumnName="Parte_sCECInt_Shunt_CX_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CX_N_T" ColumnName="Parte_sCECInt_Shunt_CX_N_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CX2_T" ColumnName="Parte_sCECInt_Shunt_CX2_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CX2_N_T" ColumnName="Parte_sCECInt_Shunt_CX2_N_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CD_T" ColumnName="Parte_sCECInt_Shunt_CD_T" />
+          <ScalarProperty Name="Parte_sCECInt_Shunt_CD_N_T" ColumnName="Parte_sCECInt_Shunt_CD_N_T" />
+          <ScalarProperty Name="Parte_CirCor_LD_DA_T" ColumnName="Parte_CirCor_LD_DA_T" />
+          <ScalarProperty Name="Parte_CirCor_LD_CX_T" ColumnName="Parte_CirCor_LD_CX_T" />
+          <ScalarProperty Name="Parte_CirCor_LD_CX2_T" ColumnName="Parte_CirCor_LD_CX2_T" />
+          <ScalarProperty Name="Parte_CirCor_LD_CD_T" ColumnName="Parte_CirCor_LD_CD_T" />
+          <ScalarProperty Name="Parte_Texto_2_T" ColumnName="Parte_Texto_2_T" />
+          <ScalarProperty Name="Parte_HCNumIng_T" ColumnName="Parte_HCNumIng_T" />
+          <ScalarProperty Name="Parte_DOp_Id" ColumnName="Parte_DOp_Id" />
+          <ScalarProperty Name="Parte_Est" ColumnName="Parte_Est" />
+          <ScalarProperty Name="Parte_Usr" ColumnName="Parte_Usr" />
+          <ScalarProperty Name="Parte_Texto_3" ColumnName="Parte_Texto_3" />
+          <ScalarProperty Name="Parte_DOp_MP_Electrof" ColumnName="Parte_DOp_MP_Electrof" />
+          <ScalarProperty Name="Parte_DOp_MP_TecnicoRadiol" ColumnName="Parte_DOp_MP_TecnicoRadiol" />
+          <ScalarProperty Name="Parte_DOp_MP_Tecnico" ColumnName="Parte_DOp_MP_Tecnico" />
+          <ScalarProperty Name="Parte_DOp_CellSaver_D" ColumnName="Parte_DOp_CellSaver_D" />
+          <ScalarProperty Name="Parte_CellSaver_T" ColumnName="Parte_CellSaver_T" />
+          <ScalarProperty Name="Parte_CIPNumInt_N" ColumnName="Parte_CIPNumInt_N" />
+          <ScalarProperty Name="Parte_CCCliDOp_Cir_HI_T" ColumnName="Parte_CCCliDOp_Cir_HI_T" />
+          <ScalarProperty Name="Parte_CCCliDOp_Cir_HF_T" ColumnName="Parte_CCCliDOp_Cir_HF_T" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
