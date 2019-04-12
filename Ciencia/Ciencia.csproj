@@ -258,15 +258,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.BLL\Common.BLL\Common.BLL.csproj">
+    <ProjectReference Include="..\..\Common\Common\Common.BLL\Common.BLL\Common.BLL.csproj">
       <Project>{3dd97d1e-e0d5-48b6-a8c3-04b772d434a0}</Project>
       <Name>Common.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\trunk\Common\Common.OBJ\Common.OBJ.csproj">
+    <ProjectReference Include="..\..\Common\Common\Common.DAL\Common.DAL.csproj">
+      <Project>{b2dd1b83-da29-443b-95c9-4c72a43bd0b0}</Project>
+      <Name>Common.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Common\Common.OBJ\Common.OBJ.csproj">
       <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
       <Name>Common.OBJ</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\trunk\Common\Common\Common.csproj">
+    <ProjectReference Include="..\..\Common\Common\Common\Common.csproj">
       <Project>{241cd245-931b-4077-9d16-632ae8ce842c}</Project>
       <Name>Common</Name>
     </ProjectReference>

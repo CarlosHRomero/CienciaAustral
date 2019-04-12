@@ -14,3 +14,17 @@ C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Debug\EntityFramewo
 C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Debug\EntityFramework.xml
 C:\Users\chromero\Source\desa1\Ciencia\trunk\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.dll.config
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.dll
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.pdb
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\EntityFramework.dll
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\EntityFramework.xml
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csprojAssemblyReference.cache
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.CoreCompileInputs.cache
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.CopyComplete
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.dll
+C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.pdb
