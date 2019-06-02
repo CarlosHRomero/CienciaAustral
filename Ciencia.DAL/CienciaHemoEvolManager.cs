@@ -12,7 +12,7 @@ namespace Ciencia.DAL
     
     public class CienciaHemoEvolManager
     {
-        private PetaPoco.Database _db = new PetaPoco.Database("ICBA.Properties.Settings.conStrCiencia");
+        private PetaPoco.Database _db = new PetaPoco.Database("Au.Properties.Settings.conStrCiencia");
 
         public List<Ciencia_Hemo_Evol> SeleccionarPorPaciente(int pacId)
         {

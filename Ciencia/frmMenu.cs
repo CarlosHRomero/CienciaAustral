@@ -56,10 +56,10 @@ namespace Ciencia
         }
         private void EstablecerSeguridad()
         {
-            if (Seguridad.VerProcesoCiencia())
-                btnProceso.Visible = true;
-            else
-                btnProceso.Visible = false;
+            //if (Seguridad.VerProcesoCiencia())
+            //    btnProceso.Visible = true;
+            //else
+            //    btnProceso.Visible = false;
             if (Seguridad.VerSeguimientoAnualHemo())
                 btnSegHemo.Visible = true;
             else

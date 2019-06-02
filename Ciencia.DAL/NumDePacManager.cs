@@ -32,7 +32,7 @@ namespace Ciencia.DAL
                 //query = string.Format("SELECT  Eqv_Val, Eqv_Desc FROM {0} WHERE Eqv_Tit = {1} ORDER BY EQV_ORD", TablaEquiv, filtro.Trim());
               
                 DataTable dt;
-                TDatos dataCiencia = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+                TDatos dataCiencia = new TDatos("Au.Properties.Settings.conStrCiencia");
                 switch (TipoDeDato)
                 {
                     case "Tabla":

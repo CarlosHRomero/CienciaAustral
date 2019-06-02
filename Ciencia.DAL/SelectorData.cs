@@ -14,7 +14,7 @@ namespace Ciencia.DAL
         public int ContarRegistros(string tabla)
         {
             String sql = string.Format("select COUNT(*) from {0}", tabla);
-            TDatos data = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos data = new TDatos("Au.Properties.Settings.conStr");
             int x = Convert.ToInt32(data.GetDataEscalar(sql, CommandType.Text));
             return x;
 
@@ -23,7 +23,7 @@ namespace Ciencia.DAL
         public int ContarRegistros(string tabla, string where)
         {
             String sql = string.Format("select COUNT(*) from {0} where {1}", tabla, where);
-            TDatos data = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos data = new TDatos("Au.Properties.Settings.conStr");
             int x = Convert.ToInt32(data.GetDataEscalar(sql, CommandType.Text));
             return x;
 

@@ -1,4 +1,4 @@
-﻿using Cardiologia.DAL;
+﻿
 using Cardiologia.OBJ;
 using Ciencia.OBJ;
 using Electrofisiologia.DAL;
@@ -18,7 +18,6 @@ namespace Ciencia.DAL
     {
         private readonly TDatos _tdatos;
         private readonly TDatos _tdatosCiencia;
-        private readonly EquivMAnager _carEquivManager;
         private DataTable _dtDes;
         private readonly AdmEquivMan _admMan;
         private readonly CienciaEquivManager _eqMan;
@@ -30,14 +29,14 @@ namespace Ciencia.DAL
         private const string _edad = "PROC_EDAD_N";
         public MapeadorTabla()
         {
-            _tdatos = new TDatos("ICBA.Properties.Settings.conStr");
-            _tdatosCiencia = new TDatos("ICBA.Properties.Settings.conStrCiencia");
-            _carEquivManager = new EquivMAnager();
+            _tdatos = new TDatos("Au.Properties.Settings.conStr");
+            _tdatosCiencia = new TDatos("Au.Properties.Settings.conStr");
+            //_carEquivManager = new EquivMAnager();
             _admMan = new AdmEquivMan();
             _eqMan = new CienciaEquivManager();
             _moduloMan = new ModuloManager();
             _tablaEquivMan = new TablaEquivManager();
-            _elfPersVincManager = new PersVincManager();
+            //_elfPersVincManager = new PersVincManager();
         }
 
         public Boolean EliminarTabla(List<string> tablasDestino)
@@ -593,11 +592,11 @@ namespace Ciencia.DAL
             {
                 if (diag == 1)
                     return null;
-                var eqv = _carEquivManager.Seleccionar("Eqv_Tit='Grupo' AND Eqv_Val = " + diag.ToString(), "Eqv_Ord").FirstOrDefault();
-                var eqv2 = _carEquivManager.Seleccionar("Eqv_Tit='" + eqv.Eqv_Continua + "' AND Eqv_Val = " + valor.ToString(), "Eqv_Ord").FirstOrDefault();
-                if (eqv2 == null)
-                    return null;
-                return eqv2.Eqv_Desc;
+                //var eqv = _carEquivManager.Seleccionar("Eqv_Tit='Grupo' AND Eqv_Val = " + diag.ToString(), "Eqv_Ord").FirstOrDefault();
+                //var eqv2 = _carEquivManager.Seleccionar("Eqv_Tit='" + eqv.Eqv_Continua + "' AND Eqv_Val = " + valor.ToString(), "Eqv_Ord").FirstOrDefault();
+                //if (eqv2 == null)
+                //    return null;
+                return ""; //eqv2.Eqv_Desc;
             }
             catch (Exception ex)
             {

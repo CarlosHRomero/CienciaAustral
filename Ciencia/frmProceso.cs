@@ -240,12 +240,12 @@ namespace Ciencia
             if (!(cboModulo.SelectedValue is Ciencia_Modulo))
                 foreach (var proc in lista.Where(x => x.ModuloId == Convert.ToInt32(cboModulo.SelectedValue)).OrderByDescending(x => x.Proc_ini_F))
                 {
-                    usuario = _usuarioB.ObtenerUsuario(proc.User_LogOn);
-                    if (usuario != null)
-                    {
-                        tiempoProc = proc.Proc_fin_F.Value.Subtract(proc.Proc_ini_F.Value);
-                        DataGridView1.Rows.Add(proc.Proc_fin_F.Value.ToShortDateString(), usuario.User_Nombre, _modulos.FirstOrDefault(x => x.ModuloId == proc.ModuloId).Nombre, proc.Proc_Maq_T, proc.Proc_ini_F.Value.ToLongTimeString(), proc.Proc_fin_F.Value.ToLongTimeString(), tiempoProc.ToString(@"hh\:mm\:ss"));
-                    }
+                    //usuario = _usuarioB.ObtenerUsuario(proc.User_LogOn);
+                    //if (usuario != null)
+                    //{
+                    //    tiempoProc = proc.Proc_fin_F.Value.Subtract(proc.Proc_ini_F.Value);
+                    //    DataGridView1.Rows.Add(proc.Proc_fin_F.Value.ToShortDateString(), usuario.User_Nombre, _modulos.FirstOrDefault(x => x.ModuloId == proc.ModuloId).Nombre, proc.Proc_Maq_T, proc.Proc_ini_F.Value.ToLongTimeString(), proc.Proc_fin_F.Value.ToLongTimeString(), tiempoProc.ToString(@"hh\:mm\:ss"));
+                    //}
                 }
         }
 

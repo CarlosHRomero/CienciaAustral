@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class SegAnualHemoMananger
     {
-        private PetaPoco.Database _db = new PetaPoco.Database("ICBA.Properties.Settings.conStrCiencia");
+        private PetaPoco.Database _db = new PetaPoco.Database("Au.Properties.Settings.conStrCiencia");
 
         public bool BorrarTodo()
         {

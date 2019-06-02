@@ -21,7 +21,7 @@ namespace Ciencia.DAL
         {
             List<AdmEquiv> lista = new List<AdmEquiv>();
             string query = string.Format("SELECT  Eqv_Tit, Eqv_Val, Eqv_Desc, Eqv_Ord, Eqv_continua FROM {0} ", tabla);
-            TDatos data = new TDatos("ICBA.Properties.Settings.conStr");
+            TDatos data = new TDatos("Au.Properties.Settings.conStr");
             DataTable dtEq = data.GetDataNonQuery(query);
             foreach (DataRow row in dtEq.Rows)
             {
@@ -172,7 +172,7 @@ namespace Ciencia.DAL
                 List<AdmEquiv> lista = new List<AdmEquiv>();
                 //SqlParameter[] param = new SqlParameter[1];
                 //param[0] = new SqlParameter("@0", Tit);
-                TDatos data = new TDatos("ICBA.Properties.Settings.conStr");
+                TDatos data = new TDatos("Au.Properties.Settings.conStr");
                 DataTable dt = data.GetDataNonQuery(query);
                 Type tipo = typeof(AdmEquiv);
                 IList<PropertyInfo> campos = new List<PropertyInfo>(tipo.GetProperties());

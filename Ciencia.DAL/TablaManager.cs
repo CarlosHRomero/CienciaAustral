@@ -28,7 +28,7 @@ namespace Ciencia.DAL
             {
                 string query;
                 CienciaEquiv obj;
-                TDatos dataOrg = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+                TDatos dataOrg = new TDatos("Au.Properties.Settings.conStrCiencia");
                 //Borra tabla si exite 
                 dataOrg.BorrarTabla(nombreTabla);
 
@@ -158,7 +158,7 @@ namespace Ciencia.DAL
                 if (!string.IsNullOrEmpty(where))
                     queryOrg = queryOrg + " where " + where;
                 queryOrg = queryOrg + " order by " + clavePrimaria;
-                TDatos dataOrg = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+                TDatos dataOrg = new TDatos("Au.Properties.Settings.conStrCiencia");
                 System.Data.DataTable dtOrg = dataOrg.ExecuteCmd(queryOrg, CommandType.Text);
 
                 foreach (var campo in Campos)
@@ -249,7 +249,7 @@ namespace Ciencia.DAL
             if (!string.IsNullOrEmpty(order))
                 queryOrg = queryOrg + " order by " + order;
 
-            TDatos dataOrg = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos dataOrg = new TDatos("Au.Properties.Settings.conStrCiencia");
             System.Data.DataTable dtOrg = dataOrg.ExecuteCmd(queryOrg, CommandType.Text);
             System.Data.DataTable dtDes = dataOrg.ExecuteCmd(queryDes, CommandType.Text);
             int i = 0;
@@ -279,7 +279,7 @@ namespace Ciencia.DAL
         {
             string query;
             int ret;
-            TDatos td = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos td = new TDatos("Au.Properties.Settings.conStrCiencia");
             foreach (var vcero in campo.ListaValores)
             {
                 query = "Update " + tabla + " set " + campo.nombre + " = '0' "+ 
@@ -309,7 +309,7 @@ namespace Ciencia.DAL
              */
             string query= string.Format("SELECT DISTINCT {0} from {1}", campo.nombre, tabla);
 
-            TDatos td = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos td = new TDatos("Au.Properties.Settings.conStrCiencia");
             System.Data.DataTable dt = td.GetDataNonQuery(query);
             List<string> valACero = new List<string>();
 
@@ -350,7 +350,7 @@ namespace Ciencia.DAL
                 Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                 excel.Application.Workbooks.Add(true);
                 string query = "Select * from " + NombreTabla;
-                TDatos td = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+                TDatos td = new TDatos("Au.Properties.Settings.conStrCiencia");
                 System.Data.DataTable dt = td.GetDataNonQuery(query);
                 var ds = new DataSet();
                 ds.Tables.Add(dt);

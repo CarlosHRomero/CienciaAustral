@@ -22,7 +22,7 @@ namespace Ciencia.DAL
                 query += string.Format(" from {0} inner join {1} on {0}.{2} = {1}.{3} where {4}", tablaPrincipal, tablaEvol, clavePrincipal, claveExtEvol, where);
             else
                 query += string.Format(" from {0} inner join {1} on {0}.{2} = {1}.{3} ", tablaPrincipal, tablaEvol, clavePrincipal, claveExtEvol);
-            TDatos dataCiencia = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos dataCiencia = new TDatos("Au.Properties.Settings.conStrCiencia");
             var dt = dataCiencia.GetDataNonQuery(query);
             return dt;
         }

@@ -145,7 +145,7 @@ namespace Ciencia.BLL
                 sql = string.Format("SELECT DISTINCT {0} FROM {1} WHERE {2} ORDER BY {0}", Campo, tablasAgregadas, Where);
             else
                 sql = string.Format("SELECT DISTINCT {0} FROM {1} ORDER BY {0}", Campo, tablasAgregadas);
-            TDatos dat = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos dat = new TDatos("Au.Properties.Settings.conStr");
             DataTable dt = dat.GetDataNonQuery(sql);
             if (dt != null)
             {

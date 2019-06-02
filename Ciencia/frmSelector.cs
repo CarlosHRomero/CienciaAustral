@@ -20,7 +20,7 @@ namespace Ciencia
     public partial class frmSelector : Form
     {
         //private string conorg = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=\\\\AMERICA\\America\\Antonio\\Cardio\\Ciencia\\Car_Ciencia_Local.mdb"; // "\\\\AMERICA\\America\\Antonio\\Cardio\\Ciencia\\Car_Ciencia_Local.accdb" ;
-        private string arorg = "\\\\AMERICA\\America\\Carlos\\Ciencia\\Ciencia_Local.mdb";
+        private string arorg = "C:\\Sistemas\\Ciencia\\Ciencia_Local.mdb";
 
         private string Titulo = "ICBA - Cardiología - Ciencia - frmSelector ";
         string _localConStr;
@@ -91,7 +91,7 @@ namespace Ciencia
             
             //lblDesde.Text = cb.ObtenerFechaDesde().ToShortDateString();
             //lblHasta.Text = cb.ObtenerFechaHasta().ToShortDateString();
-            lblUsuario.Text = Common.BLL.Ambiente.Usuario.User_Nombre;
+            lblUsuario.Text = Ambiente.Usuario.User_Nombre;
             lblSelMed.Text = Where;
             txtArchivo.Text = _nombreArchivo;
         }
@@ -482,10 +482,13 @@ namespace Ciencia
             {
                 flag = false;
                 _moduloId = moduloId;
-                cboTabla.DataSource = obj.ListaTabla(moduloId, false, false);
+                var lista = obj.ListaTabla(moduloId, false, false);
+                cboTabla.DataSource = lista;
+                cboTabla.ValueMember = "TablaId";
+                cboTabla.DisplayMember = "NombreTabla";
                 //cboCampo.DisplayMember = "CampoEquivalente";
                 //cboCampo.ValueMember = "CampoEquivalente";
-                
+
                 cantAnt = selB.ContarRegistros(moduloId);
                 lblTotalReg.Text = cantAnt.ToString();
                 InicializarControles();

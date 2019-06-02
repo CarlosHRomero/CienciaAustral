@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Au\dll\Generales.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -50,9 +54,7 @@
     <Compile Include="ConversorCiencia.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EvolPrimeraCar.cs" />
     <Compile Include="EvolucionBuss.cs" />
-    <Compile Include="EvolUltimaCar.cs" />
     <Compile Include="ListasDesplegables.cs" />
     <Compile Include="MantenimientoArchivos.cs" />
     <Compile Include="moduloBuss.cs" />
@@ -74,18 +76,6 @@
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cardiologia\Cardiologia.OBJ\Cardiologia.OBJ.csproj">
-      <Project>{a93225cc-e2c5-499f-a1dd-03fa76a94bf3}</Project>
-      <Name>Cardiologia.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj">
-      <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
-      <Name>Cardiologia.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Generales\Generales.csproj">
-      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
-      <Name>Generales</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ciencia.DAL\Ciencia.DAL.csproj">
       <Project>{6bd61d5a-a957-4a6e-9156-613f996caaf0}</Project>
       <Name>Ciencia.DAL</Name>
@@ -104,15 +94,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="ADODB">
-      <Guid>{2A75196C-D9EB-4129-B803-931327F72D5C}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="ADOX">
       <Guid>{00000600-0000-0010-8000-00AA006D2EA4}</Guid>
       <VersionMajor>6</VersionMajor>
@@ -126,15 +107,6 @@
       <Guid>{00025E01-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
       <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="JRO">
-      <Guid>{AC3B8B4C-B6CA-11D1-9F31-00C04FC29D52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>6</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>

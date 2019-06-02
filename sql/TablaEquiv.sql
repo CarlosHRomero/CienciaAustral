@@ -1,5 +1,3 @@
-USE [ICBA Cirugia 2003]
-GO
 
 /****** Object:  Table [cirugia].[CienciaTablaEquiv]    Script Date: 12/04/2019 17:15:11 ******/
 SET ANSI_NULLS ON

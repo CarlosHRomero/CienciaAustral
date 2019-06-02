@@ -43,6 +43,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Electrofisiologia\trunk\Electrofisiologia.DAL\bin\Debug\Electrofisiologia.OBJ.dll</HintPath>
     </Reference>
+    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Au\dll\Generales.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -96,10 +104,6 @@
     <Compile Include="TipoDeDato.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cardiologia\Cardiología.DAL\Cardiologia.DAL.csproj">
-      <Project>{e80d9b6c-9067-4f72-b856-94aab0863576}</Project>
-      <Name>Cardiologia.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Common\Common.DAL\Common.DAL.csproj">
       <Project>{b2dd1b83-da29-443b-95c9-4c72a43bd0b0}</Project>
       <Name>Common.DAL</Name>
@@ -107,10 +111,6 @@
     <ProjectReference Include="..\..\Common\Common\Common.OBJ\Common.OBJ.csproj">
       <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
       <Name>Common.OBJ</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Generales\Generales.csproj">
-      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
-      <Name>Generales</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ciencia.OBJ\Ciencia.OBJ.csproj">
       <Project>{d8526ed8-6a5b-4538-b5e2-29c6f5048e79}</Project>
@@ -124,35 +124,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>5</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel1">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

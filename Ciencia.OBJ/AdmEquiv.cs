@@ -8,7 +8,7 @@ namespace Ciencia.OBJ
 {
     public class AdmEquiv
     {
-        public short? Eqv_Val { get; set; }
+        public int? Eqv_Val { get; set; }
         public String Eqv_Desc { get; set; }
         public string Eqv_Continua { get; set; }
         public short Eqv_ord { get; set; }

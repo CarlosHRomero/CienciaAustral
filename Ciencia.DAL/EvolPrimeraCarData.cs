@@ -15,14 +15,14 @@ namespace Ciencia.DAL
                             "select distinct Evol_Pac_Id, evol_ingr_id " +
                             "from car_evol_new where not exists(select evol_ingr_id_1 from car_evol_1 "+
                             "where car_evol_1.evol_ingr_id_1= car_evol_new.evol_ingr_id)";
-            var data = new TDatos("ICBA.Properties.Settings.conStr");
+            var data = new TDatos("Au.Properties.Settings.conStr");
             data.ExecuteCmd(query, System.Data.CommandType.Text);
 
             query = "insert into car_evol_u (evol_pac_id_u, evol_ingr_id_u) " +
                             "select distinct Evol_Pac_Id, evol_ingr_id " +
                             "from car_evol_new where not exists(select evol_ingr_id_u from car_evol_u " +
                             "where car_evol_u.evol_ingr_id_u= car_evol_new.evol_ingr_id)";
-            //data = new TDatos("ICBA.Properties.Settings.conStr");
+            //data = new TDatos("Au.Properties.Settings.conStr");
             data.ExecuteCmd(query, System.Data.CommandType.Text);
 
         }

@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class car_evol1Manager
     {
-        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
+        private PetaPoco.Database db = new PetaPoco.Database("Au.Properties.Settings.conStr");
 
         public List<Car_evol_1> Seleccionar(string Where, string OrderBy)
         {

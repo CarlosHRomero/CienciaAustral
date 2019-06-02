@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class TablaEquivManager
     {
-        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
+        private PetaPoco.Database db = new PetaPoco.Database("Au.Properties.Settings.conStr");
 
 
         public CienciaTablaEquiv BuscarTablaTronco(int moduloId)

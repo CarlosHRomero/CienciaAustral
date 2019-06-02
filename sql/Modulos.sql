@@ -1,5 +1,4 @@
-USE [ICBA Cirugia 2003]
-GO
+
 
 /****** Object:  Table [cirugia].[Ciencia_Modulo]    Script Date: 12/04/2019 17:15:30 ******/
 SET ANSI_NULLS ON

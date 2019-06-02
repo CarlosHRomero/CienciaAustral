@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Reflection;
 using Ciencia.OBJ;
 using Ciencia.DAL;
-using Cardiologia.OBJ;
-using Cardiologia.DAL;
+//using Cardiologia.OBJ;
+//using Cardiologia.DAL;
 
 namespace Ciencia.BLL
 {
@@ -39,21 +39,21 @@ namespace Ciencia.BLL
         List<PropertyInfo> campos = typeof(Car_evol_1).GetProperties().ToList();
         private void ActualizarRegistro(Car_evol_1 regDes)
         {
-            List<clsEvolucion> listaEvol;
-            string where = string.Format("Evol_Ingr_Id = {0} ", regDes.Evol_Ingr_Id_1.ToString());
-            string order = "evol_f";
-            listaEvol = evolMan.Seleccionar(where, order);
-            CienciaEquiv ceCampo;
-            foreach (PropertyInfo campo in campos)
-            {
-                ceCampo = ObtenerPorOrigen(campo.Name);
-                if (ceCampo == null || ceCampo.TipoDeDato.ToLower() == "id")
-                {
-                    //throw new Exception("campo no encontrado en ciencia equiv" + campo.Name);
-                    continue;
-                }
-                ActualizarCampo(listaEvol, campo, ceCampo, regDes);
-            }
+            //List<clsEvolucion> listaEvol;
+            //string where = string.Format("Evol_Ingr_Id = {0} ", regDes.Evol_Ingr_Id_1.ToString());
+            //string order = "evol_f";
+            //listaEvol = evolMan.Seleccionar(where, order);
+            //CienciaEquiv ceCampo;
+            //foreach (PropertyInfo campo in campos)
+            //{
+            //    ceCampo = ObtenerPorOrigen(campo.Name);
+            //    if (ceCampo == null || ceCampo.TipoDeDato.ToLower() == "id")
+            //    {
+            //        //throw new Exception("campo no encontrado en ciencia equiv" + campo.Name);
+            //        continue;
+            //    }
+            //    ActualizarCampo(listaEvol, campo, ceCampo, regDes);
+            //}
         }
         List<CienciaEquiv> listaEquiv;
         public CienciaEquiv ObtenerPorOrigen(string campoOrg)

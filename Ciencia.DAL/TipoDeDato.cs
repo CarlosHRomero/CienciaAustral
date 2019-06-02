@@ -10,7 +10,7 @@ namespace Ciencia.DAL
         {
             String sql = "select DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME= '" + tabla +
                          "' and COLUMN_NAME = '" + campo + "'";
-            TDatos data = new TDatos("ICBA.Properties.Settings.conStrCiencia");
+            TDatos data = new TDatos("Au.Properties.Settings.conStrCiencia");
             return data.GetDataEscalar(sql, CommandType.Text).ToString();
             //return string.Empty;
         }

@@ -10,7 +10,7 @@ namespace Ciencia.DAL
 {
     public class CienciaEquivManager : IBaseManager<CienciaEquiv>
     {
-        private PetaPoco.Database db = new PetaPoco.Database("ICBA.Properties.Settings.conStr");
+        private PetaPoco.Database db = new PetaPoco.Database("Au.Properties.Settings.conStr");
         List<CienciaEquiv> listaEquiv;
         //public CienciaEquiv ObtenerPorOrigen(string campoOrg, int tablaId) 
 

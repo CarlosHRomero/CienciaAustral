@@ -39,26 +39,26 @@ namespace Ciencia.BLL
             _tablaPaciente = _tablasOrigenModulo.FirstOrDefault(x => x.EsPaciente);
             _mensajes = new List<string>();
             //Actualiza la tabla elf_equiv apartir de la tabla elf_persvinc
-            if (moduloId == 1)
-            {
-                //Operadores
-                _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=2)", "Operador");
-                //Anestesiologo
-                _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=3)", "Anestesiologo");
-                //Ayudante
-                _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=4)", "Ayudante");
-                //Instrumentista
-                _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=7)", "Instrumentista");
-                //Medico
-                _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Per_D=1 Or PVi_Per_D=6", "Medico");
-                // Primer evento cardiologia
-            }
+            //if (moduloId == 1)
+            //{
+            //    //Operadores
+            //    _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=2)", "Operador");
+            //    //Anestesiologo
+            //    _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=3)", "Anestesiologo");
+            //    //Ayudante
+            //    _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=4)", "Ayudante");
+            //    //Instrumentista
+            //    _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Est_T=2 AND (PVi_Per_D=1 Or PVi_Per_D=7)", "Instrumentista");
+            //    //Medico
+            //    _mapeadorTabla.ActualizarElfEquivPersonalVinculado("PVi_Per_D=1 Or PVi_Per_D=6", "Medico");
+            //    // Primer evento cardiologia
+            //}
             if (moduloId == 2)
             {
-                EvolPrimeraCar epc = new EvolPrimeraCar();
-                epc.ActualizarTabla();
-                EvolUltimaCar euc = new EvolUltimaCar();
-                euc.ActualizarTabla();
+                //EvolPrimeraCar epc = new EvolPrimeraCar();
+                //epc.ActualizarTabla();
+                //EvolUltimaCar euc = new EvolUltimaCar();
+                //euc.ActualizarTabla();
             }
         }
 

@@ -28,3 +28,15 @@ C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.
 C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.CopyComplete
 C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.dll
 C:\Users\chromero\source\repos\Ciencia\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.pdb
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.dll.config
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Ciencia.OBJ.pdb
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\EntityFramework.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\EntityFramework.xml
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.CoreCompileInputs.cache
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csproj.CopyComplete
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.pdb
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.csprojAssemblyReference.cache
