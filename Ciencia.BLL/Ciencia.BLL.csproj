@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Au\dll\Generales.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -76,6 +72,10 @@
     <Compile Include="TablaEquivBuss.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Generales\Generales.csproj">
+      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
+      <Name>Generales</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ciencia.DAL\Ciencia.DAL.csproj">
       <Project>{6bd61d5a-a957-4a6e-9156-613f996caaf0}</Project>
       <Name>Ciencia.DAL</Name>

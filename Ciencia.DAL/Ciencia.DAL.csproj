@@ -43,10 +43,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Electrofisiologia\trunk\Electrofisiologia.DAL\bin\Debug\Electrofisiologia.OBJ.dll</HintPath>
     </Reference>
-    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Au\dll\Generales.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -111,6 +107,10 @@
     <ProjectReference Include="..\..\Common\Common\Common.OBJ\Common.OBJ.csproj">
       <Project>{423e4d38-8f89-4a65-8a35-d6af22d1c79c}</Project>
       <Name>Common.OBJ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Generales\Generales.csproj">
+      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
+      <Name>Generales</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ciencia.OBJ\Ciencia.OBJ.csproj">
       <Project>{d8526ed8-6a5b-4538-b5e2-29c6f5048e79}</Project>

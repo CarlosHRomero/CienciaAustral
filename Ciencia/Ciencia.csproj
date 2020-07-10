@@ -69,13 +69,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Common\trunk\Common\dll\DrawFlat.dll</HintPath>
     </Reference>
-    <Reference Include="Generales, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Generales\dll\Generales.dll</HintPath>
-    </Reference>
     <Reference Include="icbaTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Hemodinamia\trunk\Antonio\dll\icbaTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -273,6 +273,10 @@
     <ProjectReference Include="..\..\Common\Common\Common\Common.csproj">
       <Project>{241cd245-931b-4077-9d16-632ae8ce842c}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Generales\Generales.csproj">
+      <Project>{50d756df-a3e9-4dad-a226-493f65005d85}</Project>
+      <Name>Generales</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ciencia.BLL\Ciencia.BLL.csproj">
       <Project>{d5b3df01-68be-4d44-85c9-3fbca5d74288}</Project>

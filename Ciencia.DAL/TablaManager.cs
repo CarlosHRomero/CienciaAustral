@@ -177,7 +177,7 @@ namespace Ciencia.DAL
                 
                 var ds = new DataSet();
                 ds.Tables.Add(dtOrg);
-                if (!Generales.ExportadorDatos.LargeExport(dtOrg, Xml))
+                if (!ExportadorDatos.LargeExport(dtOrg, Xml))
                     return false;
                 //if (!Generales.ExportadorDatos.ExportarExcel(ds, Xml))
                 //    return false;

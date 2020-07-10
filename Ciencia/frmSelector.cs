@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Ciencia.BLL;
 using Ciencia.OBJ;
 using Ciencia.Properties;
-using Common;
+using Common.BLL;
 using DrawFlat;
 using Generales;
 

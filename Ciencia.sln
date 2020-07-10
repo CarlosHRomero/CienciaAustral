@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2019
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ciencia.OBJ", "Ciencia.OBJ\Ciencia.OBJ.csproj", "{D8526ED8-6A5B-4538-B5E2-29C6F5048E79}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.OBJ", "..\Common\Common\Common.OBJ\Common.OBJ.csproj", "{423E4D38-8F89-4A65-8A35-D6AF22D1C79C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDI", "..\Common\MDI\MDI.csproj", "{579B1176-0C53-4E6E-93A9-27A373E45F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generales", "..\Generales\Generales.csproj", "{50D756DF-A3E9-4DAD-A226-493F65005D85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{579B1176-0C53-4E6E-93A9-27A373E45F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579B1176-0C53-4E6E-93A9-27A373E45F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579B1176-0C53-4E6E-93A9-27A373E45F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50D756DF-A3E9-4DAD-A226-493F65005D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50D756DF-A3E9-4DAD-A226-493F65005D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50D756DF-A3E9-4DAD-A226-493F65005D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50D756DF-A3E9-4DAD-A226-493F65005D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
