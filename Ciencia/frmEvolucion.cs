@@ -17,7 +17,7 @@ namespace Ciencia
     public partial class frmEvolucion : Form
     {
         protected String _localConStr;
-        private string Titulo = "ICBA - Cardiología - Ciencia - frmEvolucion ";
+        private string Titulo = "HUA - Ciencia - frmEvolucion ";
         private int _moduloId;
         private string _where;
         public string EstablecerCadenaDeConexion(string nombreArchivo)

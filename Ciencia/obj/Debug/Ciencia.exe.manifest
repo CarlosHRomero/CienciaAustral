@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="Ciencia.exe" version="1.1.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="Ciencia.exe" version="1.1.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="Ciencia" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -42,26 +42,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ciencia.exe" size="313856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ciencia.exe" size="325120">
       <assemblyIdentity name="Ciencia" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9Y102BHDDUX8N3VoCp/6NDkO6OEbx9/zjUhrANA6V4U=</dsig:DigestValue>
+        <dsig:DigestValue>luo1Rd9ZgAIn+bKL8i9aigK8H9fSN+ZZvbazdbfLz04=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ciencia.BLL.dll" size="44032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ciencia.BLL.dll" size="44544">
       <assemblyIdentity name="Ciencia.BLL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PQwchQhd0ZYdLrUlOCxCmBT2f6vstX0Nb7oLU4tMcoM=</dsig:DigestValue>
+        <dsig:DigestValue>v628aUoutjVmwGpuMOPqeyuYcVsB9Vyv+mnQNYq2pHg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -73,7 +73,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>V8lDwd9MFd8S3D5PSFm9/8dMQkGjsVbm+RcVVaTMvTI=</dsig:DigestValue>
+        <dsig:DigestValue>QuVFmN1z0tQOrU4HjeJ42tJRE899YVASFllrI1q7jfs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +85,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9Fs4Lsfl+WG57lNOEmMIr6psiTASkY9hXVsRprhWajY=</dsig:DigestValue>
+        <dsig:DigestValue>gN6tHZ+XYupgyXbOpg9OWgtiFG3QTR3ot06rr+4cqoQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -97,7 +97,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>y5k+Gwk55uKwdujV5Pw0NOaSJCzhZdov3NKe+dVfhlg=</dsig:DigestValue>
+        <dsig:DigestValue>h0//JUVQiZfew/3QAQJRFV9RtctkQop3VJeEG8YxrLU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -109,7 +109,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>x0o9goXHO4/SXFBQdOCGbHcoupx5KbRDS2p+OnW08tc=</dsig:DigestValue>
+        <dsig:DigestValue>grxoq+WlWI36sbBMqBVUmwWkFUvcNwSB4USp2JMdptM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lqoWR4JBcl+CeDTi1PeLNSpdRHeuPCvxvc14wyp6REc=</dsig:DigestValue>
+        <dsig:DigestValue>0Ny1utMFJAvkr30YGClwa8rFBb5f+nlH/IdPDPjGDG8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -133,7 +133,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>h6tSk2vdm/vkQIUBfUDNH4upjsFr1c5Ck+buLrtvBoE=</dsig:DigestValue>
+        <dsig:DigestValue>cHptSXuiW4ADdSB2T9MUrNsmJvZ5WqoWmLAasN8C2AU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -205,7 +205,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vEER8Jp1jMVwhnhgoC26GzN7B7NMFEq+e5x0yNQyyp0=</dsig:DigestValue>
+        <dsig:DigestValue>z+vG80A5afnhiUP8zTtkHqOe6r7Iktj9BUbvTaTCeQs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -233,13 +233,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Ciencia.exe.config" size="611">
+  <file name="Ciencia.exe.config" size="1295">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>hj3aaW5DLPefEHVaLzA8EU+teddPXSdVsKsZDwyO6WU=</dsig:DigestValue>
+      <dsig:DigestValue>vJ7qpm4mQvR4ypc1e59SjO+Pb0Hr4HZ/R5eDeO+YMno=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

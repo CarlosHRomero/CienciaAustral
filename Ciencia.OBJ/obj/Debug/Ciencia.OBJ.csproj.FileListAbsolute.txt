@@ -55,3 +55,6 @@ C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.OBJ\obj\Debug\Ciencia.OBJ.pdb
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Generales.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\DocumentFormat.OpenXml.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Generales.pdb
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Generales.dll
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.OBJ\bin\Debug\Generales.pdb

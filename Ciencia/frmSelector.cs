@@ -22,7 +22,7 @@ namespace Ciencia
         //private string conorg = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=\\\\AMERICA\\America\\Antonio\\Cardio\\Ciencia\\Car_Ciencia_Local.mdb"; // "\\\\AMERICA\\America\\Antonio\\Cardio\\Ciencia\\Car_Ciencia_Local.accdb" ;
         private string arorg = "C:\\Sistemas\\Ciencia\\Ciencia_Local.mdb";
 
-        private string Titulo = "ICBA - Cardiología - Ciencia - frmSelector ";
+        private string Titulo = "HUA - Selector - Ciencia - frmSelector ";
         string _localConStr;
         SelectorBuss selB = new SelectorBuss();
         private int _moduloId;

@@ -15,7 +15,7 @@ namespace Ciencia
 {
     public partial class frmActualizarModulo : Form
     {
-        private String Titulo = "ICBA - Ciencia - frmActualizarModulo";
+        private String Titulo = "HUA - Ciencia - frmActualizarModulo";
 
         public frmActualizarModulo()
         {

@@ -256,3 +256,6 @@ C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia\obj\Debug\Ciencia.pdb
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\Generales.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\DocumentFormat.OpenXml.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\Generales.pdb
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\Generales.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Antonio\Source\Repos\CienciaNuevo\Ciencia\bin\Debug\Generales.pdb

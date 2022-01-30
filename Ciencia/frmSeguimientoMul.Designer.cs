@@ -35,6 +35,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(793, 554);
             this.Name = "frmSeguimientoMul";
+            this.Text = "HUA - Ciencia - frmEvolucion ";
+            this.Load += new System.EventHandler(this.frmSeguimientoMul_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -111,3 +111,5 @@ C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.DAL\obj\Debug\Ciencia.DAL.cspro
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.DAL\obj\Debug\Ciencia.DAL.csproj.CopyComplete
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.DAL\obj\Debug\Ciencia.DAL.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.DAL\obj\Debug\Ciencia.DAL.pdb
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.DAL\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.DAL\bin\Debug\Generales.pdb

@@ -358,7 +358,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(150, 60);
             this.label1.TabIndex = 48;
-            this.label1.Text = "I.C.B.A. Ciencia";
+            this.label1.Text = "HUA Ciencia";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2

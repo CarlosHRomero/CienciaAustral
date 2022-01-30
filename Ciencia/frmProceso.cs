@@ -19,7 +19,7 @@ namespace Ciencia
         private readonly BackgroundWorker _bw= new BackgroundWorker();
         private readonly ProcesosB _procB = new ProcesosB();
         private int _maximumProgressBar;
-        private String Titulo = "ICBA - Ciencia - frmProceso";
+        private String Titulo = "HUA - Ciencia - frmProceso";
         private DateTime _t;
         private int _moduloId;
         private Ciencia_Procesos _proc;

@@ -89,8 +89,12 @@ namespace Ciencia.DAL
                 foreach(var campo in campos)
                 {
                     CienciaEquiv obj = listaEquiv.Find(x=> x.CampoEquivalente == campo.nombre);
-                    if(listaTablaId.Find(x=> x == obj.TablaId) == 0)
+                    if (obj != null)
+                    {
+                        if (listaTablaId.Find(x=> x == obj.TablaId) == 0)
+                        
                         listaTablaId.Add(obj.TablaId);
+                    }
                 }
                 
 

@@ -139,3 +139,4 @@ C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.BLL\obj\Debug\Ciencia.BLL.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.BLL\obj\Debug\Ciencia.BLL.pdb
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.BLL\bin\Debug\DocumentFormat.OpenXml.dll
 C:\Users\chrom\Source\Repos\CienciaNuevo\Ciencia.BLL\bin\Debug\Generales.pdb
+C:\Users\Antonio\source\repos\CienciaNuevo\Ciencia.BLL\bin\Debug\Generales.pdb

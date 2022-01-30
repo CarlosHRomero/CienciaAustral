@@ -30,7 +30,7 @@ namespace Ciencia
         public bool VerValor { get; set; }
 
 
-        private string Titulo = "ICBA - Ciencia - frmUniverso ";
+        private string Titulo = "HUA - Ciencia - frmUniverso ";
         
         public frmUniverso()
         {

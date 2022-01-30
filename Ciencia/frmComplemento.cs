@@ -38,7 +38,7 @@ namespace Ciencia
                             "Data Source= " + nombreArchivo;
             return ConStr;
         }
-        private string Titulo = "ICBA - Ciencia - frmComplemento ";
+        private string Titulo = "HUA - Ciencia - frmComplemento ";
         //public string Where { get; set; }
         int _moduloId { get; set; }
         string _where { get; set; }
